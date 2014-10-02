@@ -1,0 +1,12 @@
+<!-- ACTIVITIES -->
+        <activity configChanges="orientation|screenLayout|screenSize" android:name="com.facebook.LoginActivity"></activity>
+		<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ YOUR_APP_ID"/>
+
+
+<!-- META-DATA -->
+	<meta-data android:name="com.prime31.FacebookPlugin" android:value="UnityPlayerActivityProxy"/>
+
+
+<!-- PERMISSIONS -->
+    <uses-permission android:name="android.permission.INTERNET" />
+

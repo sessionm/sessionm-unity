@@ -1,0 +1,43 @@
+--- Updating Unity-iPhone.xcodeproj/project.pbxproj for Unity integration ---
+Initializing XcodeProject...
+Found UUID for the PBXNativeTarget: 1D6058960D05DD3E006BFB54
+Build phases:
+	{'Frameworks': '1D60588F0D05DD3D006BFB54', 'Sources': '1D60588E0D05DD3D006BFB54', 'Resources': '1D60588D0D05DD3D006BFB54', 'CopyFiles': '83D0C1FD0E6C8D7700EBCE5D'}
+Adding file reference CoreTelephony.framework
+Adding file CoreTelephony.framework to group Frameworks
+Weak linking framework: CoreTelephony.framework
+Adding build file CoreTelephony.framework
+Adding CoreTelephony.framework to build phase Frameworks
+Adding file reference AdSupport.framework
+Adding file AdSupport.framework to group Frameworks
+Weak linking framework: AdSupport.framework
+Adding build file AdSupport.framework
+Adding AdSupport.framework to build phase Frameworks
+File reference already exists: AdSupport.framework
+Adding file reference MobileCoreServices.framework
+Adding file MobileCoreServices.framework to group Frameworks
+Adding build file MobileCoreServices.framework
+Adding MobileCoreServices.framework to build phase Frameworks
+File reference already exists: CFNetwork.framework
+Adding file reference CoreData.framework
+Adding file CoreData.framework to group Frameworks
+Adding build file CoreData.framework
+Adding CoreData.framework to build phase Frameworks
+Adding file reference EventKit.framework
+Adding file EventKit.framework to group Frameworks
+Adding build file EventKit.framework
+Adding EventKit.framework to build phase Frameworks
+Adding file reference EventKitUI.framework
+Adding file EventKitUI.framework to group Frameworks
+Adding build file EventKitUI.framework
+Adding EventKitUI.framework to build phase Frameworks
+Adding file reference StoreKit.framework
+Adding file StoreKit.framework to group Frameworks
+Adding build file StoreKit.framework
+Adding StoreKit.framework to build phase Frameworks
+File reference already exists: SystemConfiguration.framework
+File reference already exists: MediaPlayer.framework
+File reference already exists: UIKit.framework
+File reference already exists: Foundation.framework
+File reference already exists: CoreGraphics.framework
+--- Finished SessionM integration ---

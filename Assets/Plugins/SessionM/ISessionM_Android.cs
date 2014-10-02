@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
+
 #if UNITY_ANDROID
 /*
  * SessionM Android Native Implementation.
@@ -13,15 +14,14 @@ public class ISessionM_Android : ISessionM
 	private SessionM sessionMGameObject;
 	private ISessionMCallback callback;
 	private SessionMEventListener listener;
-	
+
 	private static AndroidJavaObject androidInstance;
-	
+	private AndroidJavaClass sessionMObject = new AndroidJavaClass ("com.sessionm.unity.SessionMPlugin");
 	private Boolean isPresented = false;
 	
 	public ISessionM_Android(SessionM sessionMParent)
 	{
 		sessionMGameObject = sessionMParent;
-		
 		initAndroidInstance();
 		
 		CreateListenerObject();
@@ -34,10 +34,8 @@ public class ISessionM_Android : ISessionM
 	private void CreateListenerObject()
 	{
 		listener = sessionMGameObject.gameObject.AddComponent<SessionMEventListener>();
-		
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.CallStatic("setCallbackGameObjectName", sessionMGameObject.gameObject.name);
-		}
+
+		sessionMObject.CallStatic("setCallbackGameObjectName", sessionMGameObject.gameObject.name);
 		
 		listener.SetNativeParent(this);
 		
@@ -78,10 +76,8 @@ public class ISessionM_Android : ISessionM
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;
-		
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			count = activityObject.Call<int>("getUnclaimedAchievementCount");			
-		}
+
+			count = sessionMObject.CallStatic<int>("getUnclaimedAchievementCount");			
 		
 		return count;
 	}
@@ -89,10 +85,8 @@ public class ISessionM_Android : ISessionM
 	public string GetUnclaimedAchievementData() 
 	{
 		string achievementJSON = null;
-		
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			achievementJSON = activityObject.Call<string>("getUnclaimedAchievementJSON");			
-		}
+
+		achievementJSON = sessionMObject.CallStatic<string>("getUnclaimedAchievementJSON");
 		
 		return achievementJSON;
 	}
@@ -115,9 +109,8 @@ public class ISessionM_Android : ISessionM
 			return false;
 		}
 		
-		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type),
-		       activityObject = GetCurrentActivity()) {
-			isPresented = activityObject.Call<bool>("presentActivity", activityType);			
+		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type)) {
+			isPresented = androidInstance.Call<bool>("presentActivity", activityType);			
 		}
 		return isPresented;
 	}
@@ -145,9 +138,8 @@ public class ISessionM_Android : ISessionM
 			return false;
 		}
 		
-		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type),
-		       activityObject = GetCurrentActivity()) {
-			available = activityObject.Call<bool>("isActivityAvailable", activityType);			
+		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type)) {
+			available = sessionMObject.CallStatic<bool>("isActivityAvailable", activityType);			
 		}
 		return available;
 	}
@@ -174,26 +166,20 @@ public class ISessionM_Android : ISessionM
 	
 	public void NotifyPresented()
 	{
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("notifyCustomAchievementPresented");
-		}
+		sessionMObject.CallStatic("notifyCustomAchievementPresented");
 	}
 	
 	public void NotifyDismissed()
 	{
 		if (isPresented) {
-			using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-				activityObject.Call ("notifyCustomAchievementCancelled");
-			}
+			sessionMObject.CallStatic ("notifyCustomAchievementCancelled");
 		}
 	}
 	
 	public void NotifyClaimed()
 	{
 		if (isPresented) {
-			using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-				activityObject.Call ("notifyCustomAchievementClaimed");
-			}
+			sessionMObject.CallStatic ("notifyCustomAchievementClaimed");
 		}
 	}
 	
@@ -207,9 +193,7 @@ public class ISessionM_Android : ISessionM
 	{
 		return this.callback;
 	}
-	
-	// MonoBehavior 
-	
+
 	public AndroidJavaObject GetCurrentActivity() 
 	{
 		using (AndroidJavaClass playerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
@@ -217,6 +201,7 @@ public class ISessionM_Android : ISessionM
 		}
 	}
 	
+	// MonoBehavior 
 	private AndroidJavaObject GetAndroidActivityTypeObject(ActivityType type) 
 	{
 		if(Application.platform != RuntimePlatform.Android) {

@@ -1,8 +1,0 @@
-<!-- ACTIVITIES -->
-		<activity android:name="com.prime31.GoogleIABProxyActivity" android:configChanges="orientation"></activity>
-
-
-<!-- PERMISSIONS -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.android.vending.BILLING" />
-

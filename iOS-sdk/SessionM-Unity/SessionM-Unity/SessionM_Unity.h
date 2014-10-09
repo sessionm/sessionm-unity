@@ -12,10 +12,7 @@
 #define kSMUnityDefaultSessionM_SetCallbackGameObjectName @"Main Camera"
 
 void SMSetCallbackGameObjectName(char *gameObjectName);
-void SMSetServerURL (const char *url);
-void SMSetPortalURL(const char *url);
-void SMSetAdURL(const char *url);
-void SMStopSession(void);
+void SMSetServiceRegion(SMServiceRegion region);
 
 @interface SessionM_Unity : NSObject
 

@@ -6,8 +6,12 @@
 
 #import "SessionM_Unity.h"
 
+#pragma mark - Interface
+
+// An extern function implemented by the SessionM Unity plugin
 extern void UnitySendMessage(const char* obj, const char* method, const char* msg);
 
+// Utility functions
 static NSString *SMPackStrings(NSArray * strings);
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData);
 static NSString *SMUserToJSONString(SMUser *user);
@@ -23,6 +27,8 @@ SessionM_Unity *__unityClientSharedInstance;
 @end
 
 
+#pragma mark - Implementation
+
 @implementation SessionM_Unity
 
 @synthesize callbackGameObjectName;
@@ -36,9 +42,8 @@ SessionM_Unity *__unityClientSharedInstance;
     return __unityClientSharedInstance;
 }
 
-#pragma mark -
-#pragma mark SessionMDelegate
 
+#pragma mark - SessionMDelegate
 
 - (void)sessionM:(SessionM *)sessionM didTransitionToState:(SessionMState)state {
     NSString *stateStr = [NSString stringWithFormat:@"%i", state];
@@ -93,9 +98,10 @@ SessionM_Unity *__unityClientSharedInstance;
     [self invokeUnityGameObjectMethod:@"_sessionM_HandleUserActionMessage" message:jsonString];
 }
 
-#pragma mark -
-#pragma mark Private
 
+#pragma mark - Private
+
+// Sends a message to the Unity object specified by callbackGameObjectName to invoke a method that handles a SessionM SDK event
 - (void)invokeUnityGameObjectMethod:(NSString *)methodName message:(NSString *)message  {
     NSString *gameObject = self.callbackGameObjectName == nil ? kSMUnityDefaultSessionM_SetCallbackGameObjectName : self.callbackGameObjectName;
     message = (message == nil) ? @"" : message;
@@ -109,12 +115,16 @@ SessionM_Unity *__unityClientSharedInstance;
 @end
 
 
+#pragma mark - Unity Plugin
+
+// Sets the name of the Unity game object that will be sent messages to invoke handler methods for SessionM SDK events
 void SMSetCallbackGameObjectName(char *gameObjectName) {
     NSString *name = [NSString stringWithCString:gameObjectName encoding:NSUTF8StringEncoding];
     SessionM_Unity *client = [SessionM_Unity sharedInstance];
     client.callbackGameObjectName = name;
 }
 
+// Starts a session for the specified application ID
 void SMStartSession(char *appId) {
     NSString *appIdString = [NSString stringWithCString:appId encoding:NSUTF8StringEncoding];
     SessionM *sessionM = [SessionM sharedInstance];
@@ -122,67 +132,80 @@ void SMStartSession(char *appId) {
     sessionM.delegate = [SessionM_Unity sharedInstance];
 }
 
+// Returns the current session state
 SessionMState SMGetSessionState(void) {
     return [SessionM sharedInstance].sessionState;
 }
 
+// Presents the user portal (if type is SMActivityTypePortal) or the current unclaimed achievement (if type is SMActivityTypeAchievement) to the user
 BOOL SMPresentActivity(SMActivityType type) {
     return [[SessionM sharedInstance] presentActivity:type];
 }
 
+// Dismisses the user portal or the achievement that is currently being presented
 void SMDismissActivity(void) {
     [[SessionM sharedInstance] dismissActivity];
 }
 
+// Returns whether the user portal or an achievement is currently being presented to the user
 BOOL SMIsActivityPresented(void) {
     return ([SessionM sharedInstance].currentActivity != nil);
 }
 
+// Returns whether the user portal or an achievement is available to present to the user
 BOOL SMIsActivityAvailable(SMActivityType type) {
     return [[SessionM sharedInstance] isActivityAvailable:type];
 }
 
 
+// Logs a count for the achievement associated with the specified action
 void SMLogAction(const char *action) {
     NSString *actionStr = [NSString stringWithCString:action encoding:NSUTF8StringEncoding];
     [[SessionM sharedInstance] logAction:actionStr];
 }
 
+// Logs multiple counts for the achievement associated with the specified action
 void SMLogActions(const char *action, int count) {
     NSString *actionStr = [NSString stringWithCString:action encoding:NSUTF8StringEncoding];
     [[SessionM sharedInstance] logAction:actionStr withCount:count];
 }
 
+// Returns the current debug log level
 SMLogLevel SMGetLogLevel(void) {
     return [SessionM sharedInstance].logLevel;
 }
 
+// Sets the log level to be used for debugging
 void SMSetLogLevel(SMLogLevel level) {
     [SessionM sharedInstance].logLevel = level;
 }
 
+// Returns the version number of the SessionM iOS SDK being used
 const char *SMGetSDKVersion(void) {
     NSString *str = __SESSIONM_SDK_VERSION__;
     const char *c = [str cStringUsingEncoding:NSUTF8StringEncoding];
     return c ? strdup(c) : NULL;
 }
 
+// Sends meta data to SessionM SDK. Please refer to the documentation for more information on common keys. Data should only be supplied in accordance with your application's terms of service and privacy policy.
 void SMSetMetaData(const char *data, const char *key) {
     NSString *dataString = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
     NSString *keyString = [NSString stringWithCString:key encoding:NSUTF8StringEncoding];
     [[SessionM sharedInstance] setMetaData:dataString forKey:keyString];
 }
 
+// Sets the SessionM service region
 void SMSetServiceRegion(SMServiceRegion region) {
     [[SessionM sharedInstance] setServiceRegion:region];
 }
 
+// Returns the user's unclaimed achievement count
 unsigned long SMPlayerDataGetUnclaimedAchievementCount(void) {
     SMUser *playerData = [SessionM sharedInstance].user;
     return playerData.unclaimedAchievementCount;
 }
 
-// Returns JSON representation of current achievement
+// Returns a JSON representation of the current unclaimed achievement (returns NULL once achievement is presented)
 const char *SMGetUnclaimedAchievementJSON(void) {
     NSString *achievementString = nil;
     SMAchievementData *achievementData = [SessionM sharedInstance].unclaimedAchievement;
@@ -193,6 +216,7 @@ const char *SMGetUnclaimedAchievementJSON(void) {
     return c ? strdup(c) : NULL;
 }
 
+// Notifies SessionM SDK that the current unclaimed custom achievement was presented
 void SMNotifyCustomAchievementPresented() {
     SMAchievementData *achievementData = [SessionM sharedInstance].unclaimedAchievement;
     if (achievementData) {
@@ -202,15 +226,20 @@ void SMNotifyCustomAchievementPresented() {
     }
 }
 
+// Notifies SessionM SDK that the current presented custom achievement was dismissed
 void SMNotifyCustomAchievementDismissed(void) {
     SessionM_Unity *unityClient = [SessionM_Unity sharedInstance];
     [unityClient.customAchievementActivity notifyDismissed:SMAchievementDismissTypeCanceled];
 }
 
+// Notifies SessionM SDK that the current presented custom achievement was claimed
 void SMNotifyCustomAchievementClaimed(void) {
     SessionM_Unity *unityClient = [SessionM_Unity sharedInstance];
     [unityClient.customAchievementActivity notifyDismissed:SMAchievementDismissTypeClaimed];
 }
+
+
+#pragma mark - Utility
 
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData) {
     NSDictionary *achievementDict = @{

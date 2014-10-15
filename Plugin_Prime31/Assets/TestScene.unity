@@ -5604,11 +5604,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 767792541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ab8107042a341c4ab90ef35efa37e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f6a0950c5af10424aa4b93eea0031fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iosAppId: 62383837636531613464626536643431616532383263356531313635333538326563343762663230
-  androidAppId: 66626531343333326630616639306535623338623066653939633866363435356332396230656535
+  iosAppId: b887ce1a4dbe6d41ae282c5e11653582ec47bf20
+  androidAppId: fbe14332f0af90e5b38b0fe99c8f6455c29b0ee5
   logLevel: 3
 --- !u!4 &767792543
 Transform:
@@ -9504,7 +9504,7 @@ Transform:
   m_GameObject: {fileID: 1298241202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .00232558139, y: .00232558139, z: .00232558139}
+  m_LocalScale: {x: .00505050505, y: .00505050505, z: .00505050505}
   m_Children:
   - {fileID: 485607706}
   m_Father: {fileID: 0}

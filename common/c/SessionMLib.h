@@ -21,7 +21,7 @@ void SMSetLogLevel(SMLogLevel level);
 const char *SMGetSDKVersion(void);
 void SMSetMetaData(const char *data, const char *key);
 SessionMState SMGetSessionState(void);
-unsigned long SMPlayerDataGetUnclaimedAchievementCount(void);
+long SMPlayerDataGetUnclaimedAchievementCount(void);
 
 const char *SMGetUnclaimedAchievementJSON(void);
 void SMNotifyCustomAchievementPresented(const char *achievementId);

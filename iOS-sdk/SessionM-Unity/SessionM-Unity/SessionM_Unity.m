@@ -200,7 +200,7 @@ void SMSetServiceRegion(SMServiceRegion region) {
 }
 
 // Returns the user's unclaimed achievement count
-unsigned long SMPlayerDataGetUnclaimedAchievementCount(void) {
+long SMPlayerDataGetUnclaimedAchievementCount(void) {
     SMUser *playerData = [SessionM sharedInstance].user;
     return playerData.unclaimedAchievementCount;
 }
@@ -284,7 +284,7 @@ static NSString *SMUserToJSONString(SMUser *user) {
 static NSString *SMPackStrings(NSArray * strings) {
     NSMutableString *packedString = [NSMutableString string];
     for (NSString *string in strings) {
-        [packedString appendFormat:@"%lu:%@", (unsigned long)string.length, string];
+        [packedString appendFormat:@"%ld:%@", (long)string.length, string];
     }
 
     return packedString;

@@ -64,7 +64,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  iPhoneBundleIdentifier: com.sessionm.unityTestAppPrime31
+  iPhoneBundleIdentifier: com.sessionm.unityTestAppPrime
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: 5624dff49bb45478cae197ad17d7cec7

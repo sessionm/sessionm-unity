@@ -104,7 +104,7 @@ public class FlurryTest : MonoBehaviour
 		Debug.Log("Show Ads");
 
 		#if UNITY_IOS
-		FlurryAds.displayAdForSpace(FLURRY_IOS_SPACE, FlurryAdSize.Bottom);
+		FlurryAds.fetchAndDisplayAdForSpace(FLURRY_IOS_SPACE, FlurryAdSize.Bottom);
 		#endif
 
 		#if UNITY_ANDROID

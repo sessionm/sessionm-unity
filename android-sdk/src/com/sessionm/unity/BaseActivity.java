@@ -15,7 +15,8 @@ import com.unity3d.player.UnityPlayerActivity;
 public class BaseActivity extends UnityPlayerActivity {
 
     private final static String TAG = "SessionM.Unity";
-    
+    private final static String VERSION_NUM = "2.0";
+
     private final SessionM sessionM = SessionM.getInstance();
     
     public static final void setCallbackGameObjectName(String name) {
@@ -121,6 +122,7 @@ public class BaseActivity extends UnityPlayerActivity {
         }
 
         super.onStart();
+        sessionM.setPluginSDK("Unity", VERSION_NUM);
         sessionM.onActivityStart(this);
     }
 

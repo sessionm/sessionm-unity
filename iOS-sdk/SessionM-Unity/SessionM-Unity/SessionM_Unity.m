@@ -36,8 +36,7 @@ SessionM_Unity *__unityClientSharedInstance;
 + (SessionM_Unity *)sharedInstance {
     if (!__unityClientSharedInstance) {
         __unityClientSharedInstance = [[SessionM_Unity alloc] init];
-        // Uncomment when 1.12.7 is released
-        // [[SessionM sharedInstance] setPluginSDK:__SESSIONM_UNITY_SDK_TAG__ version:__SESSIONM_UNITY_SDK_VERSION__];
+        [[SessionM sharedInstance] setPluginSDK:__SESSIONM_UNITY_SDK_TAG__ version:__SESSIONM_UNITY_SDK_VERSION__];
     }
     return __unityClientSharedInstance;
 }

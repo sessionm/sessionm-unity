@@ -8,7 +8,7 @@
 #import "SessionMLib.h"
 
 #define __SESSIONM_UNITY_SDK_TAG__ @"unity_sdk"
-#define __SESSIONM_UNITY_SDK_VERSION__ @"1.5.1"
+#define __SESSIONM_UNITY_SDK_VERSION__ @"2.0"
 #define kSMUnityDefaultSessionM_SetCallbackGameObjectName @"Main Camera"
 
 /*!

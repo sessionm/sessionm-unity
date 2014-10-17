@@ -12,9 +12,15 @@
 			<meta-data android:name="unityplayer.UnityActivity" android:value="true" />
 			<meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 		</activity>
-		<activity android:name="com.sessionm.ui.SessionMActivity" android:launchMode="standard" android:theme="@android:style/Theme.Translucent" android:configChanges="keyboard" android:windowContentOverlay="@null" android:windowFullscreen="true" android:windowIsTranslucent="true" android:windowNoTitle="false" android:windowSoftInputMode="adjustPan">
+		<activity android:name="com.sessionm.ui.SessionMActivity" android:launchMode="standard" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:configChanges="keyboard|orientation|screenSize" android:windowContentOverlay="@null" android:windowSoftInputMode="adjustPan">
 		</activity>
 		<activity android:name="com.sessionm.ui.SessionMVideoActivity" android:configChanges="keyboard|orientation|screenSize" />
+		<receiver android:name="com.sessionm.api.ConnectionReceiver">
+			<intent-filter>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE">
+				</action>
+			</intent-filter>
+		</receiver>
 	</application>
 
     <uses-permission android:name="android.permission.INTERNET" />

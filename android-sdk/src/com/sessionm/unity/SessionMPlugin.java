@@ -50,12 +50,12 @@ public class SessionMPlugin{
         return json;
     }
 
-    public static void notifyCustomAchievementPresented() {
+    public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
             // this cannot happen 
             Log.e(TAG, ac + ".notifyCustomAchievementPresented(): Null achievement");
-            return;
+            return false;
         }
         
         if(Log.isLoggable(TAG, Log.DEBUG)) {
@@ -65,8 +65,10 @@ public class SessionMPlugin{
         AchievementActivity activity = new AchievementActivity(achievement);
         try {
             activity.notifyPresented();
+            return true;
         } catch (AchievementActivityIllegalStateException e) {
             Log.e(TAG, ac + ".notifyCustomAchievementPresented()", e);
+            return false;
         }
     }
     

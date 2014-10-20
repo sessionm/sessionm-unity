@@ -61,23 +61,25 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return json;
     }
 
-    public void notifyCustomAchievementPresented() {
+    public boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
-            // this cannot happen 
+            // this cannot happen
             Log.e(TAG, this + ".notifyCustomAchievementPresented(): Null achievement");
-            return;
+            return false;
         }
-        
+
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, this + ".notifyCustomAchievementPresented(), achievement: " + achievement);
         }
-        
+
         AchievementActivity activity = new AchievementActivity(achievement);
         try {
             activity.notifyPresented();
+            return true;
         } catch (AchievementActivityIllegalStateException e) {
             Log.e(TAG, this + ".notifyCustomAchievementPresented()", e);
+            return false;
         }
     }
     

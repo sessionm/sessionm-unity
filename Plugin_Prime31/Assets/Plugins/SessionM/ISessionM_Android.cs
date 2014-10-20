@@ -104,11 +104,6 @@ public class ISessionM_Android : ISessionM
 	
 	public bool PresentActivity(ActivityType type)
 	{
-		if(type == ActivityType.Introduction) {
-			//Unsupported Activity Type
-			return false;
-		}
-		
 		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type)) {
 			isPresented = androidInstance.Call<bool>("presentActivity", activityType);			
 		}
@@ -117,8 +112,10 @@ public class ISessionM_Android : ISessionM
 	
 	public void DismissActivity()
 	{
-		if(isPresented)
-			androidInstance.Call("dismissActivity");			
+		if (isPresented) {
+			androidInstance.Call ("dismissActivity");
+			isPresented = false;
+		}
 	}
 	
 	public bool IsActivityPresented()
@@ -132,12 +129,6 @@ public class ISessionM_Android : ISessionM
 	public bool IsActivityAvailable(ActivityType type)
 	{
 		bool available = false;
-		
-		if(type == ActivityType.Introduction) {
-			//Unsupported Activity Type on Android
-			return false;
-		}
-		
 		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type)) {
 			available = sessionMObject.CallStatic<bool>("isActivityAvailable", activityType);			
 		}
@@ -166,13 +157,14 @@ public class ISessionM_Android : ISessionM
 	
 	public void NotifyPresented()
 	{
-		sessionMObject.CallStatic("notifyCustomAchievementPresented");
+		isPresented = sessionMObject.CallStatic<bool>("notifyCustomAchievementPresented");
 	}
 	
 	public void NotifyDismissed()
 	{
 		if (isPresented) {
 			sessionMObject.CallStatic ("notifyCustomAchievementCancelled");
+			isPresented = false;
 		}
 	}
 	
@@ -180,6 +172,7 @@ public class ISessionM_Android : ISessionM
 	{
 		if (isPresented) {
 			sessionMObject.CallStatic ("notifyCustomAchievementClaimed");
+			isPresented = false;
 		}
 	}
 	
@@ -214,9 +207,7 @@ public class ISessionM_Android : ISessionM
 				typeString = "ACHIEVEMENT";	
 			} else if(type == ActivityType.Portal) {
 				typeString = "PORTAL";	
-			} else if(type == ActivityType.Interstitial) {
-				typeString = "INTERSTITIAL";	
-			}
+			} 
 			
 			AndroidJavaObject activityType = typeClass.CallStatic<AndroidJavaObject>("valueOf", typeString);
 			return activityType;		

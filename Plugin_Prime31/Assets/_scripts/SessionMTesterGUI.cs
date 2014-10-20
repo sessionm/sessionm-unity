@@ -36,7 +36,6 @@ public class SessionMTesterGUI : MonoBehaviour
 	public UILabel activityAvailableAchievement;
 	public UILabel activityAvailablePortal;
 	public UILabel activityAvailableIntro;
-	public UILabel activityAvailableInterstitial;
 	public UILabel sdkVersion;
 
 	public UILabel logLevel;
@@ -73,12 +72,6 @@ public class SessionMTesterGUI : MonoBehaviour
 	{
 		Debug.Log("OnPresentAchievement");
 		SessionM.GetInstance().PresentActivity(ActivityType.Achievement);
-	}
-
-	public void OnPresentInterstitial()
-	{
-		Debug.Log("OnPresentInterstitial");
-		SessionM.GetInstance().PresentActivity(ActivityType.Interstitial);
 	}
 
 	public void OnCycleLogLevel()
@@ -231,8 +224,6 @@ public class SessionMTesterGUI : MonoBehaviour
 	{
 		unclaimedAchievements.text = SessionM.GetInstance().GetUnclaimedAchievementCount().ToString();
 		activityAvailableAchievement.text = SessionM.GetInstance().IsActivityAvailable(ActivityType.Achievement) ? "yes" : "no";
-		activityAvailableInterstitial.text = SessionM.GetInstance().IsActivityAvailable(ActivityType.Interstitial) ? "yes" : "no";
-		activityAvailableIntro.text = SessionM.GetInstance().IsActivityAvailable(ActivityType.Introduction) ? "yes" : "no";
 		activityAvailablePortal.text = SessionM.GetInstance().IsActivityAvailable(ActivityType.Portal) ? "yes" : "no";
 
 		UpdateAchievementGUI();

@@ -1,8 +1,8 @@
 SessionM-Unity
 ===================
 
-SessionM Unity SDK for Android and iOS
+SessionM Unity SDK for Android and iOS.
 
 LICENSE: MIT
 
-For more help see http://www.sessionm.com/documentation/index.php
+For more help see http://www.sessionm.com/documentation/unity-integration.php

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
+
 #if UNITY_ANDROID
 /*
  * SessionM Android Native Implementation.
@@ -110,11 +111,6 @@ public class ISessionM_Android : ISessionM
 	
 	public bool PresentActivity(ActivityType type)
 	{
-		if(type == ActivityType.Introduction) {
-			//Unsupported Activity Type
-			return false;
-		}
-		
 		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type),
 		       activityObject = GetCurrentActivity()) {
 			isPresented = activityObject.Call<bool>("presentActivity", activityType);			
@@ -124,8 +120,10 @@ public class ISessionM_Android : ISessionM
 	
 	public void DismissActivity()
 	{
-		if(isPresented)
-			androidInstance.Call("dismissActivity");			
+		if (isPresented) {
+			androidInstance.Call ("dismissActivity");
+			isPresented = false;
+		}
 	}
 	
 	public bool IsActivityPresented()
@@ -139,12 +137,7 @@ public class ISessionM_Android : ISessionM
 	public bool IsActivityAvailable(ActivityType type)
 	{
 		bool available = false;
-		
-		if(type == ActivityType.Introduction) {
-			//Unsupported Activity Type on Android
-			return false;
-		}
-		
+
 		using (AndroidJavaObject activityType = GetAndroidActivityTypeObject(type),
 		       activityObject = GetCurrentActivity()) {
 			available = activityObject.Call<bool>("isActivityAvailable", activityType);			
@@ -175,7 +168,7 @@ public class ISessionM_Android : ISessionM
 	public void NotifyPresented()
 	{
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("notifyCustomAchievementPresented");
+			isPresented = activityObject.Call<bool>("notifyCustomAchievementPresented");
 		}
 	}
 	
@@ -184,15 +177,17 @@ public class ISessionM_Android : ISessionM
 		if (isPresented) {
 			using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 				activityObject.Call ("notifyCustomAchievementCancelled");
+				isPresented = false;
 			}
 		}
 	}
 	
 	public void NotifyClaimed()
-	{
+	{	
 		if (isPresented) {
 			using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 				activityObject.Call ("notifyCustomAchievementClaimed");
+				isPresented = false;
 			}
 		}
 	}
@@ -229,8 +224,6 @@ public class ISessionM_Android : ISessionM
 				typeString = "ACHIEVEMENT";	
 			} else if(type == ActivityType.Portal) {
 				typeString = "PORTAL";	
-			} else if(type == ActivityType.Interstitial) {
-				typeString = "INTERSTITIAL";	
 			}
 			
 			AndroidJavaObject activityType = typeClass.CallStatic<AndroidJavaObject>("valueOf", typeString);

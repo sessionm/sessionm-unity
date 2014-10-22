@@ -15,6 +15,7 @@ import com.unity3d.player.UnityPlayerActivity;
 public class BaseNativeActivity extends UnityPlayerActivity {
 
     private final static String TAG = "SessionM.Unity";
+    private final static String VERSION_NUM = "2.0";
     
     private final SessionM sessionM = SessionM.getInstance();
     
@@ -60,23 +61,25 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return json;
     }
 
-    public void notifyCustomAchievementPresented() {
+    public boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
-            // this cannot happen 
+            // this cannot happen
             Log.e(TAG, this + ".notifyCustomAchievementPresented(): Null achievement");
-            return;
+            return false;
         }
-        
+
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, this + ".notifyCustomAchievementPresented(), achievement: " + achievement);
         }
-        
+
         AchievementActivity activity = new AchievementActivity(achievement);
         try {
             activity.notifyPresented();
+            return true;
         } catch (AchievementActivityIllegalStateException e) {
             Log.e(TAG, this + ".notifyCustomAchievementPresented()", e);
+            return false;
         }
     }
     
@@ -121,6 +124,7 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         }
 
         super.onStart();
+        sessionM.setPluginSDK("Unity", VERSION_NUM);
         sessionM.onActivityStart(this);
     }
 

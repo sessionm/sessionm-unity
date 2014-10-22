@@ -143,6 +143,17 @@ public class SessionMListener implements ActivityListener, SessionListener {
     }
 
     @Override
+    public void onUnclaimedAchievement(SessionM sessionM, AchievementData achievementData) {
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".onUnclaimedAchievement: " + achievementData);
+        }
+
+        if(callbackGameObjectName != null) {
+            UnityPlayer.UnitySendMessage(callbackGameObjectName, "_sessionM_HandleUnclaimedAchievementMessage", achievementData.toString());
+        }
+    }
+
+    @Override
     public void onUserAction(com.sessionm.api.SessionM instance, UserAction action, Map<String, String> data) {
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, this + ".onUserAction(): " + action.getCode() + ", data: " + data);

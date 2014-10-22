@@ -8,12 +8,7 @@ public enum ActivityType
 	// User achievement.  
 	Achievement = 1,
 	// User portal.
-	Portal = 2, 
-	// Session M program introduction.
-	// This type is deprecated.
-	Introduction = 3,
-	// Ad interstitial.
-	Interstitial = 4
+	Portal = 2
 }
 
 // Log levels
@@ -118,8 +113,7 @@ public interface ISessionM
 	void DismissActivity();
 	
 	// Returns true if specified UI activity is available for presentation, false - otherwise. User portal (ActivityType.Portal) is always available. 
-	// Achievement activity (ActivityType.Achievement) become available when new achievement is earned as a result of user action. 
-	// Interstitial activity (ActivityType.Interstitial) is available when SessionM SDK has downloaded necessary content. 
+	// Achievement activity (ActivityType.Achievement) become available when new achievement is earned as a result of user action.  
 	bool IsActivityAvailable(ActivityType type);
 	// Returns true if UI activity is currently being presented, false - otherwise.
 	bool IsActivityPresented();

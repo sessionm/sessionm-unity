@@ -15,7 +15,9 @@ public class SessionMPlugin{
     private final static String TAG = "SessionM.Unity";
     
     private final static SessionM sessionM = SessionM.getInstance();
-    private static android.app.Activity ac = com.unity3d.player.UnityPlayer.currentActivity; 
+    private static android.app.Activity ac = com.unity3d.player.UnityPlayer.currentActivity;
+    private final static String VERSION_NUM = "2.0";
+
     public static final void setCallbackGameObjectName(String name) {
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "Callback game object name: " + name);
@@ -48,12 +50,12 @@ public class SessionMPlugin{
         return json;
     }
 
-    public static void notifyCustomAchievementPresented() {
+    public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
             // this cannot happen 
             Log.e(TAG, ac + ".notifyCustomAchievementPresented(): Null achievement");
-            return;
+            return false;
         }
         
         if(Log.isLoggable(TAG, Log.DEBUG)) {
@@ -63,8 +65,10 @@ public class SessionMPlugin{
         AchievementActivity activity = new AchievementActivity(achievement);
         try {
             activity.notifyPresented();
+            return true;
         } catch (AchievementActivityIllegalStateException e) {
             Log.e(TAG, ac + ".notifyCustomAchievementPresented()", e);
+            return false;
         }
     }
     
@@ -105,6 +109,7 @@ public class SessionMPlugin{
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + "SessionM.onStart()");
         }
+        sessionM.setPluginSDK("Unity", VERSION_NUM);
         sessionM.onActivityStart(ac);
     }
 

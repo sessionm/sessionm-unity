@@ -1,0 +1,10 @@
+Session M Unity SDK Release Notes
+________________
+Copyright:  2014 Session M. All rights reserved.
+Date: 10/22/2014
+Version: 2.0 
+
+Changes:
+- Added native achievements support.
+- Added Prime31 support.
+- Bug fixes.

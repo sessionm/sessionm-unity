@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C3324320-ED7F-4455-893D-490C2E868378</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SessionM-Unity</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FE7E59CB7BBE7E013A9B1F65FEB3EFAD079678E5</key>
+		<string>ssh://stash.o.sessionm.com:7999/sdk/sessionm-unity.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS-sdk/SessionM-Unity/SessionM-Unity.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FE7E59CB7BBE7E013A9B1F65FEB3EFAD079678E5</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://stash.o.sessionm.com:7999/sdk/sessionm-unity.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FE7E59CB7BBE7E013A9B1F65FEB3EFAD079678E5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FE7E59CB7BBE7E013A9B1F65FEB3EFAD079678E5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>sessionm-unity</string>
+		</dict>
+	</array>
+</dict>
+</plist>

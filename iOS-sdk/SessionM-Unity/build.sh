@@ -1,26 +1,23 @@
 #!/bin/bash
 
-SDK_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-pushd $SDK_DIR
-
 echo "Installing latest SessionM podspec"
 pod install
 
-CONFIGURATION=$1
-[ $CONFIGURATION ] || CONFIGURATION=Release
-INSTALL_PATH=build
-[ -z $INSTALL_PATH ] || INSTALL_PATH=build
-rm -rf "$INSTALL_PATH"
-mkdir -p "$INSTALL_PATH"
+CONFIGURATION=Release
 WORKSPACE=SessionM-Unity.xcworkspace
 SCHEME=SessionM-Unity
+INSTALL_PATH=build
+
+rm -rf "${INSTALL_PATH}"
+mkdir -p "${INSTALL_PATH}"
+
+PRODUCTS_PATH=${INSTALL_PATH}/Products/${CONFIGURATION}
 LIBRARY_FILE_NAME=lib${SCHEME}.a
+LIBRARY_FILE_PATH=${INSTALL_PATH}/${LIBRARY_FILE_NAME}
+
 echo "Building ${SCHEME}"
+xcodebuild -workspace ${WORKSPACE} -scheme ${SCHEME} -sdk iphoneos -configuration ${CONFIGURATION} -derivedDataPath ${INSTALL_PATH} > ${INSTALL_PATH}/device.log
+xcodebuild -workspace ${WORKSPACE} -scheme ${SCHEME} -sdk iphonesimulator -configuration ${CONFIGURATION} -derivedDataPath ${INSTALL_PATH} > ${INSTALL_PATH}/sim.log
+lipo -create -output ${LIBRARY_FILE_PATH} ${PRODUCTS_PATH}-iphoneos/${LIBRARY_FILE_NAME} ${PRODUCTS_PATH}-iphonesimulator/${LIBRARY_FILE_NAME} > ${INSTALL_PATH}/lipo.log
 
-xcodebuild -workspace $WORKSPACE -scheme $SCHEME -sdk iphoneos -configuration ${CONFIGURATION} -derivedDataPath build > build/device.log
-xcodebuild -workspace $WORKSPACE -scheme $SCHEME -sdk iphonesimulator -configuration ${CONFIGURATION} -derivedDataPath build > build/sim.log
-lipo -create -output build/${LIBRARY_FILE_NAME} build/Products/${CONFIGURATION}-iphoneos/${LIBRARY_FILE_NAME} build/Products/${CONFIGURATION}-iphonesimulator/${LIBRARY_FILE_NAME} > build/lipo.log
-
-echo "Build is under: build/$LIBRARY_FILE_NAME"
-
-popd
+echo "Build is under: ${LIBRARY_FILE_PATH}"

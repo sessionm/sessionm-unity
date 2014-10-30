@@ -73,10 +73,10 @@ public class ISessionM_Android : ISessionM
 		return state;
 	}
 	
-	public boolean GetUserOptOutStatus(){
+	public bool GetUserOptOutStatus(){
 		bool status = false;
 		
-			status = sessionMObject.CallStatic<bool>("GetUserOptOutStatus");			
+			status = sessionMObject.CallStatic<bool>("getUserOptOutStatus");			
 
 		return status;
 	}

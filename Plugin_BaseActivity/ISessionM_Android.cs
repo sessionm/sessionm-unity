@@ -76,11 +76,11 @@ public class ISessionM_Android : ISessionM
 		return state;
 	}
 
-	public boolean GetUserOptOutStatus(){
+	public bool GetUserOptOutStatus(){
 		bool status = false;
 		
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			status = activityObject.Call<bool>("GetUserOptOutStatus");			
+			status = activityObject.Call<bool>("getUserOptOutStatus");			
 		}
 
 		return status;

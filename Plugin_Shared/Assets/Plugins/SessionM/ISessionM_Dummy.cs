@@ -20,6 +20,10 @@ public class ISessionM_Dummy : ISessionM
 		return SessionState.Stopped;
 	}
 	
+	public bool GetUserOptOutStatus(){
+		return false;
+	}
+	
 	public int GetUnclaimedAchievementCount()
 	{
 		return 0;

@@ -10,6 +10,7 @@ import com.sessionm.api.AchievementData;
 import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
+import com.sessionm.api.User;
 import com.unity3d.player.UnityPlayerActivity;
 
 public class BaseNativeActivity extends UnityPlayerActivity {
@@ -114,7 +115,13 @@ public class BaseNativeActivity extends UnityPlayerActivity {
             }
         }
     }
-    
+
+    public boolean getUserOptOutStatus(){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".getUserOptOutStatus()");
+        }
+        return sessionM.getUser().isOptedOut();
+    }
     // Activity 
     
     @Override

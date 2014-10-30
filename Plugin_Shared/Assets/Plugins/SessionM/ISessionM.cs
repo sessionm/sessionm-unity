@@ -94,7 +94,10 @@ public interface ISessionM
 	
 	// Returns session state
 	SessionState GetSessionState();
-	
+
+	// Returns optout of user
+	bool GetUserOptOutStatus();
+
 	// Returns number of unclaimed achievements
 	int GetUnclaimedAchievementCount();
 	

@@ -73,6 +73,14 @@ public class ISessionM_Android : ISessionM
 		return state;
 	}
 	
+	public boolean GetUserOptOutStatus(){
+		bool status = false;
+		
+			status = sessionMObject.CallStatic<bool>("GetUserOptOutStatus");			
+
+		return status;
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;

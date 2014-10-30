@@ -57,6 +57,11 @@ public class SessionM : MonoBehaviour
 	{
 		return sessionMNative.GetSessionState();
 	}
+
+	//Returns user opt out status.
+	public bool GetUserOptOutStatus(){
+		return sessionMNative.GetUserOptOutStatus();
+	}
 	
 	//Use this method for displaying a badge or other SessionM tools.  Remember, your Acheivement count can accumulate over days, so be sure to support at least
 	//triple digit numbers.

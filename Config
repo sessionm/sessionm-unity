@@ -1,4 +1,4 @@
+##Path of Unity application##
 UNITY_PATH=/Applications/Unity/Unity.app/Contents/MacOS/Unity
-DEST_PATH=/Users/zhenhaolei/Documents/sessionm/sessionm-unity
-ANDROID_SDK_VERSION=1.9.14
+##Path of Prime31UnityActivity.jar##
 PRIME31_JAR_PATH=/Users/zhenhaolei/Downloads/Prime31UnityActivity.jar

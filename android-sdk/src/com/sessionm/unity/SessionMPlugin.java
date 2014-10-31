@@ -51,6 +51,15 @@ public class SessionMPlugin{
         return json;
     }
 
+    public static String getUser() {
+        String json = null;
+        User user = sessionM.getUser();
+        if(user != null) {
+            json = SessionMListener.getUser(user);
+        }
+        return json;
+    }
+
     public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
@@ -110,6 +119,13 @@ public class SessionMPlugin{
             Log.d(TAG, ac + ".getUserOptOutStatus()");
         }
         return sessionM.getUser().isOptedOut();
+    }
+
+    public static void setUserOptOutStatus(boolean status){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, ac + ".setUserOptOutStatus()");
+        }
+        sessionM.getUser().setOptedOut(ac, status);
     }
   
     // Prime31 Shared Activity 

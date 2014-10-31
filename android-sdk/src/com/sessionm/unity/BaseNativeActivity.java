@@ -62,6 +62,22 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return json;
     }
 
+    public String getUser() {
+        String json = null;
+        User user = sessionM.getUser();
+        if(user != null) {
+            json = SessionMListener.getUser(user);
+        }
+        return json;
+    }
+
+    public void setUserOptOutStatus(boolean status){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".setUserOptOutStatus()");
+        }
+        sessionM.getUser().setOptedOut(this, status);
+    }
+
     public boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {

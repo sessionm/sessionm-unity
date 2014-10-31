@@ -9,6 +9,7 @@ import com.sessionm.api.AchievementData;
 import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
+import com.sessionm.api.User;
 
 public class SessionMPlugin{
 
@@ -102,6 +103,13 @@ public class SessionMPlugin{
                 Log.e(TAG, ac + ".notifyCustomAchievementClaimed()", e);
             }
         }
+    }
+
+    public static boolean getUserOptOutStatus(){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, ac + ".getUserOptOutStatus()");
+        }
+        return sessionM.getUser().isOptedOut();
     }
   
     // Prime31 Shared Activity 

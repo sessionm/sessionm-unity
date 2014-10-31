@@ -204,6 +204,12 @@ BOOL SMPlayerDataGetUserOptOutStatus(void) {
     return playerData.isOptedOut;
 }
 
+// Sets the user's opted-out status
+void SMPlayerDataSetUserOptOutStatus(BOOL optOut) {
+    SMUser *playerData = [SessionM sharedInstance].user;
+    playerData.isOptedOut = optOut;
+}
+
 // Returns the user's unclaimed achievement count
 long SMPlayerDataGetUnclaimedAchievementCount(void) {
     SMUser *playerData = [SessionM sharedInstance].user;
@@ -218,6 +224,17 @@ const char *SMGetUnclaimedAchievementJSON(void) {
         achievementString = SMAchievementDataToJSONString(achievementData);
     }
     const char *c = [achievementString cStringUsingEncoding:NSUTF8StringEncoding];
+    return c ? strdup(c) : NULL;
+}
+
+// Returns a JSON representation of the user
+const char *SMGetUserJSON(void) {
+    NSString *userString = nil;
+    SMUser *playerData = [SessionM sharedInstance].user;
+    if (playerData) {
+        userString = SMUserToJSONString(playerData);
+    }
+    const char *c = [userString cStringUsingEncoding:NSUTF8StringEncoding];
     return c ? strdup(c) : NULL;
 }
 
@@ -268,10 +285,12 @@ static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementDat
 
 static NSString *SMUserToJSONString(SMUser *user) {
     NSDictionary *userDict = @{
-                               @"pointBalance": [NSNumber numberWithUnsignedInteger:user.pointBalance],
-                               @"optedOut": [NSNumber numberWithBool:user.isOptedOut],
-                               @"unclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
-                               @"unclaimedAchievementCount": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementCount]
+                               @"isOptedOut": [NSNumber numberWithBool:user.isOptedOut],
+                               @"isRegistered": [NSNumber numberWithBool:user.isRegistered],
+                               @"isLoggedIn": [NSNumber numberWithBool:user.isLoggedIn],
+                               @"getPointBalance": [NSNumber numberWithUnsignedInteger:user.pointBalance],
+                               @"getUnclaimedAchievementCount": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementCount],
+                               @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue]
                                };
 
     NSError *error = nil;

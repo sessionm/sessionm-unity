@@ -198,6 +198,12 @@ void SMSetServiceRegion(SMServiceRegion region) {
     [[SessionM sharedInstance] setServiceRegion:region];
 }
 
+// Returns the user's opted-out status
+BOOL SMPlayerDataGetUserOptOutStatus(void) {
+    SMUser *playerData = [SessionM sharedInstance].user;
+    return playerData.isOptedOut;
+}
+
 // Returns the user's unclaimed achievement count
 long SMPlayerDataGetUnclaimedAchievementCount(void) {
     SMUser *playerData = [SessionM sharedInstance].user;

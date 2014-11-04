@@ -198,12 +198,6 @@ void SMSetServiceRegion(SMServiceRegion region) {
     [[SessionM sharedInstance] setServiceRegion:region];
 }
 
-// Returns the user's opted-out status
-BOOL SMPlayerDataGetUserOptOutStatus(void) {
-    SMUser *playerData = [SessionM sharedInstance].user;
-    return playerData.isOptedOut;
-}
-
 // Sets the user's opted-out status
 void SMPlayerDataSetUserOptOutStatus(BOOL optOut) {
     SMUser *playerData = [SessionM sharedInstance].user;

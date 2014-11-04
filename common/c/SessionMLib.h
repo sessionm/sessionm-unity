@@ -21,7 +21,6 @@ void SMSetLogLevel(SMLogLevel level);
 const char *SMGetSDKVersion(void);
 void SMSetMetaData(const char *data, const char *key);
 SessionMState SMGetSessionState(void);
-BOOL SMPlayerDataGetUserOptOutStatus(void);
 void SMPlayerDataSetUserOptOutStatus(BOOL optOut);
 long SMPlayerDataGetUnclaimedAchievementCount(void);
 

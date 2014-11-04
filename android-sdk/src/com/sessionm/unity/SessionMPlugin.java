@@ -114,13 +114,6 @@ public class SessionMPlugin{
         }
     }
 
-    public static boolean getUserOptOutStatus(){
-        if(Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, ac + ".getUserOptOutStatus()");
-        }
-        return sessionM.getUser().isOptedOut();
-    }
-
     public static void setUserOptOutStatus(boolean status){
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + ".setUserOptOutStatus()");

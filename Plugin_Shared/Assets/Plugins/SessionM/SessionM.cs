@@ -58,18 +58,30 @@ public class SessionM : MonoBehaviour
 		return sessionMNative.GetSessionState();
 	}
 
-	//Returns user opt out status.
-	public bool GetUserOptOutStatus(){
-		return sessionMNative.GetUserOptOutStatus();
-	}
-	
 	//Use this method for displaying a badge or other SessionM tools.  Remember, your Acheivement count can accumulate over days, so be sure to support at least
 	//triple digit numbers.
 	public int GetUnclaimedAchievementCount()
 	{
 		return sessionMNative.GetUnclaimedAchievementCount();
 	}
-	
+
+	//Use this method to get current user data.
+	public UserData GetUserData()
+	{
+		UserData userData = null;
+		string userDataJSON = null;
+
+		userDataJSON = sessionMNative.GetUser();
+
+		if(userDataJSON == null) {
+			return null;
+		}
+
+		userData = GetUserData(userDataJSON);
+
+		return userData;
+	}
+
 	//This method is required for displaying Native Acheivements.  Fore more information, please see the Unity plugin documetnation.
 	public AchievementData GetUnclaimedAchievementData() 
 	{
@@ -215,5 +227,20 @@ public class SessionM : MonoBehaviour
 		string message = (string)achievementDict["message"];
 		IAchievementData achievementData = new AchievementData(identifier, name, message, (int)mpointValue, isCustom);
 		return achievementData;
+	}
+
+	//This is a useful method you can call whenever you need to parse a JSON string into a the UserData custom class.
+	public static UserData GetUserData(string jsonString)
+	{
+		Dictionary<string, object> userDict = Json.Deserialize(jsonString) as Dictionary<string, object>;
+		bool isOptedOut = (bool)userDict["isOptedOut"];
+		bool isRegistered = (bool)userDict["isRegistered"];
+		bool isLoggedIn = (bool)userDict["isLoggedIn"];
+		long userPointBalance = (Int64)userDict["getPointBalance"];
+		long unclaimedAchievementCount = (Int64)userDict["getUnclaimedAchievementCount"];
+		long unclaimedAchievementValue = (Int64)userDict["getUnclaimedAchievementValue"];
+
+		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue);
+		return userData;
 	}
 }

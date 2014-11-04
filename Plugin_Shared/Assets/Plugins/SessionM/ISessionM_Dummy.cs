@@ -8,7 +8,6 @@ public class ISessionM_Dummy : ISessionM
 {
 	public ISessionM_Dummy()
 	{
-		
 	}
 	
 	public void StartSession(string appId)
@@ -20,8 +19,14 @@ public class ISessionM_Dummy : ISessionM
 		return SessionState.Stopped;
 	}
 	
-	public bool GetUserOptOutStatus(){
+	public bool GetUserOptOutStatus()
+	{
 		return false;
+	}
+
+	public string GetUser() 
+	{
+		return null;
 	}
 	
 	public int GetUnclaimedAchievementCount()

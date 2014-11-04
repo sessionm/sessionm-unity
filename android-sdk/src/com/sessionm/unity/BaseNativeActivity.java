@@ -132,12 +132,6 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         }
     }
 
-    public boolean getUserOptOutStatus(){
-        if(Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, this + ".getUserOptOutStatus()");
-        }
-        return sessionM.getUser().isOptedOut();
-    }
     // Activity 
     
     @Override

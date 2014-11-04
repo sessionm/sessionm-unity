@@ -75,15 +75,16 @@ public class ISessionM_Android : ISessionM
 		
 		return state;
 	}
-
-	public bool GetUserOptOutStatus(){
-		bool status = false;
+	
+	public string GetUser()
+	{
+		string userJSON = null;
 		
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			status = activityObject.Call<bool>("getUserOptOutStatus");			
+			userJSON = activityObject.Call<string>("getUser");
 		}
-
-		return status;
+		
+		return userJSON;
 	}
 	
 	public int GetUnclaimedAchievementCount()

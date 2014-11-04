@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+
+# open (LOGFILE, '>>SessionMXcodeUpdatePostBuild.log');
+
+# foreach $var (@ARGV)
+# {
+# 	print LOGFILE "ARG: $var\n";
+# }
+
+# Don't run if we don't have enough parameters
+if ($#ARGV < 2)
+{
+	# print LOGFILE "Exiting: too few parameters\nTry running from Unity: File -> Build Settings\nUnder Platform, highlight iOS and press 'Switch Platform' then 'Build' buttons.";
+	exit;
+}
+
+# Dont run SessionMXcodeUpdatePostBuild on any builds that are not iPhone builds
+if( $ARGV[1] ne "iPhone" )
+{
+	# print LOGFILE "Exiting: will not run SessionMXcodeUpdatePostBuild on non-iPhone builds.";
+    exit;
+}
+
+# Get our current dir
+$currDir = `pwd`;
+# Remove possible endline
+chomp $currDir;
+
+$exitval = system("python", "$currDir/Assets/Editor/SessionMXcodeUpdatePostBuild.pyc", $ARGV[0], $ARGV[1]);
+
+#print LOGFILE "SessionMXcodeUpdatePostBuild exited with value: $exitval";

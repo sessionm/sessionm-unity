@@ -2,6 +2,8 @@
 
 echo "Installing latest SessionM podspec"
 pod install
+perl -pi -e 's/ -ObjC//g' 'Pods/Target Support Files/Pods/Pods.debug.xcconfig'
+perl -pi -e 's/ -ObjC//g' 'Pods/Target Support Files/Pods/Pods.release.xcconfig'
 
 CONFIGURATION=Release
 WORKSPACE=SessionM-Unity.xcworkspace

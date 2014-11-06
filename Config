@@ -1,0 +1,4 @@
+##Path of Unity application##
+UNITY_PATH=/Applications/Unity/Unity.app/Contents/MacOS/Unity
+##Path of Prime31UnityActivity.jar##
+PRIME31_JAR_PATH=/Users/zhenhaolei/Downloads/Prime31UnityActivity.jar

@@ -59,7 +59,14 @@ public class ISessionM_iOS : ISessionM
 	{
 		return (SessionState)SMGetSessionState();
 	}
-	
+
+	[DllImport ("__Internal")]
+	private static extern string SMGetUserJSON();
+	public string GetUser() 
+	{
+		return SMGetUserJSON(); 
+	}
+
 	[DllImport ("__Internal")]
 	private static extern int SMPlayerDataGetUnclaimedAchievementCount();
 	public int GetUnclaimedAchievementCount()

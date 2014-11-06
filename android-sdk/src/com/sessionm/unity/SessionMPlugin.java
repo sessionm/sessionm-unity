@@ -9,6 +9,7 @@ import com.sessionm.api.AchievementData;
 import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
+import com.sessionm.api.User;
 
 public class SessionMPlugin{
 
@@ -46,6 +47,15 @@ public class SessionMPlugin{
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement != null) {
             json = SessionMListener.getAchievementJSON(achievement);
+        }
+        return json;
+    }
+
+    public static String getUser() {
+        String json = null;
+        User user = sessionM.getUser();
+        if(user != null) {
+            json = SessionMListener.getUser(user);
         }
         return json;
     }
@@ -102,6 +112,13 @@ public class SessionMPlugin{
                 Log.e(TAG, ac + ".notifyCustomAchievementClaimed()", e);
             }
         }
+    }
+
+    public static void setUserOptOutStatus(boolean status){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, ac + ".setUserOptOutStatus()");
+        }
+        sessionM.getUser().setOptedOut(ac, status);
     }
   
     // Prime31 Shared Activity 

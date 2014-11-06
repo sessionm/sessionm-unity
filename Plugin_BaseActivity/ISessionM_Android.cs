@@ -76,6 +76,17 @@ public class ISessionM_Android : ISessionM
 		return state;
 	}
 	
+	public string GetUser()
+	{
+		string userJSON = null;
+		
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			userJSON = activityObject.Call<string>("getUser");
+		}
+		
+		return userJSON;
+	}
+	
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;

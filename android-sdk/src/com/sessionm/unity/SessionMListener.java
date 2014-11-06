@@ -200,6 +200,23 @@ public class SessionMListener implements ActivityListener, SessionListener {
         return jsonObject.toString();
     }
 
+    public static String getUser(User user) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("isOptedOut", user.isOptedOut());
+            jsonObject.put("isRegistered", user.isRegistered());
+            jsonObject.put("isLoggedIn", user.isLoggedIn());
+            jsonObject.put("getPointBalance", user.getPointBalance());
+            jsonObject.put("getUnclaimedAchievementCount", user.getUnclaimedAchievementCount());
+            jsonObject.put("getUnclaimedAchievementValue", user.getUnclaimedAchievementValue());
+        } catch (JSONException e) {
+            if(Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "JSONException: " + e);
+            }
+        }
+        return jsonObject.toString();
+    }
+
     @Override
     public boolean shouldPresentAchievement(com.sessionm.api.SessionM instance, AchievementData data) {
         if(Log.isLoggable(TAG, Log.DEBUG)) {

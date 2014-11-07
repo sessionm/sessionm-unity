@@ -29,6 +29,9 @@ public class ISessionM_Dummy : ISessionM
 		return null;
 	}
 	
+	public void SetUserOptOutStatus(bool status){
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		return 0;

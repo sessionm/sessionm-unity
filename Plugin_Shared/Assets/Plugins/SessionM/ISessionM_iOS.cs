@@ -68,6 +68,13 @@ public class ISessionM_iOS : ISessionM
 	}
 
 	[DllImport ("__Internal")]
+	private static extern void SMPlayerDataSetUserOptOutStatus(bool status);
+	public void SetUserOptOutStatus(bool status) 
+	{
+		SMPlayerDataSetUserOptOutStatus(status);
+	}
+
+	[DllImport ("__Internal")]
 	private static extern int SMPlayerDataGetUnclaimedAchievementCount();
 	public int GetUnclaimedAchievementCount()
 	{

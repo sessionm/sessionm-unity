@@ -82,6 +82,11 @@ public class SessionM : MonoBehaviour
 		return userData;
 	}
 
+	//Use this method to set user opt-out status
+	public void SetUserOptOutStatus(bool status){
+		sessionMNative.SetUserOptOutStatus(status);
+	}
+
 	//This method is required for displaying Native Acheivements.  Fore more information, please see the Unity plugin documetnation.
 	public AchievementData GetUnclaimedAchievementData() 
 	{

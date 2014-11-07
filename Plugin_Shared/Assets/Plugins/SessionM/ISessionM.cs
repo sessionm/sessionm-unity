@@ -98,6 +98,9 @@ public interface ISessionM
 	//Gets Current User JSON Object (Deserializes to UserData)
 	string GetUser();
 
+	//Sets Current user opt-out status locally
+	void SetUserOptOutStatus(bool status);
+
 	// Returns number of unclaimed achievements
 	int GetUnclaimedAchievementCount();
 	

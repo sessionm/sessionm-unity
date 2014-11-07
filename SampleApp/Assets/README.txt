@@ -1,7 +1,14 @@
-SessionM Sample Project
+=============================
+SessionM Sample App for Unity 
+=============================
 v1.0
+License: MIT
 
 This project is designed to demonstrate basic SessionM Integration in Unity.  
+
+For more integration info, please see http://www.sessionm.com/documentation/unity-integration.php 
+
+To download SessionM latest SDKs, please see http://www.sessionm.com/documentation/downloads.php
 
 If you run and compile the project as-is, it will produce a working Android 
 or iOS App with a test SessionM app.
@@ -30,3 +37,6 @@ can find this in the developer dashboard.
 cause the three buttons to trigger Actions custom to your app.
 
 That's it, save and build!
+
+Note:
+We only tested this project on Mac OS.

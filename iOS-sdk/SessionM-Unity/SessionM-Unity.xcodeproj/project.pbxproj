@@ -215,7 +215,6 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>2F96C2BF19E320C50005EC2A</string>
 				<string>2F96C2AB19E31F200005EC2A</string>
 				<string>2F96C2AD19E31F200005EC2A</string>
 			</array>
@@ -637,21 +636,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
-		</dict>
-		<key>2F96C2BF19E320C50005EC2A</key>
-		<dict>
-			<key>fileEncoding</key>
-			<string>4</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>SessionMLib.h</string>
-			<key>path</key>
-			<string>../../../common/c/SessionMLib.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>2F96C2C219E322D20005EC2A</key>
 		<dict>

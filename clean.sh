@@ -6,5 +6,6 @@ rm -rf iOS-sdk/SessionM-Unity/build/
 rm -rf iOS-sdk/SessionM-Unity/Pods/
 rm -f iOS-sdk/SessionM-Unity/Podfile.lock
 rm -rf Plugin_Shared/Assets/Plugins/Android/
+rm -rf Plugin_Shared/Assets/Plugins/iOS/
 
 echo "Done."

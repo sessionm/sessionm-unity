@@ -4,6 +4,8 @@ DEST_PATH=${PWD}
 
 rm -rf build/
 mkdir build/
+mkdir Plugin_Shared/Assets/Plugins/iOS/
+mkdir Plugin_Shared/Assets/Plugins/Android/
 
 cd android-sdk
 sh build.sh

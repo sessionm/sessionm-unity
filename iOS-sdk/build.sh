@@ -1,7 +1,9 @@
 #!/bin/bash
+source ../Config
 
 echo "Installing latest SessionM podspec"
 pod install
+sed -e 's/$(UNITY_SDK_VERSION)/'${UNITY_SDK_VERSION}'/g' SessionM-Unity/SessionM_Unity.h.in > SessionM-Unity/SessionM_Unity.h
 
 CONFIGURATION=Release
 WORKSPACE=SessionM-Unity.xcworkspace

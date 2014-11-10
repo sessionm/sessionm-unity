@@ -7,16 +7,20 @@ mkdir build/
 mkdir Plugin_Shared/Assets/Plugins/iOS/
 mkdir Plugin_Shared/Assets/Plugins/Android/
 
+##Build Android Plugin SDK##
+cp ${SESSIONM_ANDROID_JAR_PATH} android-sdk/libs/SessionM.jar
 cd android-sdk
 sh build.sh
-cp libs/SessionM* target/SessionMUnity.jar ../Plugin_Shared/Assets/Plugins/Android
+cp libs/SessionM.jar target/SessionMUnity.jar ../Plugin_Shared/Assets/Plugins/Android
 cd ..
 
-cd iOS-sdk/SessionM-Unity
+##Build iOS Plugin SDK##
+cd iOS-sdk
 sh build.sh
-cp build/libSessionM-Unity.a ../../Plugin_Shared/Assets/Plugins/iOS/
-cd ../..
+cp build/libSessionM-Unity.a ../Plugin_Shared/Assets/Plugins/iOS/
+cd ..
 
+##Build Unity Plugin##
 cp -r Plugin_Shared/ build/BaseActivity/
 cp -r Plugin_Shared/ build/Prime31/
 

@@ -1,1 +1,0 @@
-SessionM Unity Android Plugin

@@ -10,12 +10,13 @@ import com.sessionm.api.AchievementData;
 import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
+import com.sessionm.api.User;
 import com.unity3d.player.UnityPlayerActivity;
 
 public class BaseNativeActivity extends UnityPlayerActivity {
 
     private final static String TAG = "SessionM.Unity";
-    private final static String VERSION_NUM = "2.0";
+    private final static String VERSION_NUM = "2.0.1";
     
     private final SessionM sessionM = SessionM.getInstance();
     
@@ -59,6 +60,22 @@ public class BaseNativeActivity extends UnityPlayerActivity {
             json = SessionMListener.getAchievementJSON(achievement);
         }
         return json;
+    }
+
+    public String getUser() {
+        String json = null;
+        User user = sessionM.getUser();
+        if(user != null) {
+            json = SessionMListener.getUser(user);
+        }
+        return json;
+    }
+
+    public void setUserOptOutStatus(boolean status){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".setUserOptOutStatus()");
+        }
+        sessionM.getUser().setOptedOut(this, status);
     }
 
     public boolean notifyCustomAchievementPresented() {
@@ -114,7 +131,7 @@ public class BaseNativeActivity extends UnityPlayerActivity {
             }
         }
     }
-    
+
     // Activity 
     
     @Override

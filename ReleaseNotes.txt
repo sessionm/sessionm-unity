@@ -1,10 +1,10 @@
 Session M Unity SDK Release Notes
 ________________
 Copyright:  2014 Session M. All rights reserved.
-Date: 10/22/2014
-Version: 2.0 
+Date: 11/11/2014
+Version: 2.0.1 
 
 Changes:
-- Added native achievements support.
-- Added Prime31 support.
-- Bug fixes.
+- Added getUser() api.
+- Added build instructions.
+- For more info, please see http://www.sessionm.com/documentation/unity-integration.php

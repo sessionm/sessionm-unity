@@ -1,0 +1,8 @@
+##Path to Unity application##
+UNITY_PATH=</absolute/path/to/Unity/Application>
+##Path to Prime31UnityActivity.jar##
+PRIME31_JAR_PATH=</absolute/path/to/Prime31UnityActivity.jar>
+##Path to SessionM-Android-SDK.jar##
+SESSIONM_ANDROID_JAR_PATH=</absolute/path/to/SessionMVersion.jar>
+##Path to Android SDK##
+ANDROID_SDK_PATH=</absolute/path/to/android_sdk_directory>

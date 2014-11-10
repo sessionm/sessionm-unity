@@ -15,12 +15,8 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
-
-    lintOptions {
-        abortOnError false
-    }
+    compileSdkVersion 21
+    buildToolsVersion "21"
 
     sourceSets {
         main {

@@ -17,7 +17,7 @@ public class SessionMPlugin{
     
     private final static SessionM sessionM = SessionM.getInstance();
     private static android.app.Activity ac = com.unity3d.player.UnityPlayer.currentActivity;
-    private final static String VERSION_NUM = "2.0";
+    private final static String VERSION_NUM = "$(UNITY_SDK_VERSION)";
 
     public static final void setCallbackGameObjectName(String name) {
         if(Log.isLoggable(TAG, Log.DEBUG)) {

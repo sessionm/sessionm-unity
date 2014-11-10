@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../Config
+source ../Config-SdkVersion
 
 echo "Installing latest SessionM podspec"
 pod install

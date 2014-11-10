@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		27C19864E0C6AFA1504B2F1B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B07613783E8BBCBB65E40 /* libPods.a */; };
+		2F96C2AC19E31F200005EC2A /* SessionM_Unity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96C2AB19E31F200005EC2A /* SessionM_Unity.h */; };
+		2F96C2AE19E31F200005EC2A /* SessionM_Unity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F96C2AD19E31F200005EC2A /* SessionM_Unity.m */; };
+		2F96C2C319E322D20005EC2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96C2C219E322D20005EC2A /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2F96C2A619E31F200005EC2A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				2F96C2AC19E31F200005EC2A /* SessionM_Unity.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		07A5B3EE01741F229838D1F1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2F96C2A819E31F200005EC2A /* libSessionM-Unity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSessionM-Unity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F96C2AB19E31F200005EC2A /* SessionM_Unity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionM_Unity.h; sourceTree = "<group>"; };
+		2F96C2AD19E31F200005EC2A /* SessionM_Unity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SessionM_Unity.m; sourceTree = "<group>"; };
+		2F96C2B319E31F200005EC2A /* SessionM-UnityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SessionM-UnityTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F96C2B619E31F200005EC2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F96C2C219E322D20005EC2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7E0FFF4278F8C7A97297784C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8E3B07613783E8BBCBB65E40 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F96C2A519E31F200005EC2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F96C2C319E322D20005EC2A /* Foundation.framework in Frameworks */,
+				27C19864E0C6AFA1504B2F1B /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F96C2B019E31F200005EC2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F96C29F19E31F200005EC2A = {
+			isa = PBXGroup;
+			children = (
+				2F96C2AA19E31F200005EC2A /* SessionM-Unity */,
+				2F96C2B419E31F200005EC2A /* SessionM-UnityTests */,
+				2F96C2C419E322DE0005EC2A /* Frameworks */,
+				2F96C2A919E31F200005EC2A /* Products */,
+				E13E751C23B8413E97BD531B /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		2F96C2A919E31F200005EC2A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F96C2A819E31F200005EC2A /* libSessionM-Unity.a */,
+				2F96C2B319E31F200005EC2A /* SessionM-UnityTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F96C2AA19E31F200005EC2A /* SessionM-Unity */ = {
+			isa = PBXGroup;
+			children = (
+				2F96C2AB19E31F200005EC2A /* SessionM_Unity.h */,
+				2F96C2AD19E31F200005EC2A /* SessionM_Unity.m */,
+			);
+			path = "SessionM-Unity";
+			sourceTree = "<group>";
+		};
+		2F96C2B419E31F200005EC2A /* SessionM-UnityTests */ = {
+			isa = PBXGroup;
+			children = (
+				2F96C2B519E31F200005EC2A /* Supporting Files */,
+			);
+			path = "SessionM-UnityTests";
+			sourceTree = "<group>";
+		};
+		2F96C2B519E31F200005EC2A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F96C2B619E31F200005EC2A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F96C2C419E322DE0005EC2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F96C2C219E322D20005EC2A /* Foundation.framework */,
+				8E3B07613783E8BBCBB65E40 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E13E751C23B8413E97BD531B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07A5B3EE01741F229838D1F1 /* Pods.debug.xcconfig */,
+				7E0FFF4278F8C7A97297784C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2F96C2A719E31F200005EC2A /* SessionM-Unity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F96C2B919E31F200005EC2A /* Build configuration list for PBXNativeTarget "SessionM-Unity" */;
+			buildPhases = (
+				492D053ED064D82D6054DFBB /* Check Pods Manifest.lock */,
+				2F96C2A419E31F200005EC2A /* Sources */,
+				2F96C2A519E31F200005EC2A /* Frameworks */,
+				2F96C2A619E31F200005EC2A /* CopyFiles */,
+				B31FA3443EA862E56EBADB30 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SessionM-Unity";
+			productName = "SessionM-Unity";
+			productReference = 2F96C2A819E31F200005EC2A /* libSessionM-Unity.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2F96C2B219E31F200005EC2A /* SessionM-UnityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F96C2BC19E31F200005EC2A /* Build configuration list for PBXNativeTarget "SessionM-UnityTests" */;
+			buildPhases = (
+				2F96C2AF19E31F200005EC2A /* Sources */,
+				2F96C2B019E31F200005EC2A /* Frameworks */,
+				2F96C2B119E31F200005EC2A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SessionM-UnityTests";
+			productName = "SessionM-UnityTests";
+			productReference = 2F96C2B319E31F200005EC2A /* SessionM-UnityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F96C2A019E31F200005EC2A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = SessionM;
+				TargetAttributes = {
+					2F96C2A719E31F200005EC2A = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					2F96C2B219E31F200005EC2A = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 2F96C2A319E31F200005EC2A /* Build configuration list for PBXProject "SessionM-Unity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2F96C29F19E31F200005EC2A;
+			productRefGroup = 2F96C2A919E31F200005EC2A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2F96C2A719E31F200005EC2A /* SessionM-Unity */,
+				2F96C2B219E31F200005EC2A /* SessionM-UnityTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F96C2B119E31F200005EC2A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		492D053ED064D82D6054DFBB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B31FA3443EA862E56EBADB30 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F96C2A419E31F200005EC2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F96C2AE19E31F200005EC2A /* SessionM_Unity.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F96C2AF19E31F200005EC2A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2F96C2B719E31F200005EC2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2F96C2B819E31F200005EC2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2F96C2BA19E31F200005EC2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07A5B3EE01741F229838D1F1 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LIBTOOLFLAGS = "$(OTHER_LDFLAGS)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2F96C2BB19E31F200005EC2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E0FFF4278F8C7A97297784C /* Pods.release.xcconfig */;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_LIBTOOLFLAGS = "$(OTHER_LDFLAGS)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2F96C2BD19E31F200005EC2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SessionM-UnityTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2F96C2BE19E31F200005EC2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SessionM-UnityTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F96C2A319E31F200005EC2A /* Build configuration list for PBXProject "SessionM-Unity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F96C2B719E31F200005EC2A /* Debug */,
+				2F96C2B819E31F200005EC2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F96C2B919E31F200005EC2A /* Build configuration list for PBXNativeTarget "SessionM-Unity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F96C2BA19E31F200005EC2A /* Debug */,
+				2F96C2BB19E31F200005EC2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F96C2BC19E31F200005EC2A /* Build configuration list for PBXNativeTarget "SessionM-UnityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F96C2BD19E31F200005EC2A /* Debug */,
+				2F96C2BE19E31F200005EC2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F96C2A019E31F200005EC2A /* Project object */;
+}

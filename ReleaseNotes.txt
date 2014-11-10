@@ -1,7 +1,7 @@
 Session M Unity SDK Release Notes
 ________________
 Copyright:  2014 Session M. All rights reserved.
-Date: 11/7/2014
+Date: 11/11/2014
 Version: 2.0.1 
 
 Changes:

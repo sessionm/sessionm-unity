@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SessionM Sample Code/SessionMSample.cs">
+    <Files>
+      <File FileName="Assets/SessionM Sample Code/SessionMSample.cs" Line="11" Column="11" />
+      <File FileName="Assets/Plugins/SessionM/UserData.cs" Line="2" Column="2" />
+      <File FileName="Assets/Plugins/SessionM/SessionMEventListener.cs" Line="2" Column="2" />
+      <File FileName="Assets/Plugins/SessionM/Example/SessionMListenerExample.cs" Line="2" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

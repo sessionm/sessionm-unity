@@ -21,7 +21,7 @@ Build Steps
 * XCode (Tested with XCode 6.0.0)
 * Android SDK (Tested with Android SDK version 19)
 * SessionM iOS and Android SDKs. Available for download from: http://www.sessionm.com/documentation/downloads.php
-* If you want to build Prime31 version of plugin, we assume that you have Prime31UnityActivity.jar ready. Otherwise, it can be downloaded from: https://app.box.com/s/xw6hq1ltjaniycc14j21
+* If you want to build Prime31 version of plugin, we assume that you have Prime31UnityActivity.jar ready. For more information on the Prime31 plugin, check their web site https://prime31.com, and instructions where to download the plugin can be found on their github account: https://gist.github.com/prime31/0908e6100d7e228f1addOtherwise
 
 2. Create a Config file based on the provided Config.example. 
         

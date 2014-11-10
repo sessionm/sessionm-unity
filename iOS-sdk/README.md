@@ -1,1 +1,0 @@
-SessionM Unity iOS Plugin

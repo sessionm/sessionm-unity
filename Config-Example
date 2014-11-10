@@ -1,4 +1,6 @@
 ##Path of Unity application##
-UNITY_PATH=/Applications/Unity/Unity.app/Contents/MacOS/Unity
+UNITY_PATH=</absolute/path/to/Unity/Application>
 ##Path of Prime31UnityActivity.jar##
 PRIME31_JAR_PATH=</absolute/path/to/Prime31UnityActivity.jar>
+##Path of SessionM-Android-SDK.jar##
+SESSIONM_ANDROID_JAR_PATH=</absolute/path/to/SessionMVersion.jar>

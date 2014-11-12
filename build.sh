@@ -1,5 +1,6 @@
 #!/bin/bash
 source Config
+source Config-SdkVersion
 DEST_PATH=${PWD}
 
 rm -rf build/
@@ -45,4 +46,5 @@ cp SessionM-Prime31.unityPackage ../
 cd ..
 
 rm -rf BaseActivity/ Prime31/
+zip -9 -r "SessionM_Unity_v${UNITY_SDK_VERSION}.zip" * ../ReleaseNotes.txt
 echo "Done."

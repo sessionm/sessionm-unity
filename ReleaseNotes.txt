@@ -1,10 +1,11 @@
 Session M Unity SDK Release Notes
 ________________
 Copyright:  2014 Session M. All rights reserved.
-Date: 11/11/2014
+Date: 11/12/2014
 Version: 2.0.1 
 
 Changes:
 - Added getUser() api.
 - Added build instructions.
 - For more info, please see http://www.sessionm.com/documentation/unity-integration.php
+- Please also checkout source code and our Unity Sample App on Github. https://github.com/sessionm/sessionm-unity

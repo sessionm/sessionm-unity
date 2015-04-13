@@ -194,7 +194,7 @@ void SMSetMetaData(const char *data, const char *key) {
 }
 
 // Sets the SessionM service region
-void SMSetServiceRegion(SMServiceRegion region) {
+void SMSetServiceRegion(int region) {
     [[SessionM sharedInstance] setServiceRegion:region];
 }
 
@@ -237,7 +237,7 @@ void SMNotifyCustomAchievementPresented() {
     SMAchievementData *achievementData = [SessionM sharedInstance].unclaimedAchievement;
     if (achievementData) {
         SessionM_Unity *unityClient = [SessionM_Unity sharedInstance];
-        unityClient.customAchievementActivity = [[SMAchievementActivity alloc] initWithAchievmentData:achievementData];
+        unityClient.customAchievementActivity = [[SMAchievementActivity alloc] initWithAchievementData:achievementData];
         [unityClient.customAchievementActivity notifyPresented];
     }
 }

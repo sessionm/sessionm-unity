@@ -29,7 +29,7 @@ void SMSetCallbackGameObjectName(char *gameObjectName);
  @discussion This method should be called before calling SMStartSession.
  @param region The service region.
  */
-void SMSetServiceRegion(SMServiceRegion region);
+void SMSetServiceRegion(int region);
 
 
 void SMStartSession(char *appId);

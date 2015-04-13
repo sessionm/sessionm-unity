@@ -143,6 +143,13 @@ public class ISessionM_iOS : ISessionM
 	{
 		return (LogLevel)SMGetLogLevel();
 	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMSetServiceRegion(int region);
+	public void SetServiceRegion(ServiceRegion region)
+	{
+		SMSetServiceRegion((int)region);
+	}
 	
 	[DllImport ("__Internal")]
 	private static extern string SMGetSDKVersion();

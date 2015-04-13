@@ -79,6 +79,10 @@ public class ISessionM_Dummy : ISessionM
 		return LogLevel.Off;
 	}
 	
+	public void SetServiceRegion(int region)
+	{
+	}
+
 	public string GetSDKVersion()
 	{
 		return null;

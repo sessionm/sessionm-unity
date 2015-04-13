@@ -157,6 +157,10 @@ public class ISessionM_Android : ISessionM
 	{
 		return LogLevel.Off;
 	}
+
+	public void SetServiceRegion(int region)
+	{
+	}
 	
 	public string GetSDKVersion()
 	{

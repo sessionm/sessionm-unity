@@ -141,6 +141,11 @@ public class SessionM : MonoBehaviour
 	{
 		return sessionMNative.GetSDKVersion();
 	}
+
+	public List<string> GetRewards()
+	{
+		return sessionMNative.GetRewards();
+	}
 	
 	public LogLevel GetLogLevel()
 	{

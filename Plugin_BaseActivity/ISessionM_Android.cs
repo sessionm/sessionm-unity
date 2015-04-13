@@ -176,6 +176,11 @@ public class ISessionM_Android : ISessionM
 	{
 		return androidInstance.Call<string>("getSDKVersion");			
 	}
+
+	public List<string> GetRewards()
+	{
+		return null;
+	}
 	
 	public void SetMetaData(string data, string key)
 	{

@@ -186,6 +186,12 @@ const char *SMGetSDKVersion(void) {
     return c ? strdup(c) : NULL;
 }
 
+// Returns a JSON representation of the list of rewards the user can redeem
+const char *SMGetRewardsJSON(void) {
+    const char *rewardsJSON = [[[SessionM sharedInstance].rewards componentsJoinedByString:@"__"] cStringUsingEncoding:NSUTF8StringEncoding];
+    return rewardsJSON ? strdup(rewardsJSON) : NULL;
+}
+
 // Sends meta data to SessionM SDK. Please refer to the documentation for more information on common keys. Data should only be supplied in accordance with your application's terms of service and privacy policy.
 void SMSetMetaData(const char *data, const char *key) {
     NSString *dataString = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];

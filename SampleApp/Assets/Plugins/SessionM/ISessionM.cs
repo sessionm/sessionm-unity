@@ -132,6 +132,9 @@ public interface ISessionM
 	// Returns SDK version 
 	string GetSDKVersion();
 	
+        // Returns a list of all rewards the user can redeem
+	List<string> GetRewards();
+
 	// Set meta data properties
 	void SetMetaData(string data, string key);
 	

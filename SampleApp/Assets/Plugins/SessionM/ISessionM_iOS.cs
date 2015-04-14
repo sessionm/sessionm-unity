@@ -150,6 +150,17 @@ public class ISessionM_iOS : ISessionM
 	{
 		return SMGetSDKVersion();
 	}
+
+	[DllImport ("__Internal")]
+	private static extern string SMGetRewardsJSON();
+	public List<string> GetRewards()
+	{
+		string rewardsJSON = SMGetRewardsJSON();
+		string[] separatorArray = new string[] {"__"};
+		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
+
+		return new List<string>(rewardsArray);
+	}
 	
 	[DllImport ("__Internal")]
 	private static extern void SMSetMetaData(string data, string key);

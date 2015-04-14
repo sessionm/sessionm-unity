@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 //SessionMDummy.cs
 //
@@ -80,6 +81,11 @@ public class ISessionM_Dummy : ISessionM
 	}
 	
 	public string GetSDKVersion()
+	{
+		return null;
+	}
+
+	public List<string> GetRewards()
 	{
 		return null;
 	}

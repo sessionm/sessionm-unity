@@ -27,6 +27,13 @@ public enum SessionState
 	StartedOffline = 2
 }
 
+// Service region
+public enum ServiceRegion
+{
+	Japan = 0,
+	USA = 1
+}
+
 /* User actions. 
  * User action within Session M UI activity. Identifies events such as user engaging with achievement prompt, etc.
  */ 
@@ -128,6 +135,9 @@ public interface ISessionM
 	LogLevel GetLogLevel();
 	// Set logging level (iOS only)
 	void SetLogLevel(LogLevel level);
+
+	// Sets service region
+	void SetServiceRegion(int region);
 	
 	// Returns SDK version 
 	string GetSDKVersion();

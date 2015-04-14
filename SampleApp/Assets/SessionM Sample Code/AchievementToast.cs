@@ -19,12 +19,13 @@ public class AchievementToast : MonoBehaviour
 	public Transform onScreenPosition;
 	public TextMesh titleText;
 	public TextMesh mPointsText;
+	public TextMesh messageText;
 
 	private float toastTimer;
 	public ToastState toastState;
 
 	//Exposed Methods
-	public void ShowAchievementToast(string achievementTitle, int mPointValue)
+	public void ShowAchievementToast(string achievementTitle, int mPointValue, string achievementMessage)
 	{
 		//Exit this call if there is currently an active Toast 
 		//(This shouldn't occur because we have notified SessionM we are currently displaying an achievement.)
@@ -33,6 +34,7 @@ public class AchievementToast : MonoBehaviour
 
 		titleText.text = achievementTitle;
 		mPointsText.text = "mPoints: " + mPointValue.ToString();
+		messageText.text = achievementMessage;
 		toastState = ToastState.Toasting;
 		toastTimer = 0f;
 
@@ -96,6 +98,7 @@ public class AchievementToast : MonoBehaviour
 		toastState = ToastState.Offscreen;
 		titleText.text = "";
 		mPointsText.text = "";
+		messageText.text = "";
 	}
 
 

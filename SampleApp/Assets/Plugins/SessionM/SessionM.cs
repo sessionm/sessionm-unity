@@ -225,12 +225,23 @@ public class SessionM : MonoBehaviour
 	public static IAchievementData GetAchievementData(string jsonString) 
 	{
 		Dictionary<string, object> achievementDict = Json.Deserialize(jsonString) as Dictionary<string,object>;
+
 		long mpointValue = (Int64)achievementDict["mpointValue"];
+		long timesEarned = (Int64)achievementDict["timesEarned"];
+		long unclaimedCount = (Int64)achievementDict["unclaimedCount"];
+		long distance = (Int64)achievementDict["distance"];
 		bool isCustom = (bool)achievementDict["isCustom"];
 		string identifier = (string)achievementDict["identifier"];
+		string importID = (string)achievementDict["importID"];
+		string instructions = (string)achievementDict["instructions"];
+		string achievementIconURL = (string)achievementDict["achievementIconURL"];
+		string action = (string)achievementDict["action"];
 		string name = (string)achievementDict["name"];
 		string message = (string)achievementDict["message"];
-		IAchievementData achievementData = new AchievementData(identifier, name, message, (int)mpointValue, isCustom);
+		string limitText = (string)achievementDict["limitText"];
+		DateTime lastEarnedDate = new DateTime((Int64)achievementDict["lastEarnedDate"], DateTimeKind.Utc);
+
+		IAchievementData achievementData = new AchievementData(identifier, importID, instructions, achievementIconURL, action, name, message, limitText, (int)mpointValue, isCustom, lastEarnedDate, (int)timesEarned, (int)unclaimedCount, (int)distance);
 		return achievementData;
 	}
 

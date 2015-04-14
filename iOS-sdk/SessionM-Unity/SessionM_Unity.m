@@ -258,12 +258,31 @@ void SMNotifyCustomAchievementClaimed(void) {
 #pragma mark - Utility
 
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData) {
+    // 0001-01-01 is used as the reference date for Unity DateTime objects
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *referenceDate = [dateFormatter dateFromString:@"0001-01-01 00:00:00"];
+
+    // Convert from seconds into 100 nanoseconds for Unity DateTime object
+    NSDate *achievementDate = achievementData.lastEarnedDate;
+    long long time = achievementDate ? [achievementDate timeIntervalSinceDate:referenceDate] * 10000000 : 0;
+
     NSDictionary *achievementDict = @{
-                                      @"name": achievementData.name,
-                                      @"message": achievementData.message,
-                                      @"mpointValue": [NSNumber numberWithUnsignedInteger:achievementData.mpointValue],
-                                      @"identifier": @"",
-                                      @"isCustom": [NSNumber numberWithBool:achievementData.isCustom]
+                                      @"identifier": achievementData.identifier ? achievementData.identifier : @"",
+                                      @"importID": achievementData.importID ? achievementData.importID : @"",
+                                      @"instructions": achievementData.instructions ? achievementData.instructions : @"",
+                                      @"achievementIconURL": achievementData.achievementIconURL ? achievementData.achievementIconURL : @"",
+                                      @"action": achievementData.action ? achievementData.action : @"",
+                                      @"name": achievementData.name ? achievementData.name : @"",
+                                      @"message": achievementData.message ? achievementData.message : @"",
+                                      @"limitText": achievementData.limitText ? achievementData.limitText : @"",
+                                      @"mpointValue": [[NSNumber alloc] initWithInteger:achievementData.mpointValue],
+                                      @"isCustom": [[NSNumber alloc] initWithBool:achievementData.isCustom],
+                                      @"lastEarnedDate": [[NSNumber alloc] initWithLongLong:time],
+                                      @"timesEarned": [[NSNumber alloc] initWithUnsignedInteger:achievementData.timesEarned],
+                                      @"unclaimedCount": [[NSNumber alloc] initWithInteger:achievementData.unclaimedCount],
+                                      @"distance": [[NSNumber alloc] initWithInteger:achievementData.distance]
                                       };
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:achievementDict

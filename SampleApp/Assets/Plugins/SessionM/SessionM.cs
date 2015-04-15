@@ -135,6 +135,12 @@ public class SessionM : MonoBehaviour
 		return PresentActivity(ActivityType.Portal);
 	}
 	
+	//Call this method before starting the session to set the service region.
+	public void SetServiceRegion(int region)
+	{
+		sessionMNative.SetServiceRegion(region);
+	}
+
 	//The following methods are generally used for debugging and won't be utilized by most SessionM Developers.
 	
 	public string GetSDKVersion()

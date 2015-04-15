@@ -195,7 +195,7 @@ void SMSetMetaData(const char *data, const char *key) {
 
 // Sets the SessionM service region
 void SMSetServiceRegion(int region) {
-    [[SessionM sharedInstance] setServiceRegion:region];
+    [SessionM setServiceRegion:region];
 }
 
 // Sets the user's opted-out status

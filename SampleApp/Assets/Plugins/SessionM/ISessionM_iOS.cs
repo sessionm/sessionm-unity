@@ -75,6 +75,20 @@ public class ISessionM_iOS : ISessionM
 	}
 
 	[DllImport ("__Internal")]
+	private static extern void SMSetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate);
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		SMSetShouldAutoUpdateAchievementsList(shouldAutoUpdate);
+	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMUpdateAchievementsList();
+	public void UpdateAchievementsList()
+	{
+		SMUpdateAchievementsList();
+	}
+
+	[DllImport ("__Internal")]
 	private static extern int SMPlayerDataGetUnclaimedAchievementCount();
 	public int GetUnclaimedAchievementCount()
 	{

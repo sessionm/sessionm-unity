@@ -89,6 +89,7 @@ public class SessionMSample : MonoBehaviour
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
+		sessionM.SetShouldAutoUpdateAchievementsList(true);
 		UserChanged(null);
 	}
 

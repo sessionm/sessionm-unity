@@ -204,6 +204,16 @@ void SMPlayerDataSetUserOptOutStatus(BOOL optOut) {
     playerData.isOptedOut = optOut;
 }
 
+// Sets the value of shouldAutoUpdateAchievementsList (default is NO)
+void SMSetShouldAutoUpdateAchievementsList(BOOL shouldAutoUpdate) {
+    [SessionM sharedInstance].shouldAutoUpdateAchievementsList = shouldAutoUpdate;
+}
+
+// Manually updates the user's achievementsList property. Has no effect if shouldAutoUpdateAchievementsList is set to true.
+void SMUpdateAchievementsList(void) {
+    [[SessionM sharedInstance] updateAchievementsList];
+}
+
 // Returns the user's unclaimed achievement count
 long SMPlayerDataGetUnclaimedAchievementCount(void) {
     SMUser *playerData = [SessionM sharedInstance].user;

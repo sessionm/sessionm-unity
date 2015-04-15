@@ -87,6 +87,18 @@ public class SessionM : MonoBehaviour
 		sessionMNative.SetUserOptOutStatus(status);
 	}
 
+	//Use this method to set the value of shouldAutoUpdateAchievementsList
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		sessionMNative.SetShouldAutoUpdateAchievementsList(shouldAutoUpdate);
+	}
+
+	//Use this method to manually update the user's achievementsList field. Has no effect if shouldAutoUpdateAchievementsList is set to true.
+	public void UpdateAchievementsList()
+	{
+		sessionMNative.UpdateAchievementsList();
+	}
+
 	//This method is required for displaying Native Acheivements.  Fore more information, please see the Unity plugin documetnation.
 	public AchievementData GetUnclaimedAchievementData() 
 	{

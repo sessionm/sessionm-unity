@@ -275,6 +275,10 @@ public class SessionM : MonoBehaviour
 		AchievementData[] achievementsArray = new AchievementData[achievementsJSONArray.Length];
 		for(int i = 0; i < achievementsJSONArray.Length; i++) {
 			string achievement = achievementsJSONArray[i];
+			if(achievement == "")
+			{
+				break;
+			}
 			achievementsArray[i] = GetAchievementData(achievement) as AchievementData;
 		}
 		List<AchievementData> achievements = new List<AchievementData>(achievementsArray);
@@ -285,6 +289,10 @@ public class SessionM : MonoBehaviour
 		AchievementData[] achievementsListArray = new AchievementData[achievementsListJSONArray.Length];
                 for(int i = 0; i < achievementsListJSONArray.Length; i++) {
                         string achievement = achievementsListJSONArray[i];
+			if(achievement == "")
+			{
+				break;
+			}
                         achievementsListArray[i] = GetAchievementData(achievement) as AchievementData;
                 }
 		List<AchievementData> achievementsList = new List<AchievementData>(achievementsListArray);

@@ -297,13 +297,27 @@ static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementDat
 }
 
 static NSString *SMUserToJSONString(SMUser *user) {
+    NSMutableArray *userAchievementsJSONArray = [NSMutableArray array];
+    NSMutableArray *userAchievementsListJSONArray = [NSMutableArray array];
+    for (SMAchievementData *achievement in user.achievements) {
+        [userAchievementsJSONArray addObject:SMAchievementDataToJSONString(achievement)];
+    }
+    for (SMAchievementData *achievement in user.achievementsList) {
+        [userAchievementsListJSONArray addObject:SMAchievementDataToJSONString(achievement)];
+    }
+
+    NSString *userAchievementsJSONString = [userAchievementsJSONArray componentsJoinedByString:@"__"];
+    NSString *userAchievementsListJSONString = [userAchievementsListJSONArray componentsJoinedByString:@"__"];
+
     NSDictionary *userDict = @{
                                @"isOptedOut": [NSNumber numberWithBool:user.isOptedOut],
                                @"isRegistered": [NSNumber numberWithBool:user.isRegistered],
                                @"isLoggedIn": [NSNumber numberWithBool:user.isLoggedIn],
                                @"getPointBalance": [NSNumber numberWithUnsignedInteger:user.pointBalance],
                                @"getUnclaimedAchievementCount": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementCount],
-                               @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue]
+                               @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
+                               @"getAchievementsJSON": userAchievementsJSONString,
+                               @"getAchievementsListJSON": userAchievementsListJSONString
                                };
 
     NSError *error = nil;

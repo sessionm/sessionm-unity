@@ -256,7 +256,28 @@ public class SessionM : MonoBehaviour
 		long unclaimedAchievementCount = (Int64)userDict["getUnclaimedAchievementCount"];
 		long unclaimedAchievementValue = (Int64)userDict["getUnclaimedAchievementValue"];
 
-		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue);
+		string[] separatorArray = new string[] {"__"};
+		string achievementsJSON = (string)userDict["getAchievementsJSON"];
+		string[] achievementsJSONArray = achievementsJSON.Split(separatorArray, StringSplitOptions.None);
+
+		AchievementData[] achievementsArray = new AchievementData[achievementsJSONArray.Length];
+		for(int i = 0; i < achievementsJSONArray.Length; i++) {
+			string achievement = achievementsJSONArray[i];
+			achievementsArray[i] = GetAchievementData(achievement) as AchievementData;
+		}
+		List<AchievementData> achievements = new List<AchievementData>(achievementsArray);
+
+		string achievementsListJSON = (string)userDict["getAchievementsListJSON"];
+		string[] achievementsListJSONArray = achievementsListJSON.Split(separatorArray, StringSplitOptions.None);
+
+		AchievementData[] achievementsListArray = new AchievementData[achievementsListJSONArray.Length];
+                for(int i = 0; i < achievementsListJSONArray.Length; i++) {
+                        string achievement = achievementsListJSONArray[i];
+                        achievementsListArray[i] = GetAchievementData(achievement) as AchievementData;
+                }
+		List<AchievementData> achievementsList = new List<AchievementData>(achievementsListArray);
+
+		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList);
 		return userData;
 	}
 }

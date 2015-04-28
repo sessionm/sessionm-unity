@@ -192,6 +192,15 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("mpointValue", achievement.getMpointValue());
             jsonObject.put("identifier", achievement.getAchievementId());
             jsonObject.put("isCustom", achievement.isCustom());
+            jsonObject.put("importID", achievement.getImportId());
+            jsonObject.put("instructions", achievement.getInstructions());
+            jsonObject.put("achievementIconURL", achievement.getAchievementIconURL());
+            jsonObject.put("action", achievement.getAction());
+            jsonObject.put("limitText", achievement.getLimitTimes());
+            jsonObject.put("timesEarned", achievement.getTimesEarned());
+            jsonObject.put("unclaimedCount", achievement.getUnclaimedCount());
+            jsonObject.put("distance", achievement.getDistance());
+            jsonObject.put("lastEarnedDate", achievement.lastEarnedDate());
         } catch (JSONException e) {
             if(Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "JSONException: " + e);
@@ -209,6 +218,8 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("getPointBalance", user.getPointBalance());
             jsonObject.put("getUnclaimedAchievementCount", user.getUnclaimedAchievementCount());
             jsonObject.put("getUnclaimedAchievementValue", user.getUnclaimedAchievementValue());
+            jsonObject.put("getAchievementsJSON", user.getAchievements());
+            jsonObject.put("getAchievementsListJSON", user.getAchievementsList());
         } catch (JSONException e) {
             if(Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "JSONException: " + e);

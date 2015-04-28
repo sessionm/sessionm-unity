@@ -1,3 +1,5 @@
+import com.android.builder.core.BuilderConstants
+
 buildscript {
     repositories {
         mavenCentral()
@@ -6,7 +8,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.1.0'
     }
 }
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 
 buildDir = 'target/'
 
@@ -45,7 +47,7 @@ android {
 
 android.libraryVariants.all { variant ->
     def name = variant.buildType.name
-    if (name.equals(com.android.builder.core.BuilderConstants.DEBUG)) {
+    if (name.equals(BuilderConstants.DEBUG)) {
         return; // Skip debug builds.
     }
     def task = project.tasks.create "jar${name.capitalize()}", Jar

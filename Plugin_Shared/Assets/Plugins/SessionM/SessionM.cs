@@ -87,6 +87,18 @@ public class SessionM : MonoBehaviour
 		sessionMNative.SetUserOptOutStatus(status);
 	}
 
+	//Use this method to set the value of shouldAutoUpdateAchievementsList
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		sessionMNative.SetShouldAutoUpdateAchievementsList(shouldAutoUpdate);
+	}
+
+	//Use this method to manually update the user's achievementsList field. Has no effect if shouldAutoUpdateAchievementsList is set to true.
+	public void UpdateAchievementsList()
+	{
+		sessionMNative.UpdateAchievementsList();
+	}
+
 	//This method is required for displaying Native Acheivements.  Fore more information, please see the Unity plugin documetnation.
 	public AchievementData GetUnclaimedAchievementData() 
 	{
@@ -225,12 +237,23 @@ public class SessionM : MonoBehaviour
 	public static IAchievementData GetAchievementData(string jsonString) 
 	{
 		Dictionary<string, object> achievementDict = Json.Deserialize(jsonString) as Dictionary<string,object>;
+
 		long mpointValue = (Int64)achievementDict["mpointValue"];
+		long timesEarned = (Int64)achievementDict["timesEarned"];
+		long unclaimedCount = (Int64)achievementDict["unclaimedCount"];
+		long distance = (Int64)achievementDict["distance"];
 		bool isCustom = (bool)achievementDict["isCustom"];
 		string identifier = (string)achievementDict["identifier"];
+		string importID = (string)achievementDict["importID"];
+		string instructions = (string)achievementDict["instructions"];
+		string achievementIconURL = (string)achievementDict["achievementIconURL"];
+		string action = (string)achievementDict["action"];
 		string name = (string)achievementDict["name"];
 		string message = (string)achievementDict["message"];
-		IAchievementData achievementData = new AchievementData(identifier, name, message, (int)mpointValue, isCustom);
+		string limitText = (string)achievementDict["limitText"];
+		DateTime lastEarnedDate = new DateTime((Int64)achievementDict["lastEarnedDate"], DateTimeKind.Utc);
+
+		IAchievementData achievementData = new AchievementData(identifier, importID, instructions, achievementIconURL, action, name, message, limitText, (int)mpointValue, isCustom, lastEarnedDate, (int)timesEarned, (int)unclaimedCount, (int)distance);
 		return achievementData;
 	}
 
@@ -245,7 +268,36 @@ public class SessionM : MonoBehaviour
 		long unclaimedAchievementCount = (Int64)userDict["getUnclaimedAchievementCount"];
 		long unclaimedAchievementValue = (Int64)userDict["getUnclaimedAchievementValue"];
 
-		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue);
+		string[] separatorArray = new string[] {"__"};
+		string achievementsJSON = (string)userDict["getAchievementsJSON"];
+		string[] achievementsJSONArray = achievementsJSON.Split(separatorArray, StringSplitOptions.None);
+
+		AchievementData[] achievementsArray = new AchievementData[achievementsJSONArray.Length];
+		for(int i = 0; i < achievementsJSONArray.Length; i++) {
+			string achievement = achievementsJSONArray[i];
+			if(achievement == "")
+			{
+				break;
+			}
+			achievementsArray[i] = GetAchievementData(achievement) as AchievementData;
+		}
+		List<AchievementData> achievements = new List<AchievementData>(achievementsArray);
+
+		string achievementsListJSON = (string)userDict["getAchievementsListJSON"];
+		string[] achievementsListJSONArray = achievementsListJSON.Split(separatorArray, StringSplitOptions.None);
+
+		AchievementData[] achievementsListArray = new AchievementData[achievementsListJSONArray.Length];
+                for(int i = 0; i < achievementsListJSONArray.Length; i++) {
+                        string achievement = achievementsListJSONArray[i];
+			if(achievement == "")
+			{
+				break;
+			}
+                        achievementsListArray[i] = GetAchievementData(achievement) as AchievementData;
+                }
+		List<AchievementData> achievementsList = new List<AchievementData>(achievementsListArray);
+
+		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList);
 		return userData;
 	}
 }

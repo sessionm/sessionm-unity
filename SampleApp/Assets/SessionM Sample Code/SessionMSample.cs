@@ -14,6 +14,7 @@ public class SessionMSample : MonoBehaviour
 	public TextMesh pointBalanceLabel;
 	public TextMesh unclaimedAchCountLabel;
 	public TextMesh unclaimedAchValueLable;
+	public TextMesh lastAchievementEarnedDateLabel;
 
 	public string action1;
 	public string action2;
@@ -59,7 +60,8 @@ public class SessionMSample : MonoBehaviour
 	private void NotifyUnclaimedAchievementDataUpdated(IAchievementData achievementData)
 	{
 		Debug.Log("Recieved New Achievement: " + achievementData.GetName() + " - Worth: " + achievementData.GetMpointValue() + "\n With Message: " + achievementData.GetMessage());
-		toaster.ShowAchievementToast(achievementData.GetName(), achievementData.GetMpointValue());
+		toaster.ShowAchievementToast(achievementData.GetName(), achievementData.GetMpointValue(), achievementData.GetMessage());
+		lastAchievementEarnedDateLabel.text = "Date of last earned achievement: " + achievementData.GetLastEarnedDate();
 	}
 
 	private void UserChanged(IDictionary<string, object> userInfo)
@@ -87,6 +89,7 @@ public class SessionMSample : MonoBehaviour
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
+		sessionM.SetShouldAutoUpdateAchievementsList(true);
 		UserChanged(null);
 	}
 

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class SessionMNotificationBadge : MonoBehaviour 
 {
-	public Renderer[] badgeRenderers;
-	public TextMesh badgeText;
+	public Image[] badgeImages;
+	public Text badgeText;
 
 	private bool badgeVisible = true;
 
@@ -35,17 +36,19 @@ public class SessionMNotificationBadge : MonoBehaviour
 	{
 		badgeVisible = true;
 
-		foreach(Renderer badgeRenderer in badgeRenderers) {
-			badgeRenderer.enabled = true;
+		foreach(Image badgeImage in badgeImages) {
+			badgeImage.enabled = true;
 		}
+		badgeText.enabled = true;
 	}
 
 	private void HideBadge()
 	{
 		badgeVisible = false;
 
-		foreach(Renderer badgeRenderer in badgeRenderers) {
-			badgeRenderer.enabled = false;
+		foreach(Image badgeImage in badgeImages) {
+			badgeImage.enabled = false;
 		}
+		badgeText.enabled = false;
 	}
 }

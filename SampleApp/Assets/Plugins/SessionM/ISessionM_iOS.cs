@@ -59,19 +59,19 @@ public class ISessionM_iOS : ISessionM
 	{
 		return (SessionState)SMGetSessionState();
 	}
+	
+	[DllImport ("__Internal")]
+	private static extern bool SMPlayerDataGetUserOptOutStatus();
+	public bool GetUserOptOutStatus()
+	{
+		return SMPlayerDataGetUserOptOutStatus();
+	}
 
 	[DllImport ("__Internal")]
 	private static extern string SMGetUserJSON();
 	public string GetUser() 
 	{
 		return SMGetUserJSON(); 
-	}
-
-	[DllImport ("__Internal")]
-	private static extern void SMPlayerDataSetUserOptOutStatus(bool status);
-	public void SetUserOptOutStatus(bool status) 
-	{
-		SMPlayerDataSetUserOptOutStatus(status);
 	}
 
 	[DllImport ("__Internal")]

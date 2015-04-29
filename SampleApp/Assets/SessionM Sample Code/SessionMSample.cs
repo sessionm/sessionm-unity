@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,14 +7,14 @@ public class SessionMSample : MonoBehaviour
 {
 	public SessionM sessionM;
 
-	public TextMesh sessionMStateLabel;
+	public Text sessionMStateLabel;
 
-	public TextMesh optOutLabel;
-	public TextMesh isRegisteredLabel;
-	public TextMesh isLoggedInLabel;
-	public TextMesh pointBalanceLabel;
-	public TextMesh unclaimedAchCountLabel;
-	public TextMesh unclaimedAchValueLable;
+	public Text optOutLabel;
+	public Text isRegisteredLabel;
+	public Text isLoggedInLabel;
+	public Text pointBalanceLabel;
+	public Text unclaimedAchCountLabel;
+	public Text unclaimedAchValueLable;
 
 	public string action1;
 	public string action2;

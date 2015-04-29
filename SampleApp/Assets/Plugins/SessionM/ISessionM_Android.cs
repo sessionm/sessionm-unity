@@ -75,22 +75,27 @@ public class ISessionM_Android : ISessionM
 		
 		return state;
 	}
-	
+
+	public bool GetUserOptOutStatus()
+	{
+		bool status = false;
+		
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			status = activityObject.Call<bool>("getUserOptOutStatus");			
+		}
+
+		return status;
+	}
+
 	public string GetUser()
 	{
 		string userJSON = null;
-		
+
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 			userJSON = activityObject.Call<string>("getUser");
 		}
-		
-		return userJSON;
-	}
 
-	public void SetUserOptOutStatus(bool status){
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("setUserOptOutStatus", status);
-		}
+		return userJSON;
 	}
 	
 	public int GetUnclaimedAchievementCount()

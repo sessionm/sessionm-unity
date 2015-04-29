@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,8 +18,8 @@ public class AchievementToast : MonoBehaviour
 
 	public Transform offScreenPosition;
 	public Transform onScreenPosition;
-	public TextMesh titleText;
-	public TextMesh mPointsText;
+	public Text titleText;
+	public Text mPointsText;
 
 	private float toastTimer;
 	public ToastState toastState;

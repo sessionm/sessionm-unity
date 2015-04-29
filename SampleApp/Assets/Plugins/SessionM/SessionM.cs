@@ -58,6 +58,11 @@ public class SessionM : MonoBehaviour
 		return sessionMNative.GetSessionState();
 	}
 
+	//Returns user opt out status.
+	public bool GetUserOptOutStatus(){
+		return sessionMNative.GetUserOptOutStatus();
+	}
+	
 	//Use this method for displaying a badge or other SessionM tools.  Remember, your Acheivement count can accumulate over days, so be sure to support at least
 	//triple digit numbers.
 	public int GetUnclaimedAchievementCount()
@@ -65,7 +70,6 @@ public class SessionM : MonoBehaviour
 		return sessionMNative.GetUnclaimedAchievementCount();
 	}
 
-	//Use this method to get current user data.
 	public UserData GetUserData()
 	{
 		UserData userData = null;
@@ -80,11 +84,6 @@ public class SessionM : MonoBehaviour
 		userData = GetUserData(userDataJSON);
 
 		return userData;
-	}
-
-	//Use this method to set user opt-out status
-	public void SetUserOptOutStatus(bool status){
-		sessionMNative.SetUserOptOutStatus(status);
 	}
 
 	//This method is required for displaying Native Acheivements.  Fore more information, please see the Unity plugin documetnation.
@@ -234,7 +233,6 @@ public class SessionM : MonoBehaviour
 		return achievementData;
 	}
 
-	//This is a useful method you can call whenever you need to parse a JSON string into a the UserData custom class.
 	public static UserData GetUserData(string jsonString)
 	{
 		Dictionary<string, object> userDict = Json.Deserialize(jsonString) as Dictionary<string, object>;

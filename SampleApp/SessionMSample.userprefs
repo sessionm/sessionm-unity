@@ -1,11 +1,9 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SessionM Sample Code/SessionMSample.cs">
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../OutlyerApp/Outlyer Demo/Assets/Plugins/Android/AndroidManifest.xml">
     <Files>
-      <File FileName="Assets/SessionM Sample Code/SessionMSample.cs" Line="11" Column="11" />
-      <File FileName="Assets/Plugins/SessionM/UserData.cs" Line="2" Column="2" />
-      <File FileName="Assets/Plugins/SessionM/SessionMEventListener.cs" Line="2" Column="2" />
-      <File FileName="Assets/Plugins/SessionM/Example/SessionMListenerExample.cs" Line="2" Column="2" />
+      <File FileName="../../OutlyerApp/Outlyer Demo/Assets/OVR/Moonlight/Editor/OVRMoonlightLoader.cs" Line="51" Column="1" />
+      <File FileName="../../OutlyerApp/Outlyer Demo/Assets/Plugins/Android/AndroidManifest.xml" Line="1" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

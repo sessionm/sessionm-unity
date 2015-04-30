@@ -256,6 +256,21 @@ public class SessionMListener implements ActivityListener, SessionListener {
         return jsonObject.toString();
     }
 
+    public static String getRewardsJSON(){
+        String rewards = "";
+        int size = sessionM.getAvailableRewards().length();
+        for (int i = 0; i < size; i++) {
+            try {
+                rewards += sessionM.getAvailableRewards().get(i).toString();
+                if (i < size - 1)
+                    rewards += "__";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return rewards;
+    }
+
     @Override
     public boolean shouldPresentAchievement(com.sessionm.api.SessionM instance, AchievementData data) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {

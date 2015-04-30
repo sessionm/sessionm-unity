@@ -95,12 +95,18 @@ public class ISessionM_Android : ISessionM
 	
 	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
 	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
+		}
 	}
-
+	
 	public void UpdateAchievementsList()
 	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("updateAchievementsList");                  
+		}
 	}
-
+	
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;
@@ -187,7 +193,14 @@ public class ISessionM_Android : ISessionM
 
 	public List<string> GetRewards()
 	{
-		return null;
+		string rewardsJSON = null;		
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			rewardsJSON = activityObject.Call<string>("getRewardsJSON");			
+		}
+		string[] separatorArray = new string[] {"__"};
+		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
+		
+		return new List<string>(rewardsArray);
 	}
 	
 	public void SetMetaData(string data, string key)

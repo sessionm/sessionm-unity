@@ -60,6 +60,10 @@ public class SessionMPlugin{
         return json;
     }
 
+    public static String getRewardsJSON(){
+        return SessionMListener.getRewardsJSON();
+    }
+
     public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
@@ -121,16 +125,16 @@ public class SessionMPlugin{
         sessionM.getUser().setOptedOut(ac, status);
     }
 
-    public void updateAchievementsList(){
+    public static void updateAchievementsList(){
         if(Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, this + ".updateAchievementsList");
+            Log.d(TAG, ac + ".updateAchievementsList");
         }
         sessionM.updateAchievementsList();
     }
 
-    public void setShouldAutoUpdateAchievementsList(boolean auto){
+    public static void setShouldAutoUpdateAchievementsList(boolean auto){
         if(Log.isLoggable(TAG, Log.DEBUG)) {
-            Log.d(TAG, this + ".updateAchievementsList");
+            Log.d(TAG, ac + ".updateAchievementsList");
         }
         sessionM.setShouldAutoUpdateAchievementsList(auto);
     }

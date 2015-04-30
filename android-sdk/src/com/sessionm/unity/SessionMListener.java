@@ -189,14 +189,14 @@ public class SessionMListener implements ActivityListener, SessionListener {
 
     public static String getAchievementJSON(AchievementData achievement) {
         JSONObject jsonObject = new JSONObject();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
         Date earnedDate;
         Date startDate;
         long time = 0;
         try {
             earnedDate = formatter.parse(achievement.lastEarnedDate());
-            startDate = formatter.parse("0001-01-01");
-            time = (earnedDate.getTime() - startDate.getTime()) * 1000000;
+            startDate = formatter.parse("00010101");
+            time = (earnedDate.getTime() - startDate.getTime()) * 10000;
         } catch (ParseException e) {
             e.printStackTrace();
         }

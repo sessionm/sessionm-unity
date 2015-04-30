@@ -101,6 +101,12 @@ public interface ISessionM
 	//Sets Current user opt-out status locally
 	void SetUserOptOutStatus(bool status);
 
+	//Sets value of shouldAutoUpdateAchievementsList (default is false)
+	void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate);
+
+	//Manually updates user's achievementsList field. Has no effect is shouldAutoUpdateAchievementsList is set to true.
+	void UpdateAchievementsList();
+
 	// Returns number of unclaimed achievements
 	int GetUnclaimedAchievementCount();
 	

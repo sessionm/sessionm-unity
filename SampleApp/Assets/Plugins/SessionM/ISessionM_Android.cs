@@ -93,6 +93,20 @@ public class ISessionM_Android : ISessionM
 		}
 	}
 	
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
+		}
+	}
+
+	public void UpdateAchievementsList()
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("updateAchievementsList");                  
+		}
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;

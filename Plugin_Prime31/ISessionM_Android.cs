@@ -86,6 +86,14 @@ public class ISessionM_Android : ISessionM
 			sessionMObject.CallStatic("setUserOptOutStatus", status);
 	}
 
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+	}
+
+	public void UpdateAchievementsList()
+	{
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;

@@ -33,6 +33,14 @@ public class ISessionM_Dummy : ISessionM
 	public void SetUserOptOutStatus(bool status){
 	}
 
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+	}
+
+	public void UpdateAchievementsList()
+	{
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		return 0;

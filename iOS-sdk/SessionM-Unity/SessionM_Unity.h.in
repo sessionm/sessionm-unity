@@ -46,6 +46,8 @@ const char *SMGetRewardsJSON(void);
 void SMSetMetaData(const char *data, const char *key);
 SessionMState SMGetSessionState(void);
 void SMPlayerDataSetUserOptOutStatus(BOOL optOut);
+void SMSetShouldAutoUpdateAchievementsList(BOOL shouldAutoUpdate);
+void SMUpdateAchievementsList(void);
 long SMPlayerDataGetUnclaimedAchievementCount(void);
 
 const char *SMGetUnclaimedAchievementJSON(void);

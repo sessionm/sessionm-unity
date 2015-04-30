@@ -78,6 +78,20 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         sessionM.getUser().setOptedOut(this, status);
     }
 
+    public void updateAchievementsList(){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".updateAchievementsList");
+        }
+        sessionM.updateAchievementsList();
+    }
+
+    public void setShouldAutoUpdateAchievementsList(boolean auto){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".updateAchievementsList");
+        }
+        sessionM.setShouldAutoUpdateAchievementsList(auto);
+    }
+
     public boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {

@@ -120,6 +120,20 @@ public class SessionMPlugin{
         }
         sessionM.getUser().setOptedOut(ac, status);
     }
+
+    public void updateAchievementsList(){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".updateAchievementsList");
+        }
+        sessionM.updateAchievementsList();
+    }
+
+    public void setShouldAutoUpdateAchievementsList(boolean auto){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".updateAchievementsList");
+        }
+        sessionM.setShouldAutoUpdateAchievementsList(auto);
+    }
   
     // Prime31 Shared Activity 
     public static void onStart() {

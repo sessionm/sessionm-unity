@@ -86,6 +86,20 @@ public class ISessionM_Android : ISessionM
 			sessionMObject.CallStatic("setUserOptOutStatus", status);
 	}
 
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
+		}
+	}
+	
+	public void UpdateAchievementsList()
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("updateAchievementsList");                  
+		}
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		int count = 0;
@@ -167,9 +181,28 @@ public class ISessionM_Android : ISessionM
 		return androidInstance.Call<string>("getSDKVersion");			
 	}
 	
+	public List<string> GetRewards()
+	{
+		string rewardsJSON = null;		
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			rewardsJSON = activityObject.Call<string>("getRewardsJSON");			
+		}
+		string[] separatorArray = new string[] {"__"};
+		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
+		
+		return new List<string>(rewardsArray);
+	}
+
 	public void SetMetaData(string data, string key)
 	{
 		androidInstance.Call("setMetaData", key, data);
+	}
+
+	public void SetServiceRegion(int serviceRegion)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call<int>("setServiceRegion", serviceRegion);                  
+		}
 	}
 	
 	public void NotifyPresented()

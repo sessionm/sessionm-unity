@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 //SessionMDummy.cs
 //
@@ -30,6 +31,14 @@ public class ISessionM_Dummy : ISessionM
 	}
 	
 	public void SetUserOptOutStatus(bool status){
+	}
+
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+	}
+
+	public void UpdateAchievementsList()
+	{
 	}
 
 	public int GetUnclaimedAchievementCount()
@@ -84,6 +93,11 @@ public class ISessionM_Dummy : ISessionM
 	}
 
 	public string GetSDKVersion()
+	{
+		return null;
+	}
+
+	public List<string> GetRewards()
 	{
 		return null;
 	}

@@ -75,6 +75,20 @@ public class ISessionM_iOS : ISessionM
 	}
 
 	[DllImport ("__Internal")]
+	private static extern void SMSetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate);
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		SMSetShouldAutoUpdateAchievementsList(shouldAutoUpdate);
+	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMUpdateAchievementsList();
+	public void UpdateAchievementsList()
+	{
+		SMUpdateAchievementsList();
+	}
+
+	[DllImport ("__Internal")]
 	private static extern int SMPlayerDataGetUnclaimedAchievementCount();
 	public int GetUnclaimedAchievementCount()
 	{
@@ -156,6 +170,17 @@ public class ISessionM_iOS : ISessionM
 	public string GetSDKVersion()
 	{
 		return SMGetSDKVersion();
+	}
+
+	[DllImport ("__Internal")]
+	private static extern string SMGetRewardsJSON();
+	public List<string> GetRewards()
+	{
+		string rewardsJSON = SMGetRewardsJSON();
+		string[] separatorArray = new string[] {"__"};
+		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
+
+		return new List<string>(rewardsArray);
 	}
 	
 	[DllImport ("__Internal")]

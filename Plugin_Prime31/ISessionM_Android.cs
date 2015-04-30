@@ -193,6 +193,13 @@ public class ISessionM_Android : ISessionM
 	{
 		androidInstance.Call("setMetaData", key, data);
 	}
+
+	public void SetServiceRegion(int serviceRegion)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call<int>("setServiceRegion", serviceRegion);                  
+		}
+	}
 	
 	public void NotifyPresented()
 	{

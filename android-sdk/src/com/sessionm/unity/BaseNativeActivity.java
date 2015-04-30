@@ -98,6 +98,11 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         sessionM.setShouldAutoUpdateAchievementsList(auto);
     }
 
+    public void setServiceRegion(int serviceRegion) {
+        if (serviceRegion == 0)
+            sessionM.setServerType(SessionM.SERVER_TYPE_JAPAN);
+    }
+
     public boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {

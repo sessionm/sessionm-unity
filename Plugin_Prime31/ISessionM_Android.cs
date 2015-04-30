@@ -27,6 +27,8 @@ public class ISessionM_Android : ISessionM
 		CreateListenerObject();
 		
 		if(sessionMGameObject.androidAppId != null) {
+			//Test custom server
+			//SetServiceRegion(0);
 			StartSession(null);
 		}
 	}
@@ -171,10 +173,6 @@ public class ISessionM_Android : ISessionM
 	{
 		return LogLevel.Off;
 	}
-
-	public void SetServiceRegion(int region)
-	{
-	}
 	
 	public string GetSDKVersion()
 	{
@@ -201,7 +199,7 @@ public class ISessionM_Android : ISessionM
 	public void SetServiceRegion(int serviceRegion)
 	{
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call<int>("setServiceRegion", serviceRegion);                  
+			activityObject.Call("setServiceRegion", serviceRegion);                  
 		}
 	}
 	

@@ -97,7 +97,7 @@ public class ISessionM_Dummy : ISessionM
 		return null;
 	}
 
-	public List<string> GetRewards()
+	public string[] GetRewards()
 	{
 		return null;
 	}

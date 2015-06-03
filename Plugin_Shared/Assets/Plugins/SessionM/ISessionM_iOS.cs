@@ -160,7 +160,7 @@ public class ISessionM_iOS : ISessionM
 
 	[DllImport ("__Internal")]
 	private static extern void SMSetServiceRegion(int region);
-	public void SetServiceRegion(ServiceRegion region)
+	public void SetServiceRegion(int region)
 	{
 		SMSetServiceRegion((int)region);
 	}
@@ -174,13 +174,13 @@ public class ISessionM_iOS : ISessionM
 
 	[DllImport ("__Internal")]
 	private static extern string SMGetRewardsJSON();
-	public List<string> GetRewards()
+	public string[] GetRewards()
 	{
 		string rewardsJSON = SMGetRewardsJSON();
 		string[] separatorArray = new string[] {"__"};
 		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
 
-		return new List<string>(rewardsArray);
+		return rewardsArray;
 	}
 	
 	[DllImport ("__Internal")]

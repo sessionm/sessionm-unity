@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 // UI Activity type
 public enum ActivityType
@@ -149,7 +148,7 @@ public interface ISessionM
 	string GetSDKVersion();
 	
         // Returns a list of all rewards the user can redeem
-	List<string> GetRewards();
+	string[] GetRewards();
 
 	// Set meta data properties
 	void SetMetaData(string data, string key);

@@ -160,7 +160,7 @@ public class SessionM : MonoBehaviour
 		return sessionMNative.GetSDKVersion();
 	}
 
-	public List<string> GetRewards()
+	public string[] GetRewards()
 	{
 		return sessionMNative.GetRewards();
 	}

@@ -179,16 +179,15 @@ public class ISessionM_Android : ISessionM
 		return androidInstance.Call<string>("getSDKVersion");			
 	}
 	
-	public List<string> GetRewards()
+	public string[] GetRewards()
 	{
-		string rewardsJSON = null;		
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			rewardsJSON = activityObject.Call<string>("getRewardsJSON");			
-		}
+		string rewardsJSON = null;
+		rewardsJSON = sessionMObject.CallStatic<string>("getRewardsJSON");
 		string[] separatorArray = new string[] {"__"};
-		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
-		
-		return new List<string>(rewardsArray);
+		string[] rewardsArray = new String[] {""};
+		if(rewardsJSON != null)
+			rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
+		return rewardsArray;
 	}
 
 	public void SetMetaData(string data, string key)

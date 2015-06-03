@@ -11,6 +11,7 @@ import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
 import com.unity3d.player.UnityPlayer;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -193,12 +194,15 @@ public class SessionMListener implements ActivityListener, SessionListener {
         Date earnedDate;
         Date startDate;
         long time = 0;
-        try {
-            earnedDate = formatter.parse(achievement.lastEarnedDate());
-            startDate = formatter.parse("00010101");
-            time = (earnedDate.getTime() - startDate.getTime()) * 10000;
-        } catch (ParseException e) {
-            e.printStackTrace();
+        String date = achievement.lastEarnedDate();
+        if (date != null && !date.equals("null")) {
+            try {
+                startDate = formatter.parse("00010101");
+                earnedDate = formatter.parse(date);
+                time = (earnedDate.getTime() - startDate.getTime()) * 10000;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         try {
             jsonObject.put("name", (achievement.getName() == null) ? "" : achievement.getName());
@@ -258,14 +262,17 @@ public class SessionMListener implements ActivityListener, SessionListener {
 
     public static String getRewardsJSON(){
         String rewards = "";
-        int size = sessionM.getAvailableRewards().length();
-        for (int i = 0; i < size; i++) {
-            try {
-                rewards += sessionM.getAvailableRewards().get(i).toString();
-                if (i < size - 1)
-                    rewards += "__";
-            } catch (JSONException e) {
-                e.printStackTrace();
+        JSONArray rewardsArray = sessionM.getAvailableRewards();
+        if (rewardsArray != null) {
+            int size = rewardsArray.length();
+            for (int i = 0; i < size; i++) {
+                try {
+                    rewards += rewardsArray.get(i).toString();
+                    if (i < size - 1)
+                        rewards += "__";
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return rewards;

@@ -4,6 +4,7 @@ rm -rf build/
 rm -rf android-sdk/.gradle/
 rm -rf android-sdk/target/
 rm -f android-sdk/libs/SessionM.jar
+rm -f android-sdk/libs/Unity.jar
 rm -f android-sdk/src/com/sessionm/unity/SessionMPlugin.java
 rm -rf iOS-sdk/build/
 rm -rf iOS-sdk/Pods/

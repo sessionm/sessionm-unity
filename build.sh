@@ -8,6 +8,7 @@ mkdir build/
 
 ##Build Android Plugin SDK##
 cp ${SESSIONM_ANDROID_JAR_PATH} android-sdk/libs/SessionM.jar
+cp ${UNITY_JAR_PATH} android-sdk/libs/Unity.jar
 cd android-sdk
 sh build.sh
 cp libs/SessionM.jar target/SessionMUnity.jar ../Plugin_Shared/Assets/Plugins/Android

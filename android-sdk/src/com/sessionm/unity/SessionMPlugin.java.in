@@ -66,7 +66,7 @@ public class SessionMPlugin{
 
     public static void setServiceRegion(int serviceRegion) {
         if (serviceRegion == 0)
-            sessionM.setServerType(SessionM.SERVER_TYPE_JAPAN);
+            sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
     }
 
     public static boolean notifyCustomAchievementPresented() {

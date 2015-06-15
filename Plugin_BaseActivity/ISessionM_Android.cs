@@ -28,8 +28,6 @@ public class ISessionM_Android : ISessionM
 		CreateListenerObject();
 		
 		if(sessionMGameObject.androidAppId != null) {
-			//Test custom server
-			//SetServiceRegion(0);
 			StartSession(null);
 		}
 	}

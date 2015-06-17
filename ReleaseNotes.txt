@@ -8,6 +8,8 @@ Changes:
 - Added Unity 5 support.
 - Added SetServiceRegion api method.
 - Added GetRewards api method.
+- Added UpdateAchievementsList api method.
+- Added SetShouldAutoUpdateAchievementsList api method.
 - Added various fields and methods to IAchievementData and UserData classes.
 
 

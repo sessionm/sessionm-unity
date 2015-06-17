@@ -29,8 +29,9 @@ public enum SessionState
 // Service region
 public enum ServiceRegion
 {
-	Japan = 0,
-	USA = 1
+	Unknown = 0,
+	Japan = 1,
+	USA = 2
 }
 
 /* User actions. 
@@ -142,8 +143,8 @@ public interface ISessionM
 	void SetLogLevel(LogLevel level);
 
 	// Sets service region
-	void SetServiceRegion(int region);
-	
+	void SetServiceRegion(ServiceRegion region);
+
 	// Returns SDK version 
 	string GetSDKVersion();
 	

@@ -88,7 +88,7 @@ public class ISessionM_Dummy : ISessionM
 		return LogLevel.Off;
 	}
 	
-	public void SetServiceRegion(int region)
+	public void SetServiceRegion(ServiceRegion region)
 	{
 	}
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -80,6 +80,13 @@ public class SessionMSample : MonoBehaviour
 	}
 
 	//Unity Lifecycle
+
+	private void Awake()
+	{
+		//Set service region before SessionM instance is created
+		SessionM.SetServiceRegion(ServiceRegion.USA);
+		sessionM.gameObject.SetActive(true);
+	}
 
 	private void OnEnable()
 	{

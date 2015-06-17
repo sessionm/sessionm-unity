@@ -34,7 +34,15 @@ public class SessionM : MonoBehaviour
 		
 		return instance;
 	}
-	
+
+	public static ServiceRegion serviceRegion = ServiceRegion.USA;
+
+	//Call this method before starting the session to set the service region.
+	public static void SetServiceRegion(ServiceRegion region)
+	{
+		serviceRegion = region;
+	}
+
 	//Here, SessionM instantiates the appropiate Native interface to be used on each platform.
 	//iOS: iSessionM_IOS
 	//Android: iSessionM_Android
@@ -147,12 +155,6 @@ public class SessionM : MonoBehaviour
 		return PresentActivity(ActivityType.Portal);
 	}
 	
-	//Call this method before starting the session to set the service region.
-	public void SetServiceRegion(int region)
-	{
-		sessionMNative.SetServiceRegion(region);
-	}
-
 	//The following methods are generally used for debugging and won't be utilized by most SessionM Developers.
 	
 	public string GetSDKVersion()

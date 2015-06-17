@@ -17,11 +17,12 @@ public class ISessionM_iOS : ISessionM
 	
 	[DllImport ("__Internal")]
 	protected static extern void SMSetCallbackGameObjectName(string gameObjectName);
-	public ISessionM_iOS(SessionM sessionMParent) 
+	public ISessionM_iOS(SessionM sessionMParent)
 	{
 		sessionMGameObject = sessionMParent;
 		
 		if(sessionMParent.iosAppId != null) {
+			SetServiceRegion(SessionM.serviceRegion);
 			StartSession(null);
 			SetLogLevel(sessionMParent.logLevel);
 		}
@@ -160,7 +161,7 @@ public class ISessionM_iOS : ISessionM
 
 	[DllImport ("__Internal")]
 	private static extern void SMSetServiceRegion(int region);
-	public void SetServiceRegion(int region)
+	public void SetServiceRegion(ServiceRegion region)
 	{
 		SMSetServiceRegion((int)region);
 	}

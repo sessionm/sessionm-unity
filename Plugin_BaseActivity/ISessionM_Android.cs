@@ -28,6 +28,7 @@ public class ISessionM_Android : ISessionM
 		CreateListenerObject();
 		
 		if(sessionMGameObject.androidAppId != null) {
+			SetServiceRegion(SessionM.serviceRegion);
 			StartSession(null);
 		}
 	}
@@ -209,7 +210,7 @@ public class ISessionM_Android : ISessionM
 		androidInstance.Call("setMetaData", key, data);
 	}
 
-	public void SetServiceRegion(int serviceRegion)
+	public void SetServiceRegion(ServiceRegion serviceRegion)
 	{
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 			activityObject.Call("setServiceRegion", serviceRegion);                  

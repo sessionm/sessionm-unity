@@ -17,9 +17,9 @@ Build Steps
 
 1. In order to build this extension, the following programs and files must be available:
 
-* Unity (Tested with Unity 4.5)
-* XCode (Tested with XCode 6.0.0)
-* CocoaPods (Tested with CocoaPods 0.34.4 - install the Ruby gem by running ``gem install cocoapods``)
+* Unity (Tested with Unity 5.1.0p1)
+* XCode (Tested with XCode 6.3.1)
+* CocoaPods (Tested with CocoaPods 0.37.2 - install the Ruby gem by running ``gem install cocoapods``)
 * Android SDK (Tested with Android SDK version 21. Please add your Android SDK path in Config file and make sure you have Android SDK build tool version 21 downloaded. If you are familiar with Android development, feel free to change version number in ``android-sdk/build.gradle`` and ``android-sdk/AndroidManifest.xml``)
 * SessionM iOS and Android SDKs. Available for downloading from: http://www.sessionm.com/documentation/downloads.php
 * If you want to build Prime31 version of plugin, we assume that you have Prime31UnityActivity.jar ready. For more information on the Prime31 plugin, check their web site https://prime31.com, and instructions where to download the plugin can be found on their github account: https://gist.github.com/prime31/0908e6100d7e228f1add

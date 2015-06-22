@@ -197,7 +197,7 @@ public class ISessionM_Android : ISessionM
 	public void SetServiceRegion(ServiceRegion serviceRegion)
 	{
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("setServiceRegion", serviceRegion);                  
+			activityObject.Call("setServiceRegion", 0);                  
 		}
 	}
 	

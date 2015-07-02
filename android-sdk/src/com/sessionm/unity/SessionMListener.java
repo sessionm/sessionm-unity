@@ -284,11 +284,10 @@ public class SessionMListener implements ActivityListener, SessionListener {
                     if (Log.isLoggable(TAG, Log.DEBUG)) {
                         Log.d(TAG, "JSONException when trying to pack json array: " + e);
                     }
-                } finally {
-                    return jsonString;
                 }
             }
         }
+        return jsonString;
     }
 
     @Override

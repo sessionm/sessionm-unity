@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
 
@@ -192,17 +191,13 @@ public class ISessionM_Android : ISessionM
 		return androidInstance.Call<string>("getSDKVersion");			
 	}
 	
-	public string[] GetRewards()
+	public string GetRewards()
 	{
 		string rewardsJSON = null;
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 			rewardsJSON = activityObject.Call<string>("getRewardsJSON");
 		}
-		string[] separatorArray = new string[] {"__"};
-		string[] rewardsArray = new String[] {""};
-		if(rewardsJSON != null)
-			rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
-		return rewardsArray;
+		return rewardsJSON;
 	}
 	
 	public void SetMetaData(string data, string key)

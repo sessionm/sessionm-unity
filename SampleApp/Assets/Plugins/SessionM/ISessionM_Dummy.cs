@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 //SessionMDummy.cs
 //
@@ -97,7 +96,7 @@ public class ISessionM_Dummy : ISessionM
 		return null;
 	}
 
-	public string[] GetRewards()
+	public string GetRewards()
 	{
 		return null;
 	}

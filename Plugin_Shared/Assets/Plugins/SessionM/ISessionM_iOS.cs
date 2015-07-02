@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
 
@@ -175,13 +174,10 @@ public class ISessionM_iOS : ISessionM
 
 	[DllImport ("__Internal")]
 	private static extern string SMGetRewardsJSON();
-	public string[] GetRewards()
+	public string GetRewards()
 	{
 		string rewardsJSON = SMGetRewardsJSON();
-		string[] separatorArray = new string[] {"__"};
-		string[] rewardsArray = rewardsJSON.Split(separatorArray, StringSplitOptions.None);
-
-		return rewardsArray;
+		return rewardsJSON;
 	}
 	
 	[DllImport ("__Internal")]

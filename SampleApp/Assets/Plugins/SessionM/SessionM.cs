@@ -164,7 +164,7 @@ public class SessionM : MonoBehaviour
 
 	public string[] GetRewards()
 	{
-		return sessionMNative.GetRewards();
+		return UnpackJSONArray(sessionMNative.GetRewards());
 	}
 	
 	public LogLevel GetLogLevel()
@@ -281,9 +281,8 @@ public class SessionM : MonoBehaviour
 		long unclaimedAchievementCount = (Int64)userDict["getUnclaimedAchievementCount"];
 		long unclaimedAchievementValue = (Int64)userDict["getUnclaimedAchievementValue"];
 
-		string[] separatorArray = new string[] {"__"};
 		string achievementsJSON = (string)userDict["getAchievementsJSON"];
-		string[] achievementsJSONArray = achievementsJSON.Split(separatorArray, StringSplitOptions.None);
+		string[] achievementsJSONArray = UnpackJSONArray(achievementsJSON);
 
 		AchievementData[] achievementsArray = new AchievementData[achievementsJSONArray.Length];
 		for(int i = 0; i < achievementsJSONArray.Length; i++) {
@@ -297,7 +296,7 @@ public class SessionM : MonoBehaviour
 		List<AchievementData> achievements = new List<AchievementData>(achievementsArray);
 
 		string achievementsListJSON = (string)userDict["getAchievementsListJSON"];
-		string[] achievementsListJSONArray = achievementsListJSON.Split(separatorArray, StringSplitOptions.None);
+		string[] achievementsListJSONArray = UnpackJSONArray(achievementsListJSON);
 
 		AchievementData[] achievementsListArray = new AchievementData[achievementsListJSONArray.Length];
                 for(int i = 0; i < achievementsListJSONArray.Length; i++) {
@@ -312,5 +311,12 @@ public class SessionM : MonoBehaviour
 
 		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList);
 		return userData;
+	}
+
+	private static string[] UnpackJSONArray(string json)
+	{
+		string[] separatorArray = new string[] {"__"};
+		string[] JSONArray = json.Split(separatorArray, StringSplitOptions.None);
+		return JSONArray;
 	}
 }

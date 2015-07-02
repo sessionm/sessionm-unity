@@ -13,6 +13,7 @@ extern void UnitySendMessage(const char* obj, const char* method, const char* ms
 
 // Utility functions
 static NSString *SMPackStrings(NSArray * strings);
+static NSString *SMPackJSONArray(NSArray *jsonArray);
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData);
 static NSString *SMUserToJSONString(SMUser *user);
 SessionM_Unity *__unityClientSharedInstance;
@@ -188,7 +189,7 @@ const char *SMGetSDKVersion(void) {
 
 // Returns a JSON representation of the list of rewards the user can redeem
 const char *SMGetRewardsJSON(void) {
-    const char *rewardsJSON = [[[SessionM sharedInstance].rewards componentsJoinedByString:@"__"] cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *rewardsJSON = [SMPackJSONArray([SessionM sharedInstance].rewards) cStringUsingEncoding:NSUTF8StringEncoding];
     return rewardsJSON ? strdup(rewardsJSON) : NULL;
 }
 
@@ -322,8 +323,8 @@ static NSString *SMUserToJSONString(SMUser *user) {
         [userAchievementsListJSONArray addObject:SMAchievementDataToJSONString(achievement)];
     }
 
-    NSString *userAchievementsJSONString = [userAchievementsJSONArray componentsJoinedByString:@"__"];
-    NSString *userAchievementsListJSONString = [userAchievementsListJSONArray componentsJoinedByString:@"__"];
+    NSString *userAchievementsJSONString = SMPackJSONArray(userAchievementsJSONArray);
+    NSString *userAchievementsListJSONString = SMPackJSONArray(userAchievementsListJSONArray);
 
     NSDictionary *userDict = @{
                                @"isOptedOut": [NSNumber numberWithBool:user.isOptedOut],
@@ -355,4 +356,8 @@ static NSString *SMPackStrings(NSArray * strings) {
     }
 
     return packedString;
+}
+
+static NSString *SMPackJSONArray(NSArray *jsonArray) {
+    return [jsonArray componentsJoinedByString:@"__"];
 }

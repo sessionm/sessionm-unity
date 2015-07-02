@@ -235,20 +235,18 @@ public class SessionMListener implements ActivityListener, SessionListener {
     //Return user data as JSON for unity
     public static String getUserJSON(User user) {
         JSONObject jsonObject = new JSONObject();
-        String userAchievementsJSONString = "";
-        String userAchievementsListJSONString = "";
+        JSONArray userAchievementsJSONArray = new JSONArray();
+        JSONArray userAchievementsListJSONArray = new JSONArray();
         int size = user.getAchievements().size();
         int listSize = user.getAchievementsList().size();
         for (int i = 0; i < size; i++) {
-            userAchievementsJSONString += getAchievementJSON(user.getAchievements().get(i));
-            if (i < size - 1)
-                userAchievementsJSONString += "__";
+            userAchievementsJSONArray.put(getAchievementJSON(user.getAchievements().get(i)));
         }
         for (int i = 0; i < listSize; i++) {
-            userAchievementsListJSONString += getAchievementJSON(user.getAchievementsList().get(i));
-            if (i < listSize - 1)
-                userAchievementsListJSONString += "__";
+            userAchievementsListJSONArray.put(getAchievementJSON(user.getAchievementsList().get(i)));
         }
+        String userAchievementsJSONString = SMPackJSONArray(userAchievementsJSONArray);
+        String userAchievementsListJSONString = SMPackJSONArray(userAchievementsListJSONArray);
         try {
             jsonObject.put("isOptedOut", user.isOptedOut());
             jsonObject.put("isRegistered", user.isRegistered());
@@ -268,23 +266,29 @@ public class SessionMListener implements ActivityListener, SessionListener {
 
     //Return rewards data as JSON for unity
     public static String getRewardsJSON(){
-        String rewards = "";
         JSONArray rewardsArray = sessionM.getAvailableRewards();
-        if (rewardsArray != null) {
-            int size = rewardsArray.length();
+        String rewards = SMPackJSONArray(rewardsArray);
+        return rewards;
+    }
+
+    public static String SMPackJSONArray(JSONArray jsonArray) {
+	String jsonString = "";
+        if (jsonArray != null) {
+            int size = jsonArray.length();
             for (int i = 0; i < size; i++) {
                 try {
-                    rewards += rewardsArray.get(i).toString();
+                    jsonString += jsonArray.get(i).toString();
                     if (i < size - 1)
-                        rewards += "__";
+                        jsonString += "__";
                 } catch (JSONException e) {
                     if (Log.isLoggable(TAG, Log.DEBUG)) {
-                        Log.d(TAG, "JSONException when trying to get rewards json: " + e);
+                        Log.d(TAG, "JSONException when trying to pack json array: " + e);
                     }
+                } finally {
+                    return jsonString;
                 }
             }
         }
-        return rewards;
     }
 
     @Override

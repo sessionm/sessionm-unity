@@ -83,21 +83,17 @@ public class ISessionM_Android : ISessionM
 	}
 
 	public void SetUserOptOutStatus(bool status){
-			sessionMObject.CallStatic("setUserOptOutStatus", status);
+		sessionMObject.CallStatic("setUserOptOutStatus", status);
 	}
 
 	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
 	{
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
-		}
+		sessionMObject.CallStatic("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
 	}
 	
 	public void UpdateAchievementsList()
 	{
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("updateAchievementsList");                  
-		}
+		sessionMObject.CallStatic("updateAchievementsList");                  
 	}
 
 	public int GetUnclaimedAchievementCount()
@@ -191,9 +187,7 @@ public class ISessionM_Android : ISessionM
 
 	public void SetServiceRegion(ServiceRegion serviceRegion)
 	{
-		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-			activityObject.Call("setServiceRegion", 0);                  
-		}
+		sessionMObject.CallStatic("setServiceRegion", 0);                  
 	}
 	
 	public void NotifyPresented()

@@ -272,7 +272,7 @@ public class SessionMListener implements ActivityListener, SessionListener {
     }
 
     public static String SMPackJSONArray(JSONArray jsonArray) {
-	String jsonString = "";
+	    String jsonString = "";
         if (jsonArray != null) {
             int size = jsonArray.length();
             for (int i = 0; i < size; i++) {

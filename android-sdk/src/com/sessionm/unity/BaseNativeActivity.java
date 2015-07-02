@@ -97,7 +97,6 @@ public class BaseNativeActivity extends UnityPlayerActivity {
     }
 
     public void setServiceRegion(int serviceRegion) {
-        Log.e(TAG, this + ".notifyCustomAchievementPresented(): Null achievement");
         if (serviceRegion == 0)
             sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
     }

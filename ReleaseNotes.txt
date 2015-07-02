@@ -1,6 +1,6 @@
-Session M Unity SDK Release Notes
+SessionM Unity SDK Release Notes
 ________________
-Copyright: 2015 Session M. All rights reserved.
+Copyright: 2015 SessionM. All rights reserved.
 Date: 06/17/2015
 Version: 2.1
 

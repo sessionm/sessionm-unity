@@ -55,7 +55,7 @@ public class SessionMPlugin{
         String json = null;
         User user = sessionM.getUser();
         if(user != null) {
-            json = SessionMListener.getUser(user);
+            json = SessionMListener.getUserJSON(user);
         }
         return json;
     }

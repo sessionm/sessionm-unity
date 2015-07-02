@@ -175,7 +175,9 @@ public class SessionMListener implements ActivityListener, SessionListener {
             }
         } catch (JSONException e) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "JSONException: " + e);
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "JSONException when trying to get userAction: " + e);
+                }
             }
         }
         if (callbackGameObjectName != null) {
@@ -188,6 +190,7 @@ public class SessionMListener implements ActivityListener, SessionListener {
         return null;
     }
 
+    //Return achievement data as JSON for unity
     public static String getAchievementJSON(AchievementData achievement) {
         JSONObject jsonObject = new JSONObject();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
@@ -201,7 +204,9 @@ public class SessionMListener implements ActivityListener, SessionListener {
                 earnedDate = formatter.parse(date);
                 time = (earnedDate.getTime() - startDate.getTime()) * 10000;
             } catch (ParseException e) {
-                e.printStackTrace();
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "ParseException when trying to get achievement last earn date: " + e);
+                }
             }
         }
         try {
@@ -221,13 +226,14 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("lastEarnedDate", time);
         } catch (JSONException e) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "JSONException: " + e);
+                Log.d(TAG, "JSONException when trying to get achievement json: " + e);
             }
         }
         return jsonObject.toString();
     }
 
-    public static String getUser(User user) {
+    //Return user data as JSON for unity
+    public static String getUserJSON(User user) {
         JSONObject jsonObject = new JSONObject();
         String userAchievementsJSONString = "";
         String userAchievementsListJSONString = "";
@@ -254,12 +260,13 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("getAchievementsListJSON", userAchievementsListJSONString);
         } catch (JSONException e) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
-                Log.d(TAG, "JSONException: " + e);
+                Log.d(TAG, "JSONException when trying to get user json: " + e);
             }
         }
         return jsonObject.toString();
     }
 
+    //Return rewards data as JSON for unity
     public static String getRewardsJSON(){
         String rewards = "";
         JSONArray rewardsArray = sessionM.getAvailableRewards();
@@ -271,7 +278,9 @@ public class SessionMListener implements ActivityListener, SessionListener {
                     if (i < size - 1)
                         rewards += "__";
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    if (Log.isLoggable(TAG, Log.DEBUG)) {
+                        Log.d(TAG, "JSONException when trying to get rewards json: " + e);
+                    }
                 }
             }
         }

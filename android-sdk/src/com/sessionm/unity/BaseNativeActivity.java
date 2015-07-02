@@ -13,8 +13,6 @@ import com.sessionm.api.SessionM;
 import com.sessionm.api.User;
 import com.unity3d.player.UnityPlayerActivity;
 
-import org.json.JSONException;
-
 public class BaseNativeActivity extends UnityPlayerActivity {
 
     private final static String TAG = "SessionM.Unity";
@@ -68,7 +66,7 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         String json = "";
         User user = sessionM.getUser();
         if(user != null) {
-            json = SessionMListener.getUser(user);
+            json = SessionMListener.getUserJSON(user);
         }
         return json;
     }

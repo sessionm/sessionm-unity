@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 // UI Activity type
 public enum ActivityType
@@ -25,6 +24,14 @@ public enum SessionState
 	Stopped = 0,
 	StartedOnline = 1, 
 	StartedOffline = 2
+}
+
+// Service region
+public enum ServiceRegion
+{
+	Unknown = 0,
+	Japan = 1,
+	USA = 2
 }
 
 /* User actions. 
@@ -101,6 +108,12 @@ public interface ISessionM
 	//Sets Current user opt-out status locally
 	void SetUserOptOutStatus(bool status);
 
+	//Sets value of shouldAutoUpdateAchievementsList (default is false)
+	void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate);
+
+	//Manually updates user's achievementsList field. Has no effect is shouldAutoUpdateAchievementsList is set to true.
+	void UpdateAchievementsList();
+
 	// Returns number of unclaimed achievements
 	int GetUnclaimedAchievementCount();
 	
@@ -128,10 +141,16 @@ public interface ISessionM
 	LogLevel GetLogLevel();
 	// Set logging level (iOS only)
 	void SetLogLevel(LogLevel level);
-	
+
+	// Sets service region
+	void SetServiceRegion(ServiceRegion region);
+
 	// Returns SDK version 
 	string GetSDKVersion();
 	
+        // Returns a list of all rewards the user can redeem
+	string GetRewards();
+
 	// Set meta data properties
 	void SetMetaData(string data, string key);
 	

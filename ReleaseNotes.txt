@@ -1,11 +1,18 @@
-Session M Unity SDK Release Notes
+SessionM Unity SDK Release Notes
 ________________
-Copyright:  2014 Session M. All rights reserved.
-Date: 11/12/2014
-Version: 2.0.1 
+Copyright: 2015 SessionM. All rights reserved.
+Date: 06/17/2015
+Version: 2.1
 
 Changes:
-- Added getUser() api.
-- Added build instructions.
-- For more info, please see http://www.sessionm.com/documentation/unity-integration.php
-- Please also checkout source code and our Unity Sample App on Github. https://github.com/sessionm/sessionm-unity
+- Added Unity 5 support.
+- Added SetServiceRegion api method.
+- Added GetRewards api method.
+- Added UpdateAchievementsList api method.
+- Added SetShouldAutoUpdateAchievementsList api method.
+- Added various fields and methods to IAchievementData and UserData classes.
+
+
+For more info, please see http://www.sessionm.com/documentation/unity-integration.php
+
+Please also check out our source code and our Unity Sample App on Github: https://github.com/sessionm/sessionm-unity

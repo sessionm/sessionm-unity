@@ -26,6 +26,6 @@ $currDir = `pwd`;
 # Remove possible endline
 chomp $currDir;
 
-$exitval = system("python", "$currDir/Assets/Editor/SessionMXcodeUpdatePostBuild.pyc", $ARGV[0], $ARGV[1]);
+$exitval = system("python", "$currDir/Assets/Editor/SessionMXcodeUpdatePostBuild.py", $ARGV[0], $ARGV[1]);
 
 #print LOGFILE "SessionMXcodeUpdatePostBuild exited with value: $exitval";

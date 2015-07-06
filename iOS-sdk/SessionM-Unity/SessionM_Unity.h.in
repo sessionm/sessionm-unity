@@ -29,7 +29,7 @@ void SMSetCallbackGameObjectName(char *gameObjectName);
  @discussion This method should be called before calling SMStartSession.
  @param region The service region.
  */
-void SMSetServiceRegion(SMServiceRegion region);
+void SMSetServiceRegion(int region);
 
 
 void SMStartSession(char *appId);
@@ -42,9 +42,12 @@ BOOL SMIsActivityPresented(void);
 SMLogLevel SMGetLogLevel(void);
 void SMSetLogLevel(SMLogLevel level);
 const char *SMGetSDKVersion(void);
+const char *SMGetRewardsJSON(void);
 void SMSetMetaData(const char *data, const char *key);
 SessionMState SMGetSessionState(void);
 void SMPlayerDataSetUserOptOutStatus(BOOL optOut);
+void SMSetShouldAutoUpdateAchievementsList(BOOL shouldAutoUpdate);
+void SMUpdateAchievementsList(void);
 long SMPlayerDataGetUnclaimedAchievementCount(void);
 
 const char *SMGetUnclaimedAchievementJSON(void);

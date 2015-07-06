@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -59,7 +59,7 @@ public class SessionMSample : MonoBehaviour
 	private void NotifyUnclaimedAchievementDataUpdated(IAchievementData achievementData)
 	{
 		Debug.Log("Recieved New Achievement: " + achievementData.GetName() + " - Worth: " + achievementData.GetMpointValue() + "\n With Message: " + achievementData.GetMessage());
-		toaster.ShowAchievementToast(achievementData.GetName(), achievementData.GetMpointValue());
+		toaster.ShowAchievementToast(achievementData.GetName(), achievementData.GetMpointValue(), achievementData.GetMessage());
 	}
 
 	private void UserChanged(IDictionary<string, object> userInfo)
@@ -79,6 +79,13 @@ public class SessionMSample : MonoBehaviour
 
 	//Unity Lifecycle
 
+	private void Awake()
+	{
+		//Set service region before SessionM instance is activated
+		SessionM.SetServiceRegion(ServiceRegion.USA);
+		sessionM.gameObject.SetActive(true);
+	}
+
 	private void OnEnable()
 	{
 		//Assign useful events to Helper Functions in the class.
@@ -87,6 +94,7 @@ public class SessionMSample : MonoBehaviour
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
+		sessionM.SetShouldAutoUpdateAchievementsList(true);
 		UserChanged(null);
 	}
 

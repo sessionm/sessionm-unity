@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
 
@@ -17,11 +16,12 @@ public class ISessionM_iOS : ISessionM
 	
 	[DllImport ("__Internal")]
 	protected static extern void SMSetCallbackGameObjectName(string gameObjectName);
-	public ISessionM_iOS(SessionM sessionMParent) 
+	public ISessionM_iOS(SessionM sessionMParent)
 	{
 		sessionMGameObject = sessionMParent;
 		
 		if(sessionMParent.iosAppId != null) {
+			SetServiceRegion(SessionM.serviceRegion);
 			StartSession(null);
 			SetLogLevel(sessionMParent.logLevel);
 		}
@@ -72,6 +72,20 @@ public class ISessionM_iOS : ISessionM
 	public void SetUserOptOutStatus(bool status) 
 	{
 		SMPlayerDataSetUserOptOutStatus(status);
+	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMSetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate);
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		SMSetShouldAutoUpdateAchievementsList(shouldAutoUpdate);
+	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMUpdateAchievementsList();
+	public void UpdateAchievementsList()
+	{
+		SMUpdateAchievementsList();
 	}
 
 	[DllImport ("__Internal")]
@@ -143,12 +157,27 @@ public class ISessionM_iOS : ISessionM
 	{
 		return (LogLevel)SMGetLogLevel();
 	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMSetServiceRegion(int region);
+	public void SetServiceRegion(ServiceRegion region)
+	{
+		SMSetServiceRegion((int)region);
+	}
 	
 	[DllImport ("__Internal")]
 	private static extern string SMGetSDKVersion();
 	public string GetSDKVersion()
 	{
 		return SMGetSDKVersion();
+	}
+
+	[DllImport ("__Internal")]
+	private static extern string SMGetRewardsJSON();
+	public string GetRewards()
+	{
+		string rewardsJSON = SMGetRewardsJSON();
+		return rewardsJSON;
 	}
 	
 	[DllImport ("__Internal")]

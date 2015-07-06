@@ -54,7 +54,7 @@ public class BaseNativeActivity extends UnityPlayerActivity {
     }
 
     public String getUnclaimedAchievementJSON() {
-        String json = null;
+        String json = "";
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement != null) {
             json = SessionMListener.getAchievementJSON(achievement);
@@ -63,10 +63,10 @@ public class BaseNativeActivity extends UnityPlayerActivity {
     }
 
     public String getUser() {
-        String json = null;
+        String json = "";
         User user = sessionM.getUser();
         if(user != null) {
-            json = SessionMListener.getUser(user);
+            json = SessionMListener.getUserJSON(user);
         }
         return json;
     }
@@ -76,6 +76,29 @@ public class BaseNativeActivity extends UnityPlayerActivity {
             Log.d(TAG, this + ".setUserOptOutStatus()");
         }
         sessionM.getUser().setOptedOut(this, status);
+    }
+
+    public String getRewardsJSON(){
+        return SessionMListener.getRewardsJSON();
+    }
+
+    public void updateAchievementsList(){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".updateAchievementsList");
+        }
+        sessionM.updateAchievementsList();
+    }
+
+    public void setShouldAutoUpdateAchievementsList(boolean auto){
+        if(Log.isLoggable(TAG, Log.DEBUG)) {
+            Log.d(TAG, this + ".updateAchievementsList");
+        }
+        sessionM.setShouldAutoUpdateAchievementsList(auto);
+    }
+
+    public void setServiceRegion(int serviceRegion) {
+        if (serviceRegion == 0)
+            sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
     }
 
     public boolean notifyCustomAchievementPresented() {

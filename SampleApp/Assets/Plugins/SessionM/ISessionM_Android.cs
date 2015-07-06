@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
 
@@ -28,6 +27,7 @@ public class ISessionM_Android : ISessionM
 		CreateListenerObject();
 		
 		if(sessionMGameObject.androidAppId != null) {
+			SetServiceRegion(SessionM.serviceRegion);
 			StartSession(null);
 		}
 	}
@@ -90,6 +90,20 @@ public class ISessionM_Android : ISessionM
 	public void SetUserOptOutStatus(bool status){
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 			activityObject.Call("setUserOptOutStatus", status);
+		}
+	}
+	
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
+		}
+	}
+	
+	public void UpdateAchievementsList()
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("updateAchievementsList");                  
 		}
 	}
 	
@@ -171,15 +185,32 @@ public class ISessionM_Android : ISessionM
 	{
 		return LogLevel.Off;
 	}
-	
+
 	public string GetSDKVersion()
 	{
 		return androidInstance.Call<string>("getSDKVersion");			
 	}
 	
+	public string GetRewards()
+	{
+		string rewardsJSON = null;
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			rewardsJSON = activityObject.Call<string>("getRewardsJSON");
+		}
+		return rewardsJSON;
+	}
+	
 	public void SetMetaData(string data, string key)
 	{
 		androidInstance.Call("setMetaData", key, data);
+	}
+
+	public void SetServiceRegion(ServiceRegion serviceRegion)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+            //Always 0 for now
+			activityObject.Call("setServiceRegion", 0);                  
+		}
 	}
 	
 	public void NotifyPresented()

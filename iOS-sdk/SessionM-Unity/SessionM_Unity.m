@@ -13,6 +13,7 @@ extern void UnitySendMessage(const char* obj, const char* method, const char* ms
 
 // Utility functions
 static NSString *SMPackStrings(NSArray * strings);
+static NSString *SMPackJSONArray(NSArray *jsonArray);
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData);
 static NSString *SMUserToJSONString(SMUser *user);
 SessionM_Unity *__unityClientSharedInstance;
@@ -186,6 +187,12 @@ const char *SMGetSDKVersion(void) {
     return c ? strdup(c) : NULL;
 }
 
+// Returns a JSON representation of the list of rewards the user can redeem
+const char *SMGetRewardsJSON(void) {
+    const char *rewardsJSON = [SMPackJSONArray([SessionM sharedInstance].rewards) cStringUsingEncoding:NSUTF8StringEncoding];
+    return rewardsJSON ? strdup(rewardsJSON) : NULL;
+}
+
 // Sends meta data to SessionM SDK. Please refer to the documentation for more information on common keys. Data should only be supplied in accordance with your application's terms of service and privacy policy.
 void SMSetMetaData(const char *data, const char *key) {
     NSString *dataString = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
@@ -194,14 +201,24 @@ void SMSetMetaData(const char *data, const char *key) {
 }
 
 // Sets the SessionM service region
-void SMSetServiceRegion(SMServiceRegion region) {
-    [[SessionM sharedInstance] setServiceRegion:region];
+void SMSetServiceRegion(int region) {
+    [SessionM setServiceRegion:region];
 }
 
 // Sets the user's opted-out status
 void SMPlayerDataSetUserOptOutStatus(BOOL optOut) {
     SMUser *playerData = [SessionM sharedInstance].user;
     playerData.isOptedOut = optOut;
+}
+
+// Sets the value of shouldAutoUpdateAchievementsList (default is NO)
+void SMSetShouldAutoUpdateAchievementsList(BOOL shouldAutoUpdate) {
+    [SessionM sharedInstance].shouldAutoUpdateAchievementsList = shouldAutoUpdate;
+}
+
+// Manually updates the user's achievementsList property. Has no effect if shouldAutoUpdateAchievementsList is set to true.
+void SMUpdateAchievementsList(void) {
+    [[SessionM sharedInstance] updateAchievementsList];
 }
 
 // Returns the user's unclaimed achievement count
@@ -237,7 +254,7 @@ void SMNotifyCustomAchievementPresented() {
     SMAchievementData *achievementData = [SessionM sharedInstance].unclaimedAchievement;
     if (achievementData) {
         SessionM_Unity *unityClient = [SessionM_Unity sharedInstance];
-        unityClient.customAchievementActivity = [[SMAchievementActivity alloc] initWithAchievmentData:achievementData];
+        unityClient.customAchievementActivity = [[SMAchievementActivity alloc] initWithAchievementData:achievementData];
         [unityClient.customAchievementActivity notifyPresented];
     }
 }
@@ -258,12 +275,31 @@ void SMNotifyCustomAchievementClaimed(void) {
 #pragma mark - Utility
 
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData) {
+    // 0001-01-01 is used as the reference date for Unity DateTime objects
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSDate *referenceDate = [dateFormatter dateFromString:@"0001-01-01 00:00:00"];
+
+    // Convert from seconds into 100 nanoseconds for Unity DateTime object
+    NSDate *achievementDate = achievementData.lastEarnedDate;
+    long long time = achievementDate ? [achievementDate timeIntervalSinceDate:referenceDate] * 10000000 : 0;
+
     NSDictionary *achievementDict = @{
-                                      @"name": achievementData.name,
-                                      @"message": achievementData.message,
-                                      @"mpointValue": [NSNumber numberWithUnsignedInteger:achievementData.mpointValue],
-                                      @"identifier": @"",
-                                      @"isCustom": [NSNumber numberWithBool:achievementData.isCustom]
+                                      @"identifier": achievementData.identifier ? achievementData.identifier : @"",
+                                      @"importID": achievementData.importID ? achievementData.importID : @"",
+                                      @"instructions": achievementData.instructions ? achievementData.instructions : @"",
+                                      @"achievementIconURL": achievementData.achievementIconURL ? achievementData.achievementIconURL : @"",
+                                      @"action": achievementData.action ? achievementData.action : @"",
+                                      @"name": achievementData.name ? achievementData.name : @"",
+                                      @"message": achievementData.message ? achievementData.message : @"",
+                                      @"limitText": achievementData.limitText ? achievementData.limitText : @"",
+                                      @"mpointValue": [[NSNumber alloc] initWithInteger:achievementData.mpointValue],
+                                      @"isCustom": [[NSNumber alloc] initWithBool:achievementData.isCustom],
+                                      @"lastEarnedDate": [[NSNumber alloc] initWithLongLong:time],
+                                      @"timesEarned": [[NSNumber alloc] initWithUnsignedInteger:achievementData.timesEarned],
+                                      @"unclaimedCount": [[NSNumber alloc] initWithInteger:achievementData.unclaimedCount],
+                                      @"distance": [[NSNumber alloc] initWithInteger:achievementData.distance]
                                       };
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:achievementDict
@@ -278,13 +314,27 @@ static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementDat
 }
 
 static NSString *SMUserToJSONString(SMUser *user) {
+    NSMutableArray *userAchievementsJSONArray = [NSMutableArray array];
+    NSMutableArray *userAchievementsListJSONArray = [NSMutableArray array];
+    for (SMAchievementData *achievement in user.achievements) {
+        [userAchievementsJSONArray addObject:SMAchievementDataToJSONString(achievement)];
+    }
+    for (SMAchievementData *achievement in user.achievementsList) {
+        [userAchievementsListJSONArray addObject:SMAchievementDataToJSONString(achievement)];
+    }
+
+    NSString *userAchievementsJSONString = SMPackJSONArray(userAchievementsJSONArray);
+    NSString *userAchievementsListJSONString = SMPackJSONArray(userAchievementsListJSONArray);
+
     NSDictionary *userDict = @{
                                @"isOptedOut": [NSNumber numberWithBool:user.isOptedOut],
                                @"isRegistered": [NSNumber numberWithBool:user.isRegistered],
                                @"isLoggedIn": [NSNumber numberWithBool:user.isLoggedIn],
                                @"getPointBalance": [NSNumber numberWithUnsignedInteger:user.pointBalance],
                                @"getUnclaimedAchievementCount": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementCount],
-                               @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue]
+                               @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
+                               @"getAchievementsJSON": userAchievementsJSONString,
+                               @"getAchievementsListJSON": userAchievementsListJSONString
                                };
 
     NSError *error = nil;
@@ -306,4 +356,8 @@ static NSString *SMPackStrings(NSArray * strings) {
     }
 
     return packedString;
+}
+
+static NSString *SMPackJSONArray(NSArray *jsonArray) {
+    return [jsonArray componentsJoinedByString:@"__"];
 }

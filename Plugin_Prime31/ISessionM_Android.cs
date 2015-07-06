@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using MiniJSON;
 
@@ -27,6 +26,7 @@ public class ISessionM_Android : ISessionM
 		CreateListenerObject();
 		
 		if(sessionMGameObject.androidAppId != null) {
+			SetServiceRegion(SessionM.serviceRegion);
 			StartSession(null);
 		}
 	}
@@ -83,7 +83,17 @@ public class ISessionM_Android : ISessionM
 	}
 
 	public void SetUserOptOutStatus(bool status){
-			sessionMObject.CallStatic("setUserOptOutStatus", status);
+		sessionMObject.CallStatic("setUserOptOutStatus", status);
+	}
+
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		sessionMObject.CallStatic("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
+	}
+	
+	public void UpdateAchievementsList()
+	{
+		sessionMObject.CallStatic("updateAchievementsList");                  
 	}
 
 	public int GetUnclaimedAchievementCount()
@@ -163,9 +173,21 @@ public class ISessionM_Android : ISessionM
 		return androidInstance.Call<string>("getSDKVersion");			
 	}
 	
+	public string GetRewards()
+	{
+		string rewardsJSON = null;
+		rewardsJSON = sessionMObject.CallStatic<string>("getRewardsJSON");
+		return rewardsJSON;
+	}
+
 	public void SetMetaData(string data, string key)
 	{
 		androidInstance.Call("setMetaData", key, data);
+	}
+
+	public void SetServiceRegion(ServiceRegion serviceRegion)
+	{
+		sessionMObject.CallStatic("setServiceRegion", 0);                  
 	}
 	
 	public void NotifyPresented()

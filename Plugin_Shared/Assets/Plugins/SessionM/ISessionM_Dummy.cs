@@ -32,6 +32,14 @@ public class ISessionM_Dummy : ISessionM
 	public void SetUserOptOutStatus(bool status){
 	}
 
+	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+	}
+
+	public void UpdateAchievementsList()
+	{
+	}
+
 	public int GetUnclaimedAchievementCount()
 	{
 		return 0;
@@ -79,7 +87,16 @@ public class ISessionM_Dummy : ISessionM
 		return LogLevel.Off;
 	}
 	
+	public void SetServiceRegion(ServiceRegion region)
+	{
+	}
+
 	public string GetSDKVersion()
+	{
+		return null;
+	}
+
+	public string GetRewards()
 	{
 		return null;
 	}

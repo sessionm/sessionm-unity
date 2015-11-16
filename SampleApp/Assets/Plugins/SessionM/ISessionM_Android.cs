@@ -239,6 +239,10 @@ public class ISessionM_Android : ISessionM
 			}
 		}
 	}
+
+	public void PresentTierList()
+	{
+	}
 	
 	public void SetCallback(ISessionMCallback callback) 
 	{

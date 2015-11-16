@@ -208,6 +208,11 @@ public class SessionM : MonoBehaviour
 	{
 		sessionMNative.DismissActivity();
 	}
+
+	public void PresentTierList()
+	{
+		sessionMNative.PresentTierList();
+	}
 	
 	public void SetCallback(ISessionMCallback callback)
 	{
@@ -280,9 +285,6 @@ public class SessionM : MonoBehaviour
 		long userPointBalance = (Int64)userDict["getPointBalance"];
 		long unclaimedAchievementCount = (Int64)userDict["getUnclaimedAchievementCount"];
 		long unclaimedAchievementValue = (Int64)userDict["getUnclaimedAchievementValue"];
-		string tierName = (string)userDict["getTierName"];
-		string tierPercentage = (string)userDict["getTierPercentage"];
-		string tierAnniversaryDate = (string)userDict["getTierAnniversaryDate"];
 
 		string achievementsJSON = (string)userDict["getAchievementsJSON"];
 		string[] achievementsJSONArray = UnpackJSONArray(achievementsJSON);
@@ -311,6 +313,10 @@ public class SessionM : MonoBehaviour
                         achievementsListArray[i] = GetAchievementData(achievement) as AchievementData;
                 }
 		List<AchievementData> achievementsList = new List<AchievementData>(achievementsListArray);
+
+		string tierName = (string)userDict["getTierName"];
+		string tierPercentage = (string)userDict["getTierPercentage"];
+		string tierAnniversaryDate = (string)userDict["getTierAnniversaryDate"];
 
 		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList, tierName, tierPercentage, tierAnniversaryDate);
 		return userData;

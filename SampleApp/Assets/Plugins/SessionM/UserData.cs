@@ -33,7 +33,7 @@ public class UserData
 		this.tierPercentage = tierPercentage;
 		this.tierAnniversaryDate = tierAnniversaryDate;
 	}
-	
+
 	public bool IsOptedOut() { return this.isOptedOut; }
 	public bool IsRegistered() { return this.isRegistered; }
 	public bool IsLoggedIn() { return this.isLoggedIn; }
@@ -42,13 +42,7 @@ public class UserData
 	public int GetUnclaimedAchievementValue() { return this.unclaimedAchievementValue; }
 	public List<AchievementData> GetAchievements() { return this.achievements; }
 	public List<AchievementData> GetAchievementsList() { return this.achievementsList; }
-	public string GetTierName() {
-		return this.tierName;
-	}
-	public string GetTierPercentage() {
-		return this.tierPercentage;
-	}
-	public string GetTierAnniversaryDate() {
-		return this.tierAnniversaryDate;
-	}
+	public string GetTierName() { return this.tierName; }
+	public string GetTierPercentage() { return this.tierPercentage; }
+	public string GetTierAnniversaryDate() { return this.tierAnniversaryDate; }
 }

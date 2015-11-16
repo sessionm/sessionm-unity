@@ -43,6 +43,7 @@ public class SessionMSample : MonoBehaviour
 	public void OnTierClicked()
 	{
 		// Tier Information
+		sessionM.PresentTierList();
 	}
 
 	public void OnPortalClicked()
@@ -91,7 +92,7 @@ public class SessionMSample : MonoBehaviour
 	private void Awake()
 	{
 		//Set service region before SessionM instance is activated
-		SessionM.SetServiceRegion(ServiceRegion.USA);
+		// SessionM.SetServiceRegion(ServiceRegion.USA);
 		sessionM.gameObject.SetActive(true);
 	}
 

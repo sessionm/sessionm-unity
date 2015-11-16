@@ -116,7 +116,11 @@ public class ISessionM_Dummy : ISessionM
 	public void NotifyClaimed()
 	{
 	}
-	
+
+	public void PresentTierList()	
+	{
+	}
+
 	public void SetCallback(ISessionMCallback callback) 
 	{
 	}

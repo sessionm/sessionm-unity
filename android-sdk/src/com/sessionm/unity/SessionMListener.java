@@ -9,6 +9,7 @@ import com.sessionm.api.SessionListener;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
+import com.sessionm.api.mmc.data.MessageData;
 import com.unity3d.player.UnityPlayer;
 
 import org.json.JSONArray;
@@ -158,6 +159,31 @@ public class SessionMListener implements ActivityListener, SessionListener {
     }
 
     @Override
+    public void onMessageUpdated(SessionM sessionM, MessageData messageData) {
+
+    }
+
+    @Override
+    public void onUserActivitiesUpdated(SessionM sessionM) {
+
+    }
+
+    @Override
+    public void onNotificationMessage(SessionM sessionM, MessageData messageData) {
+
+    }
+
+    @Override
+    public void onReceiptUpdated(SessionM sessionM, String s) {
+
+    }
+
+    @Override
+    public void onOrderStatusUpdated(SessionM sessionM, String s) {
+
+    }
+
+    @Override
     public void onUserAction(com.sessionm.api.SessionM instance, UserAction action, Map<String, String> data) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, this + ".onUserAction(): " + action.getCode() + ", data: " + data);
@@ -256,6 +282,9 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("getUnclaimedAchievementValue", user.getUnclaimedAchievementValue());
             jsonObject.put("getAchievementsJSON", userAchievementsJSONString);
             jsonObject.put("getAchievementsListJSON", userAchievementsListJSONString);
+            jsonObject.put("getTierName", user.getTierName());
+            jsonObject.put("getTierPercentage", user.getTierPercentage());
+            jsonObject.put("getTierAnniversaryDate", user.getTierAnniversaryDate());
         } catch (JSONException e) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "JSONException when trying to get user json: " + e);

@@ -82,7 +82,7 @@ public class SessionMSample : MonoBehaviour
 		pointBalanceLabel.text = "Point Balance: " + user.GetUserPointBalance();
 		unclaimedAchCountLabel.text = "Unclaimed Achievement Count: " + user.GetUnclaimedAchievementCount();
 		unclaimedAchValueLable.text = "Unclaimed Achievement Value: " + user.GetUnclaimedAchievementValue();
-		tierLable.text = "My Tier: ";
+		tierLable.text = "My Tier: " + user.GetTierName();
 
 	}
 

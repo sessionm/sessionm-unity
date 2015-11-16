@@ -97,8 +97,9 @@ public class BaseNativeActivity extends UnityPlayerActivity {
     }
 
     public void setServiceRegion(int serviceRegion) {
-        if (serviceRegion == 0)
-            sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
+        sessionM.setServerType(SessionM.SERVER_TYPE_CUSTOM, "https://api.tour-sessionm.com");
+        //if (serviceRegion == 0)
+            //sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
     }
 
     public boolean notifyCustomAchievementPresented() {

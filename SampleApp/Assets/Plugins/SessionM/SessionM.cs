@@ -281,7 +281,7 @@ public class SessionM : MonoBehaviour
 		long unclaimedAchievementCount = (Int64)userDict["getUnclaimedAchievementCount"];
 		long unclaimedAchievementValue = (Int64)userDict["getUnclaimedAchievementValue"];
 		string tierName = (string)userDict["getTierName"];
-		double tierPercentage = (double)userDict["getTierPercentage"];
+		string tierPercentage = (string)userDict["getTierPercentage"];
 		string tierAnniversaryDate = (string)userDict["getTierAnniversaryDate"];
 
 		string achievementsJSON = (string)userDict["getAchievementsJSON"];

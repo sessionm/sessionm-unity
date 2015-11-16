@@ -14,6 +14,8 @@ public class SessionMSample : MonoBehaviour
 	public TextMesh pointBalanceLabel;
 	public TextMesh unclaimedAchCountLabel;
 	public TextMesh unclaimedAchValueLable;
+	public TextMesh tierLable;
+
 
 	public string action1;
 	public string action2;
@@ -36,6 +38,11 @@ public class SessionMSample : MonoBehaviour
 	public void OnAction3Clicked()
 	{
 		sessionM.LogAction(action3);
+	}
+
+	public void OnTierClicked()
+	{
+		// Tier Information
 	}
 
 	public void OnPortalClicked()
@@ -75,6 +82,8 @@ public class SessionMSample : MonoBehaviour
 		pointBalanceLabel.text = "Point Balance: " + user.GetUserPointBalance();
 		unclaimedAchCountLabel.text = "Unclaimed Achievement Count: " + user.GetUnclaimedAchievementCount();
 		unclaimedAchValueLable.text = "Unclaimed Achievement Value: " + user.GetUnclaimedAchievementValue();
+		tierLable.text = "My Tier: ";
+
 	}
 
 	//Unity Lifecycle

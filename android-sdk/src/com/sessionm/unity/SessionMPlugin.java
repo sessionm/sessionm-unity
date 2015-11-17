@@ -10,6 +10,9 @@ import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.User;
+import com.sessionm.api.mmc.data.MessageData;
+
+import java.util.List;
 
 public class SessionMPlugin{
 
@@ -56,6 +59,15 @@ public class SessionMPlugin{
         User user = sessionM.getUser();
         if(user != null) {
             json = SessionMListener.getUserJSON(user);
+        }
+        return json;
+    }
+
+    public static String getMessagesList() {
+        String json = "";
+        List<MessageData> messagesList= sessionM.getMessagesList();
+        if(messagesList != null) {
+            json = SessionMListener.getMessageJSON(messagesList);
         }
         return json;
     }

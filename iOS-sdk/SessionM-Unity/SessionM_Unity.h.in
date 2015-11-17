@@ -55,7 +55,6 @@ const char *SMGetUserJSON(void);
 void SMNotifyCustomAchievementPresented(const char *achievementId);
 void SMNotifyCustomAchievementDismissed(void);
 void SMNotifyCustomAchievementClaimed(void);
-void SMPresentTierList(void);
 
 @interface SessionM_Unity : NSObject
 

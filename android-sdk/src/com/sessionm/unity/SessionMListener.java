@@ -9,6 +9,7 @@ import com.sessionm.api.SessionListener;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
+import com.sessionm.api.mmc.data.FeedMessageData;
 import com.sessionm.api.mmc.data.MessageData;
 import com.unity3d.player.UnityPlayer;
 
@@ -18,7 +19,9 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -293,15 +296,46 @@ public class SessionMListener implements ActivityListener, SessionListener {
         return jsonObject.toString();
     }
 
+    //Return feed message data as JSON for unity
+    public static String getMessageJSON(List<MessageData> messageDataList) {
+        JSONArray messagesJSONArray = new JSONArray();
+        for (MessageData messageData : messageDataList) {
+            JSONObject messageJSONObject = new JSONObject();
+            try {
+                messageJSONObject.put("id", messageData.getID());
+                messageJSONObject.put("type", messageData.getType());
+                messageJSONObject.put("name", messageData.getName());
+                messageJSONObject.put("action", messageData.getAction());
+                messageJSONObject.put("header", messageData.getHeader());
+                messageJSONObject.put("subheader", messageData.getSubHeader());
+                messageJSONObject.put("description", messageData.getDescription());
+                messageJSONObject.put("iconURL", messageData.getHeader());
+                messageJSONObject.put("imageURL", messageData.getHeader());
+                messageJSONObject.put("actionURL", messageData.getActionURL());
+                messageJSONObject.put("data", messageData.getData().toString());
+                messageJSONObject.put("payloads", messageData.getPayloads().toString());
+                messageJSONObject.put("startTime", messageData.getStartTime());
+                messageJSONObject.put("endTime", messageData.getEndTime());
+                messageJSONObject.put("trackingURLs", Arrays.toString(messageData.getTrackingURLs()));
+                messagesJSONArray.put(messageJSONObject);
+            } catch (JSONException e) {
+                if (Log.isLoggable(TAG, Log.DEBUG)) {
+                    Log.d(TAG, "JSONException when trying to generate messages list JSON array: " + e);
+                }
+            }
+        }
+        return messagesJSONArray.toString();
+    }
+
     //Return rewards data as JSON for unity
-    public static String getRewardsJSON(){
+    public static String getRewardsJSON() {
         JSONArray rewardsArray = sessionM.getAvailableRewards();
         String rewards = SMPackJSONArray(rewardsArray);
         return rewards;
     }
 
     public static String SMPackJSONArray(JSONArray jsonArray) {
-	    String jsonString = "";
+        String jsonString = "";
         if (jsonArray != null) {
             int size = jsonArray.length();
             for (int i = 0; i < size; i++) {

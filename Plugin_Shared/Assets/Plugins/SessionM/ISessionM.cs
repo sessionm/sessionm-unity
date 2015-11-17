@@ -162,5 +162,8 @@ public interface ISessionM
 	
 	// Notifies the SessionM SDK that a custom achievement has been claimed
 	void NotifyClaimed();
+
+	//Presents Tiers List
+	void PresentTierList();
 }
 

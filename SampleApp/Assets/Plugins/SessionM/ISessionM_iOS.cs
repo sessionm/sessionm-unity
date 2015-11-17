@@ -207,13 +207,6 @@ public class ISessionM_iOS : ISessionM
 	{
 		SMNotifyCustomAchievementClaimed();
 	}
-
-	[DllImport ("__Internal")]
-	private static extern void SMPresentTierList();
-	public void PresentTierList()
-	{
-		SMPresentTierList();
-	}
 	
 	public void SetCallback(ISessionMCallback callback) 
 	{

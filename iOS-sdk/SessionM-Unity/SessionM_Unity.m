@@ -126,10 +126,9 @@ void SMSetCallbackGameObjectName(char *gameObjectName) {
 
 // Starts a session for the specified application ID
 void SMStartSession(char *appId) {
-    SM_SET_SERVER_URL(@"https://api.tour-sessionm.com");
     NSString *appIdString = [NSString stringWithCString:appId encoding:NSUTF8StringEncoding];
     SessionM *sessionM = [SessionM sharedInstance];
-    [sessionM startSessionWithAppID:@"0bfeb00013f0f634420a04ed5806a66a58d49d8b"];
+    [sessionM startSessionWithAppID:appIdString];
     sessionM.delegate = [SessionM_Unity sharedInstance];
 }
 
@@ -272,10 +271,6 @@ void SMNotifyCustomAchievementClaimed(void) {
     [unityClient.customAchievementActivity notifyDismissed:SMAchievementDismissTypeClaimed];
 }
 
-void SMPresentTierList(void) {
-    [[SessionM sharedInstance] presentTierViewController];
-}
-
 
 #pragma mark - Utility
 
@@ -339,10 +334,7 @@ static NSString *SMUserToJSONString(SMUser *user) {
                                @"getUnclaimedAchievementCount": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementCount],
                                @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
                                @"getAchievementsJSON": userAchievementsJSONString,
-                               @"getAchievementsListJSON": userAchievementsListJSONString,
-                               @"getTierName": user.tierName ? user.tierName : @"",
-                               @"getTierPercentage": user.tierPercentage ? @(user.tierPercentage).stringValue : @"",
-                               @"getTierAnniversaryDate": user.tierAnniversaryDate ? user.tierAnniversaryDate : @""
+                               @"getAchievementsListJSON": userAchievementsListJSONString
                                };
 
     NSError *error = nil;

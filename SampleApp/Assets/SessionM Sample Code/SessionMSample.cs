@@ -93,6 +93,10 @@ public class SessionMSample : MonoBehaviour
 	{
 		//Set service region before SessionM instance is activated
 		// SessionM.SetServiceRegion(ServiceRegion.USA);
+		SessionM.SetServerType("https://api.tour-sessionm.com");
+		SessionM.SetShouldAutoUpdateAchievementsList(true);
+		SessionM.SetMessagesEnabled(true);
+		SessionM.SetSessionAutoStartEnabled(false);
 		sessionM.gameObject.SetActive(true);
 	}
 
@@ -104,9 +108,6 @@ public class SessionMSample : MonoBehaviour
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
-		sessionM.SetServerType("https://api.tour-sessionm.com");
-		sessionM.SetShouldAutoUpdateAchievementsList(true);
-		sessionM.setMessagesEnabled(true);
 		UserChanged(null);
 	}
 

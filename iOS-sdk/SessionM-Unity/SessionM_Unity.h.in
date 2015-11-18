@@ -30,6 +30,7 @@ void SMSetCallbackGameObjectName(char *gameObjectName);
  @param region The service region.
  */
 void SMSetServiceRegion(int region);
+void SMSetServerType(const char *url);
 
 
 void SMStartSession(char *appId);

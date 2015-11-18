@@ -28,7 +28,7 @@ public class ISessionM_Android : ISessionM
 		
 		if(sessionMGameObject.androidAppId != null) {
 			SetServiceRegion(SessionM.serviceRegion);
-			//StartSession(null);
+			StartSession(null);
 		}
 	}
 	

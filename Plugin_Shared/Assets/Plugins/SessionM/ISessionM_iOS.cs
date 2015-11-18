@@ -21,9 +21,17 @@ public class ISessionM_iOS : ISessionM
 		sessionMGameObject = sessionMParent;
 		
 		if(sessionMParent.iosAppId != null) {
-			SetServiceRegion(SessionM.serviceRegion);
-			StartSession(null);
+			SetShouldAutoUpdateAchievementsList(SessionM.shouldAutoUpdateAchievementsList);
+			SetMessagesEnabled(SessionM.shouldEnableMessages);
 			SetLogLevel(sessionMParent.logLevel);
+			if (SessionM.serviceRegion == ServiceRegion.Custom) {
+				SetServerType(SessionM.serverURL);
+			} else {
+				SetServiceRegion(SessionM.serviceRegion);
+			}
+			if (SessionM.shouldAutoStartSession) {
+				StartSession(null);
+			}
 		}
 		
 		CreateListenerObject();
@@ -164,6 +172,17 @@ public class ISessionM_iOS : ISessionM
 	{
 		SMSetServiceRegion((int)region);
 	}
+
+	[DllImport ("__Internal")]
+	private static extern void SMSetServerType(string url);
+	public void SetServerType(string url)
+	{
+		SMSetServerType(url);
+	}
+
+	public void SetAppKey(string appKey)
+	{
+	}
 	
 	[DllImport ("__Internal")]
 	private static extern string SMGetSDKVersion();
@@ -234,7 +253,8 @@ public class ISessionM_iOS : ISessionM
 	private static extern string SMGetTiers();
 	public string GetTiers()
 	{
-		SMGetTiers();
+		string tiers = SMGetTiers();
+		return tiers;
 	}
 	
 	public void SetCallback(ISessionMCallback callback) 

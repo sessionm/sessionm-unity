@@ -5,6 +5,7 @@
 //
 
 #import "SessionM_Unity.h"
+#import "SMFeedMessageData.h"
 
 #pragma mark - Interface
 
@@ -16,6 +17,8 @@ static NSString *SMPackStrings(NSArray * strings);
 static NSString *SMPackJSONArray(NSArray *jsonArray);
 static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementData);
 static NSString *SMUserToJSONString(SMUser *user);
+static NSString *SMMessagesListToJSONString(NSArray *messages);
+static NSString *SMTiersToJSONString(NSArray *tiers);
 SessionM_Unity *__unityClientSharedInstance;
 
 @interface SessionM_Unity()<SessionMDelegate>
@@ -194,18 +197,17 @@ const char *SMGetRewardsJSON(void) {
 }
 
 void SMSetMessagesEnabled(bool enabled) {
-    // [SessionM sharedInstance].shouldEnableMessages = enabled;
+    [SessionM sharedInstance].shouldUpdateMessagesListOnSessionStart = enabled;
 }
 
 const char *SMGetMessagesList(void) {
-    /* NSString *userString = nil;
-    SMUser *playerData = [SessionM sharedInstance].user;
-    if (playerData) {
-        userString = SMUserToJSONString(playerData);
+    NSString *messagesString = nil;
+    NSArray *messagesData = [SessionM sharedInstance].messagesList;
+    if (messagesData) {
+        messagesString = SMMessagesListToJSONString(messagesData);
     }
-    const char *c = [userString cStringUsingEncoding:NSUTF8StringEncoding];
-    return c ? strdup(c) : NULL; */
-    return NULL;
+    const char *c = [messagesString cStringUsingEncoding:NSUTF8StringEncoding];
+    return c ? strdup(c) : NULL;
 }
 
 // Sends meta data to SessionM SDK. Please refer to the documentation for more information on common keys. Data should only be supplied in accordance with your application's terms of service and privacy policy.
@@ -218,6 +220,11 @@ void SMSetMetaData(const char *data, const char *key) {
 // Sets the SessionM service region
 void SMSetServiceRegion(int region) {
     [SessionM setServiceRegion:region];
+}
+
+void SMSetServerType(const char *url) {
+    NSString *urlString = [NSString stringWithCString:url encoding:NSUTF8StringEncoding];
+    [SessionM setCustomServiceRegionWithServerURL:urlString];
 }
 
 // Sets the user's opted-out status
@@ -291,7 +298,13 @@ void SMPresentTierList(void) {
 }
 
 const char *SMGetTiers(void) {
-    return NULL;
+    NSString *tiersString = nil;
+    NSArray *tiersData = [SessionM sharedInstance].tiers;
+    if (tiersData) {
+        tiersString = SMTiersToJSONString(tiersData);
+    }
+    const char *c = [tiersString cStringUsingEncoding:NSUTF8StringEncoding];
+    return c ? strdup(c) : NULL;
 }
 
 
@@ -357,7 +370,10 @@ static NSString *SMUserToJSONString(SMUser *user) {
                                @"getUnclaimedAchievementCount": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementCount],
                                @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
                                @"getAchievementsJSON": userAchievementsJSONString,
-                               @"getAchievementsListJSON": userAchievementsListJSONString
+                               @"getAchievementsListJSON": userAchievementsListJSONString,
+                               @"getTierName": user.tierName ? user.tierName : @"",
+                               @"getTierPercentage": user.tierPercentage ? @(user.tierPercentage).stringValue : @"",
+                               @"getTierAnniversaryDate": user.tierAnniversaryDate ? user.tierAnniversaryDate : @""
                                };
 
     NSError *error = nil;
@@ -372,8 +388,46 @@ static NSString *SMUserToJSONString(SMUser *user) {
     return jsonString;
 }
 
-static NSString *SMMessageToJSONString() {
-    return nil;
+static NSString *SMMessagesListToJSONString(NSArray *messages) {
+    NSMutableArray *messagesJSON = [[NSMutableArray alloc] initWithCapacity:messages.count];
+
+    for (SMFeedMessageData *message in messages) {
+        NSDictionary *messageDict = @{
+                                      @"header": message.header ? message.header : @"",
+                                      @"subheader": message.subheader ? message.subheader : @"",
+                                      @"description": message.descriptionText ? message.descriptionText : @"",
+                                      @"iconURL": message.iconURL ? message.iconURL : @"",
+                                      @"imageURL": message.imageURL ? message.imageURL : @"",
+                                      @"actionType": @(message.actionType),
+                                      @"actionURL": message.actionURL ? message.actionURL : @"",
+                                      @"data": message.data ? message.data : @{}
+                                      };
+        [messagesJSON addObject:messageDict];
+    }
+
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:messagesJSON
+                                                       options:0
+                                                         error:&error];
+    NSString *jsonString = nil;
+    if (!error) {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+
+    return jsonString;
+}
+
+static NSString *SMTiersToJSONString(NSArray *tiers) {
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[SessionM sharedInstance].tiers
+                                                       options:0
+                                                         error:&error];
+    NSString *jsonString = nil;
+    if (!error) {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+
+    return jsonString;
 }
 
 static NSString *SMPackStrings(NSArray * strings) {

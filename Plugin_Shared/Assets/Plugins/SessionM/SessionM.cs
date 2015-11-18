@@ -36,11 +36,46 @@ public class SessionM : MonoBehaviour
 	}
 
 	public static ServiceRegion serviceRegion = ServiceRegion.USA;
+	public static string serverURL = "https://api.sessionm.com";
+	public static bool shouldAutoUpdateAchievementsList = false;
+	public static bool shouldEnableMessages = false;
+	public static bool shouldAutoStartSession = true;
 
 	//Call this method before starting the session to set the service region.
 	public static void SetServiceRegion(ServiceRegion region)
 	{
 		serviceRegion = region;
+	}
+
+	//Call this method before starting the session to set the server url.
+	public static void SetServerType(string url)
+	{
+		serviceRegion = ServiceRegion.Custom;
+		serverURL = url;
+	}
+
+	///Use this method to set whether the achievements list will be updated automatically.
+	public static void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
+	{
+		shouldAutoUpdateAchievementsList = shouldAutoUpdate;
+	}
+
+	//Use this method to enable or disable messages API.
+	public static void SetMessagesEnabled(bool shouldEnable)
+	{
+		shouldEnableMessages = shouldEnable;
+	}
+
+	//Set if session should auto start. Default is true.
+	public static void SetSessionAutoStartEnabled(bool autoStartEnabled)
+	{
+		shouldAutoStartSession = autoStartEnabled;
+	}
+
+	//Get if session should auto start. Default is true.
+	public static bool IsSessionAutoStartEnabled()
+	{
+		return shouldAutoStartSession;
 	}
 
 	//Here, SessionM instantiates the appropiate Native interface to be used on each platform.
@@ -72,18 +107,6 @@ public class SessionM : MonoBehaviour
 		sessionMNative.StartSession(appKey);
 	}
 
-    //Set if session should auto start. Default is true.
-    public void SetSessionAutoStartEnabled(bool autoStartEnabled)
-    {
-        sessionMNative.SetSessionAutoStartEnabled(autoStartEnabled);
-    }
-
-	//Get if session should auto start. Default is true.
-	public bool IsSessionAutoStartEnabled()
-	{
-		return sessionMNative.IsSessionAutoStartEnabled();
-	}
-
 	//Use this method for displaying a badge or other SessionM tools.  Remember, your Acheivement count can accumulate over days, so be sure to support at least
 	//triple digit numbers.
 	public int GetUnclaimedAchievementCount()
@@ -111,12 +134,6 @@ public class SessionM : MonoBehaviour
 	//Use this method to set user opt-out status
 	public void SetUserOptOutStatus(bool status){
 		sessionMNative.SetUserOptOutStatus(status);
-	}
-
-	//Use this method to set the value of shouldAutoUpdateAchievementsList
-	public void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate)
-	{
-		sessionMNative.SetShouldAutoUpdateAchievementsList(shouldAutoUpdate);
 	}
 
 	//Use this method to manually update the user's achievementsList field. Has no effect if shouldAutoUpdateAchievementsList is set to true.
@@ -185,10 +202,6 @@ public class SessionM : MonoBehaviour
 		return UnpackJSONArray(sessionMNative.GetRewards());
 	}
 
-	public void setMessagesEnabled(bool enabled) {
-		sessionMNative.SetMessagesEnabled (enabled);
-	}
-
 	public string GetMessagesList()
 	{
 		return sessionMNative.GetMessagesList();
@@ -216,12 +229,6 @@ public class SessionM : MonoBehaviour
 		sessionMNative.SetMetaData(data, key);
 	}
 
-	//Call this method before starting the session to set the server url.
-	public void SetServerType(string url)
-	{
-		sessionMNative.SetServerType(url);
-	}
-	
 	//Call this method before starting the session to set the app key.
 	public void SetAppKey(string appKey)
 	{

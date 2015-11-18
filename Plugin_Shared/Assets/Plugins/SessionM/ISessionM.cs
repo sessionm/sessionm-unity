@@ -145,11 +145,23 @@ public interface ISessionM
 	// Sets service region
 	void SetServiceRegion(ServiceRegion region);
 
+	// Sets server url
+	void SetServerType(string url);
+
+	// Sets app key
+	void SetAppKey(string appKey);
+
 	// Returns SDK version 
 	string GetSDKVersion();
 	
-        // Returns a list of all rewards the user can redeem
+    // Returns a list of all rewards the user can redeem
 	string GetRewards();
+
+	// Sets messages feature enabled
+	void SetMessagesEnabled(bool enabled);
+
+	// Returns a list of all messages
+	string GetMessagesList();
 
 	// Set meta data properties
 	void SetMetaData(string data, string key);

@@ -180,6 +180,18 @@ public class ISessionM_Android : ISessionM
 		return rewardsJSON;
 	}
 
+	public string GetMessagesList()
+	{
+		string messagesJSON = null;
+		messagesJSON = sessionMObject.CallStatic<string>("getMessagesList");
+		return messagesJSON;
+	}
+	
+	public void SetMessagesEnabled(bool enabled)
+	{
+		sessionMObject.CallStatic("setMessagesEnabled", enabled);
+	}
+
 	public void SetMetaData(string data, string key)
 	{
 		androidInstance.Call("setMetaData", key, data);
@@ -188,6 +200,16 @@ public class ISessionM_Android : ISessionM
 	public void SetServiceRegion(ServiceRegion serviceRegion)
 	{
 		sessionMObject.CallStatic("setServiceRegion", 0);                  
+	}
+
+	public void SetServerType(string url)
+	{
+		sessionMObject.CallStatic("setServerType", url);                  
+	}
+	
+	public void SetAppKey(string appKey)
+	{
+		sessionMObject.CallStatic("setAppKey", appKey);                  
 	}
 	
 	public void NotifyPresented()
@@ -209,6 +231,11 @@ public class ISessionM_Android : ISessionM
 			sessionMObject.CallStatic ("notifyCustomAchievementClaimed");
 			isPresented = false;
 		}
+	}
+	
+	public void PresentTierList()
+	{
+		sessionMObject.CallStatic ("presentTierList");
 	}
 	
 	public void SetCallback(ISessionMCallback callback) 

@@ -18,7 +18,7 @@ public class UserData
 	private string tierName;
 	private string tierPercentage;
 	private string tierAnniversaryDate;
-	
+
 	public UserData(bool isOptedOut, bool isRegistered, bool isLoggedIn, int pointBalance, int unclaimedAchievementCount, int unclaimedAcheivementValue, List<AchievementData> achievements, List<AchievementData> achievementsList, string tierName, string tierPercentage, string tierAnniversaryDate)
 	{
 		this.isOptedOut = isOptedOut;
@@ -42,7 +42,14 @@ public class UserData
 	public int GetUnclaimedAchievementValue() { return this.unclaimedAchievementValue; }
 	public List<AchievementData> GetAchievements() { return this.achievements; }
 	public List<AchievementData> GetAchievementsList() { return this.achievementsList; }
-	public string GetTierName() { return this.tierName; }
-	public string GetTierPercentage() { return this.tierPercentage; }
-	public string GetTierAnniversaryDate() { return this.tierAnniversaryDate; }
+	public string GetTierName() {
+		return this.tierName;
+	}
+	public string GetTierPercentage() {
+		return this.tierPercentage;
+	}
+	public string GetTierAnniversaryDate() {
+		return this.tierAnniversaryDate;
+	}
+
 }

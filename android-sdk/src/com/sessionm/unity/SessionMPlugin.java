@@ -72,6 +72,10 @@ public class SessionMPlugin{
         return json;
     }
 
+    public static void setMessagesEnabled(boolean enabled) {
+        sessionM.setMessagesEnabled(enabled);
+    }
+
     public static String getRewardsJSON(){
         return SessionMListener.getRewardsJSON();
     }
@@ -80,6 +84,14 @@ public class SessionMPlugin{
         if (serviceRegion == 0)
             sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
     }
+
+    public static void setServerType(String url) {
+        sessionM.setServerType(SessionM.SERVER_TYPE_CUSTOM, url);
+    }
+
+    public static void setAppKey(String appKey) {
+        sessionM.setAppKey(appKey);
+    };
 
     public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
@@ -133,6 +145,9 @@ public class SessionMPlugin{
                 Log.e(TAG, ac + ".notifyCustomAchievementClaimed()", e);
             }
         }
+    }
+
+    public static void presentTierList() {
     }
 
     public static void setUserOptOutStatus(boolean status){

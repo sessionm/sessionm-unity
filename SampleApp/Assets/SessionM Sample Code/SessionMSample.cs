@@ -105,6 +105,7 @@ public class SessionMSample : MonoBehaviour
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
 		sessionM.SetShouldAutoUpdateAchievementsList(true);
+		sessionM.setMessagesEnabled (true);
 		UserChanged(null);
 	}
 

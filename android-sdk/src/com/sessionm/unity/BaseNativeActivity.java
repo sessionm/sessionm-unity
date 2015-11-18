@@ -83,6 +83,10 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return json;
     }
 
+    public void setMessagesEnabled(boolean enabled) {
+        sessionM.setMessagesEnabled(enabled);
+    }
+
     public void setUserOptOutStatus(boolean status){
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, this + ".setUserOptOutStatus()");
@@ -112,6 +116,14 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         sessionM.setServerType(SessionM.SERVER_TYPE_CUSTOM, "https://api.tour-sessionm.com");
         //if (serviceRegion == 0)
             //sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
+    }
+
+    public void setServerType(String url) {
+        sessionM.setServerType(SessionM.SERVER_TYPE_CUSTOM, url);
+    }
+
+    public void setAppKey(String appKey) {
+        sessionM.setAppKey(appKey);
     }
 
     public boolean notifyCustomAchievementPresented() {
@@ -166,6 +178,10 @@ public class BaseNativeActivity extends UnityPlayerActivity {
                 Log.e(TAG, this + ".notifyCustomAchievementClaimed()", e);
             }
         }
+    }
+
+    public void presentTierList() {
+
     }
 
     // Activity 

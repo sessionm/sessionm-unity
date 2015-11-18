@@ -91,6 +91,14 @@ public class ISessionM_Dummy : ISessionM
 	{
 	}
 
+	public void SetServerType(string url)
+	{
+	}
+
+	public void SetAppKey(string appKey)
+	{
+	}
+
 	public string GetSDKVersion()
 	{
 		return null;
@@ -99,6 +107,14 @@ public class ISessionM_Dummy : ISessionM
 	public string GetRewards()
 	{
 		return null;
+	}
+
+	public string GetMessagesList()
+	{
+		return null;
+	}
+
+	public void SetMessagesEnabled(bool enabled){
 	}
 	
 	public void SetMetaData(string data, string key)

@@ -166,6 +166,15 @@ public class SessionM : MonoBehaviour
 	{
 		return UnpackJSONArray(sessionMNative.GetRewards());
 	}
+
+	public void setMessagesEnabled(bool enabled) {
+		sessionMNative.SetMessagesEnabled (enabled);
+	}
+
+	public string GetMessagesList()
+	{
+		return sessionMNative.GetMessagesList();
+	}
 	
 	public LogLevel GetLogLevel()
 	{
@@ -188,6 +197,18 @@ public class SessionM : MonoBehaviour
 	{
 		sessionMNative.SetMetaData(data, key);
 	}
+
+	//Call this method before starting the session to set the server url.
+	public void SetServerType(string url)
+	{
+		sessionMNative.SetServerType(url);
+	}
+	
+	//Call this method before starting the session to set the app key.
+	public void SetAppKey(string appKey)
+	{
+		sessionMNative.SetAppKey(appKey);
+	}
 	
 	public void NotifyPresented()
 	{
@@ -207,6 +228,11 @@ public class SessionM : MonoBehaviour
 	public void DismissActivity()
 	{
 		sessionMNative.DismissActivity();
+	}
+
+	public void PresentTierList()
+	{
+		sessionMNative.PresentTierList();
 	}
 	
 	public void SetCallback(ISessionMCallback callback)
@@ -309,7 +335,11 @@ public class SessionM : MonoBehaviour
                 }
 		List<AchievementData> achievementsList = new List<AchievementData>(achievementsListArray);
 
-		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList);
+		string tierName = (string)userDict["getTierName"];
+		string tierPercentage = (string)userDict["getTierPercentage"];
+		string tierAnniversaryDate = (string)userDict["getTierAnniversaryDate"];
+		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList, tierName, tierPercentage, tierAnniversaryDate);
+
 		return userData;
 	}
 

@@ -199,6 +199,22 @@ public class ISessionM_Android : ISessionM
 		}
 		return rewardsJSON;
 	}
+
+	public string GetMessagesList()
+	{
+		string messagesJSON = null;
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			messagesJSON = activityObject.Call<string>("getMessagesList");
+		}
+		return messagesJSON;
+	}
+
+	public void SetMessagesEnabled(bool enabled)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setMessagesEnabled", enabled);
+		}
+	}
 	
 	public void SetMetaData(string data, string key)
 	{
@@ -210,6 +226,20 @@ public class ISessionM_Android : ISessionM
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
             //Always 0 for now
 			activityObject.Call("setServiceRegion", 0);                  
+		}
+	}
+
+	public void SetServerType(string url)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setServerType", url);                  
+		}
+	}
+
+	public void SetAppKey(string appKey)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setAppKey", appKey);                  
 		}
 	}
 	
@@ -237,6 +267,13 @@ public class ISessionM_Android : ISessionM
 				activityObject.Call ("notifyCustomAchievementClaimed");
 				isPresented = false;
 			}
+		}
+	}
+
+	public void PresentTierList()
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call ("presentTierList");
 		}
 	}
 	

@@ -1,17 +1,14 @@
 SessionM Unity SDK Release Notes
 ________________
 Copyright: 2015 SessionM. All rights reserved.
-Date: 06/17/2015
-Version: 2.1
+Date: 11/17/2015
+Version: 2.2
 
 Changes:
-- Added Unity 5 support.
-- Added SetServiceRegion api method.
-- Added GetRewards api method.
-- Added UpdateAchievementsList api method.
-- Added SetShouldAutoUpdateAchievementsList api method.
-- Added various fields and methods to IAchievementData and UserData classes.
-
+- Added SetServerType api method.
+- Added SetAppKey api method.
+- Added SetMessagesEnabled api method.
+- Added getMessagesList api method.
 
 For more info, please see http://www.sessionm.com/documentation/unity-integration.php
 

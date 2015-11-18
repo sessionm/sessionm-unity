@@ -24,10 +24,19 @@ public class ISessionM_Android : ISessionM
 		initAndroidInstance();
 		
 		CreateListenerObject();
-		
+
 		if(sessionMGameObject.androidAppId != null) {
-			SetServiceRegion(SessionM.serviceRegion);
-			StartSession(null);
+			SetShouldAutoUpdateAchievementsList(SessionM.shouldAutoUpdateAchievementsList);
+			SetMessagesEnabled(SessionM.shouldEnableMessages);
+			SetLogLevel(sessionMParent.logLevel);
+			if (SessionM.serviceRegion == ServiceRegion.Custom) {
+				SetServerType(SessionM.serverURL);
+			} else {
+				SetServiceRegion(SessionM.serviceRegion);
+			}
+			if (SessionM.shouldAutoStartSession) {
+				StartSession(null);
+			}
 		}
 	}
 	

@@ -8,11 +8,13 @@ import com.sessionm.api.AchievementActivity.AchievementDismissType;
 import com.sessionm.api.AchievementActivityIllegalStateException;
 import com.sessionm.api.AchievementData;
 import com.sessionm.api.Activity;
-import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
+import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
 import com.sessionm.api.mmc.data.MessageData;
 import com.unity3d.player.UnityPlayerActivity;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -96,6 +98,14 @@ public class BaseNativeActivity extends UnityPlayerActivity {
 
     public String getRewardsJSON(){
         return SessionMListener.getRewardsJSON();
+    }
+
+    public String getTiers(){
+        String json = "";
+        List<JSONObject> tiersList = sessionM.getTiers();
+        if (tiersList != null)
+            json = SessionMListener.getTiersJSON(tiersList);
+        return json;
     }
 
     public void updateAchievementsList(){

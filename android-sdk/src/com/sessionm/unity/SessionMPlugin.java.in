@@ -12,6 +12,7 @@ import com.sessionm.api.SessionM;
 import com.sessionm.api.User;
 import com.sessionm.api.mmc.data.MessageData;
 
+import org.json.JSONObject;
 import java.util.List;
 
 public class SessionMPlugin{
@@ -78,6 +79,14 @@ public class SessionMPlugin{
 
     public static String getRewardsJSON(){
         return SessionMListener.getRewardsJSON();
+    }
+
+    public static String getTiers(){
+        String json = "";
+        List<JSONObject> tiersList = sessionM.getTiers();
+        if (tiersList != null)
+            json = SessionMListener.getTiersJSON(tiersList);
+        return json;
     }
 
     public static void setServiceRegion(int serviceRegion) {

@@ -327,6 +327,15 @@ public class SessionMListener implements ActivityListener, SessionListener {
         return messagesJSONArray.toString();
     }
 
+    //Return feed message data as JSON for unity
+    public static String getTiersJSON(List<JSONObject> tiersList) {
+        JSONArray tiersArray = new JSONArray();
+        for (JSONObject tier : tiersList) {
+            tiersArray.put(tier);
+        }
+        return tiersArray.toString();
+    }
+
     //Return rewards data as JSON for unity
     public static String getRewardsJSON() {
         JSONArray rewardsArray = sessionM.getAvailableRewards();

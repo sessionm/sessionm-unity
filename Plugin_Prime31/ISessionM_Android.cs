@@ -240,7 +240,9 @@ public class ISessionM_Android : ISessionM
 	
 	public string GetTiers()
 	{
-		sessionMObject.CallStatic ("getTiers");
+		string tiers = null;
+		tiers = sessionMObject.CallStatic<string>("getTiers");
+		return tiers;
 	}
 
 	public void SetCallback(ISessionMCallback callback) 

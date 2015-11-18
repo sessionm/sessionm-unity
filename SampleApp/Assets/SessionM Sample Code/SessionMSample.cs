@@ -104,6 +104,7 @@ public class SessionMSample : MonoBehaviour
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
+		sessionM.SetServerType("https://api.tour-sessionm.com");
 		sessionM.SetShouldAutoUpdateAchievementsList(true);
 		sessionM.setMessagesEnabled (true);
 		UserChanged(null);

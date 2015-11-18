@@ -136,6 +136,11 @@ public class ISessionM_Dummy : ISessionM
 	public void PresentTierList()
 	{
 	}
+
+	public string GetTiers()
+	{
+		return null;
+	}
 	
 	public void SetCallback(ISessionMCallback callback) 
 	{

@@ -27,7 +27,7 @@ public class SessionMSample : MonoBehaviour
 
 	public void OnAction1Clicked()
 	{
-		sessionM.LogAction(action1);
+		sessionM.StartSession("0bfeb00013f0f634420a04ed5806a66a58d49d8b");
 	}
 
 	public void OnAction2Clicked()
@@ -106,7 +106,7 @@ public class SessionMSample : MonoBehaviour
 
 		sessionM.SetServerType("https://api.tour-sessionm.com");
 		sessionM.SetShouldAutoUpdateAchievementsList(true);
-		sessionM.setMessagesEnabled (true);
+		sessionM.setMessagesEnabled(true);
 		UserChanged(null);
 	}
 

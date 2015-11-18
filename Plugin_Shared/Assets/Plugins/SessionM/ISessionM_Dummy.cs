@@ -36,6 +36,15 @@ public class ISessionM_Dummy : ISessionM
 	{
 	}
 
+	public void SetSessionAutoStartEnabled(bool autoStartEnabled)
+	{
+	}
+
+	public bool IsSessionAutoStartEnabled()
+	{
+		return true;
+	}
+
 	public void UpdateAchievementsList()
 	{
 	}

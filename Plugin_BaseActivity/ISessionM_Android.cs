@@ -99,6 +99,22 @@ public class ISessionM_Android : ISessionM
 			activityObject.Call("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
 		}
 	}
+
+    public void SetSessionAutoStartEnabled(bool autoStart)
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call("setSessionAutoStartEnabled", autoStart);                   
+		}
+	}
+
+	public bool IsSessionAutoStartEnabled()
+	{
+		bool isEnabled = true;
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			isEnabled = activityObject.Call<bool>("isSessionAutoStartEnabled");                   
+		}
+		return isEnabled;
+	}
 	
 	public void UpdateAchievementsList()
 	{

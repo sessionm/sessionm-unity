@@ -102,6 +102,18 @@ public class SessionMPlugin{
         sessionM.setAppKey(appKey);
     };
 
+    public static void setSessionAutoStartEnabled(boolean autoStartSession) {
+        sessionM.getExtension().setSessionAutoStartEnabled(autoStartSession);
+    }
+
+    public static boolean isSessionAutoStartEnabled() {
+        return sessionM.getExtension().isSessionAutoStartEnabled();
+    }
+
+    public static void startSession(String appKey) {
+        sessionM.startSession(ac, appKey);
+    }
+
     public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {

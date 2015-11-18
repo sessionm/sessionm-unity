@@ -111,6 +111,12 @@ public interface ISessionM
 	//Sets value of shouldAutoUpdateAchievementsList (default is false)
 	void SetShouldAutoUpdateAchievementsList(bool shouldAutoUpdate);
 
+    //Sets value of sessionAutoStartEnabled (default is true)
+	void SetSessionAutoStartEnabled(bool autoStartEnabled);
+
+	//Gets value of sessionAutoStartEnabled (default is true)
+	bool IsSessionAutoStartEnabled();
+
 	//Manually updates user's achievementsList field. Has no effect is shouldAutoUpdateAchievementsList is set to true.
 	void UpdateAchievementsList();
 

@@ -66,6 +66,24 @@ public class SessionM : MonoBehaviour
 		return sessionMNative.GetSessionState();
 	}
 
+    //Use this method to manually start a session. 
+	public void StartSession(string appKey)
+	{
+		sessionMNative.StartSession(appKey);
+	}
+
+    //Set if session should auto start. Default is true.
+    public void SetSessionAutoStartEnabled(bool autoStartEnabled)
+    {
+        sessionMNative.SetSessionAutoStartEnabled(autoStartEnabled);
+    }
+
+	//Get if session should auto start. Default is true.
+	public bool IsSessionAutoStartEnabled()
+	{
+		return sessionMNative.IsSessionAutoStartEnabled();
+	}
+
 	//Use this method for displaying a badge or other SessionM tools.  Remember, your Acheivement count can accumulate over days, so be sure to support at least
 	//triple digit numbers.
 	public int GetUnclaimedAchievementCount()

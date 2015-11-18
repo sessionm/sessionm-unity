@@ -90,6 +90,18 @@ public class ISessionM_Android : ISessionM
 	{
 		sessionMObject.CallStatic("setShouldAutoUpdateAchievementsList", shouldAutoUpdate);                   
 	}
+
+    public void SetSessionAutoStartEnabled(bool autoStart)
+	{
+		sessionMObject.CallStatic("setSessionAutoStartEnabled", autoStart);                   
+	}
+
+	public bool IsSessionAutoStartEnabled()
+	{
+		bool isEnabled = true;
+		isEnabled = sessionMObject.CallStatic<bool>("isSessionAutoStartEnabled");                   
+		return isEnabled;
+	}
 	
 	public void UpdateAchievementsList()
 	{

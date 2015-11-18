@@ -135,6 +135,14 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         sessionM.setAppKey(appKey);
     }
 
+    public void setSessionAutoStartEnabled(boolean autoStartSession) {
+        sessionM.getExtension().setSessionAutoStartEnabled(autoStartSession);
+    }
+
+    public boolean isSessionAutoStartEnabled() {
+        return sessionM.getExtension().isSessionAutoStartEnabled();
+    }
+
     public boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {

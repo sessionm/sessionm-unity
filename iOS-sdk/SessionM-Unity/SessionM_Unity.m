@@ -193,6 +193,21 @@ const char *SMGetRewardsJSON(void) {
     return rewardsJSON ? strdup(rewardsJSON) : NULL;
 }
 
+void SMSetMessagesEnabled(bool enabled) {
+    // [SessionM sharedInstance].shouldEnableMessages = enabled;
+}
+
+const char *SMGetMessagesList(void) {
+    /* NSString *userString = nil;
+    SMUser *playerData = [SessionM sharedInstance].user;
+    if (playerData) {
+        userString = SMUserToJSONString(playerData);
+    }
+    const char *c = [userString cStringUsingEncoding:NSUTF8StringEncoding];
+    return c ? strdup(c) : NULL; */
+    return NULL;
+}
+
 // Sends meta data to SessionM SDK. Please refer to the documentation for more information on common keys. Data should only be supplied in accordance with your application's terms of service and privacy policy.
 void SMSetMetaData(const char *data, const char *key) {
     NSString *dataString = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
@@ -271,6 +286,14 @@ void SMNotifyCustomAchievementClaimed(void) {
     [unityClient.customAchievementActivity notifyDismissed:SMAchievementDismissTypeClaimed];
 }
 
+void SMPresentTierList(void) {
+    [[SessionM sharedInstance] presentTierViewController];
+}
+
+const char *SMGetTiers(void) {
+    return NULL;
+}
+
 
 #pragma mark - Utility
 
@@ -347,6 +370,10 @@ static NSString *SMUserToJSONString(SMUser *user) {
     }
 
     return jsonString;
+}
+
+static NSString *SMMessageToJSONString() {
+    return nil;
 }
 
 static NSString *SMPackStrings(NSArray * strings) {

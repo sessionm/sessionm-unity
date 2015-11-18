@@ -154,7 +154,7 @@ public interface ISessionM
 	// Returns SDK version 
 	string GetSDKVersion();
 	
-    // Returns a list of all rewards the user can redeem
+	// Returns a list of all rewards the user can redeem
 	string GetRewards();
 
 	// Sets messages feature enabled
@@ -175,7 +175,10 @@ public interface ISessionM
 	// Notifies the SessionM SDK that a custom achievement has been claimed
 	void NotifyClaimed();
 
-	//Presents Tiers List
+	// Presents Tiers List
 	void PresentTierList();
+
+	// Get tiers
+	string GetTiers();
 }
 

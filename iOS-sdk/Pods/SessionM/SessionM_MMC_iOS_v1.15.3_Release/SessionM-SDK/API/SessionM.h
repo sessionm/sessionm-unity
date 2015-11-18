@@ -15,6 +15,7 @@
 #import "SMDefaultMessageView.h"
 #import "SMNotificationMessageData.h"
 #import "SMLoaderController.h"
+#import "SMReward.h"
 
 
 /*!
@@ -632,8 +633,20 @@ typedef struct SMLocationCoordinate2D {
     <li>image - NSString</li>
     <li>url - NSString</li>
  </ul>
+ @deprecated This property is deprecated - use @link rewardsList @/link instead.
  */
 @property(nonatomic, readonly) NSArray *rewards;
+/*!
+ @property rewardsList
+ @abstract An array of @link SMReward @/link objects representing rewards that can be redeemed by the user.
+ */
+@property(nonatomic, strong, readonly) NSArray<SMReward *> *rewardsList;
+/*!
+ @property tiers
+ @abstract An array of <code>NSDictionary</code> objects containing information on the available tiers in the rewards system.
+ @discussion Some rewards can only be redeemed by users who have achieved a specific tier. The tier information in the dictionary elements can be accessed with the @link SessionMTierIDKey @/link, @link SessionMTierInstructionsKey @/link and @link SessionMTierNameKey @/link keys.
+ */
+@property(nonatomic, strong, readonly) NSArray<NSDictionary *> *tiers;
 /*!
  @property messagesList
  @abstract An array of SMMessageData objects representing in-app messages that the developer has configured in the SessionM Mobile Marketing Cloud portal.
@@ -1054,9 +1067,20 @@ typedef enum SMAchievementDismissType {
  @abstract Returns the subarray of @link achievementsList @/link that contains all achievements that the user can currently claim.
  */
 @property(nonatomic, strong, readonly) NSArray *claimableAchievements;
-@property(nonatomic, strong, readonly) NSArray<NSString *> *tiers;
+/*!
+ @property tierName
+ @abstract User's current tier.
+ */
 @property(nonatomic, strong, readonly) NSString *tierName;
+/*!
+ @property tierAnniversaryDate
+ @abstract Date that the user achieved current tier.
+ */
 @property(nonatomic, strong, readonly) NSString *tierAnniversaryDate;
+/*!
+ @property tierPercentage
+ @abstract User's progress towards next tier.
+ */
 @property(nonatomic, readonly) float tierPercentage;
 
 @end
@@ -1171,6 +1195,28 @@ extern NSString *const SMUserDataLastNameKey;
  @abstract Zipcode key.
  */
 extern NSString *const SMUserDataZipcodeKey;
+
+
+/*!
+ @group Rewards tier dictionary keys.
+ @abstract These keys can be used for accessing data from the <code>NSDictionary</code> elements in the @link tiers @/link array.
+ */
+
+/*!
+ @const SessionMTierIDKey
+ @abstract Returns tier identifier string.
+ */
+extern NSString *const SessionMTierIDKey;
+/*!
+ @const SessionMTierInstructionsKey
+ @abstract Returns instructions for achieving the tier.
+ */
+extern NSString *const SessionMTierInstructionsKey;
+/*!
+ @const SessionMTierNameKey
+ @abstract Returns tier name.
+ */
+extern NSString *const SessionMTierNameKey;
 
 
 #endif /* __SESSIONM__ */

@@ -181,6 +181,21 @@ public class ISessionM_iOS : ISessionM
 	}
 	
 	[DllImport ("__Internal")]
+	private static extern void SMSetMessagesEnabled(bool enabled);
+	public void SetMessagesEnabled(bool enabled)
+	{
+		SMSetMessagesEnabled(enabled);
+	}
+
+	[DllImport ("__Internal")]
+	private static extern string SMGetMessagesList();
+	public string GetMessagesList()
+	{
+		string messages = SMGetMessagesList();
+		return messages;
+	}
+
+	[DllImport ("__Internal")]
 	private static extern void SMSetMetaData(string data, string key);
 	public void SetMetaData(string data, string key)
 	{
@@ -215,6 +230,12 @@ public class ISessionM_iOS : ISessionM
 		SMPresentTierList();
 	}
 
+	[DllImport ("__Internal")]
+	private static extern string SMGetTiers();
+	public string GetTiers()
+	{
+		SMGetTiers();
+	}
 	
 	public void SetCallback(ISessionMCallback callback) 
 	{

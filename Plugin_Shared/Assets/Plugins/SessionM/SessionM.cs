@@ -234,6 +234,11 @@ public class SessionM : MonoBehaviour
 	{
 		sessionMNative.PresentTierList();
 	}
+
+	public string GetTiers()
+	{
+		sessionMNative.GetTiers();
+	}
 	
 	public void SetCallback(ISessionMCallback callback)
 	{

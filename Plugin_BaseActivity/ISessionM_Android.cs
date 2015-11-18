@@ -276,6 +276,13 @@ public class ISessionM_Android : ISessionM
 			activityObject.Call ("presentTierList");
 		}
 	}
+
+	public string GetTiers()
+	{
+		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+			activityObject.Call ("getTiers");
+		}
+	}
 	
 	public void SetCallback(ISessionMCallback callback) 
 	{

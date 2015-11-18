@@ -238,6 +238,11 @@ public class ISessionM_Android : ISessionM
 		sessionMObject.CallStatic ("presentTierList");
 	}
 	
+	public string GetTiers()
+	{
+		sessionMObject.CallStatic ("getTiers");
+	}
+
 	public void SetCallback(ISessionMCallback callback) 
 	{
 		this.callback = callback;

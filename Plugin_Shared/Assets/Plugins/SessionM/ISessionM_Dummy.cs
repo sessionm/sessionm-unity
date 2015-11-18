@@ -137,8 +137,9 @@ public class ISessionM_Dummy : ISessionM
 	{
 	}
 
-	public void GetTiers()
+	public string GetTiers()
 	{
+		return null;
 	}
 	
 	public void SetCallback(ISessionMCallback callback) 

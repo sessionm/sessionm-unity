@@ -237,7 +237,7 @@ public class SessionM : MonoBehaviour
 
 	public string GetTiers()
 	{
-		sessionMNative.GetTiers();
+		return sessionMNative.GetTiers();
 	}
 	
 	public void SetCallback(ISessionMCallback callback)

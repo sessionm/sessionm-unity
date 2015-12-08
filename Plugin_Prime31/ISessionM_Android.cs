@@ -82,6 +82,20 @@ public class ISessionM_Android : ISessionM
 		return state;
 	}
 
+        public bool LogInUserWithEmail(string email, string password) {
+                bool success;
+                using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+                        success = activityObject.Call<bool>("logInUserWithEmail", email, password);
+                }
+                return success;
+        }
+
+        public void LogOutUser() {
+                using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+                        activityObject.Call("LogOutUser");
+                }
+        }
+
 	public string GetUser()
 	{
 		string userJSON = null;

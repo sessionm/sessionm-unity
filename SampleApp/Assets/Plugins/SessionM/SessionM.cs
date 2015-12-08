@@ -130,6 +130,14 @@ public class SessionM : MonoBehaviour
 
 		return userData;
 	}
+ 
+        // User LogIn/Out
+        public bool LogInUserWithEmail(string email, string password) {
+                return sessionMNative.LogInUserWithEmail(email, password);
+        }
+        public void LogOutUser() {
+                sessionMNative.LogOutUser();
+        }
 
 	//Use this method to set user opt-out status
 	public void SetUserOptOutStatus(bool status){

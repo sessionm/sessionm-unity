@@ -42,8 +42,16 @@ public class SessionMSample : MonoBehaviour
 
 	public void OnTierClicked()
 	{
-		// Tier Information
-		sessionM.PresentTierList();
+            // Tier Information
+            sessionM.PresentTierList();
+        }
+
+        public void OnLoginClicked() {
+	    sessionM.LogInUserWithEmail ("unittestlogin@sessionm.com", "sessionm");
+	}
+ 
+        public void OnLogoutClicked() {
+	    sessionM.LogOutUser ();
 	}
 
 	public void OnPortalClicked()

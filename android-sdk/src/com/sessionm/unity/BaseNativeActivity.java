@@ -76,6 +76,14 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return json;
     }
 
+    public boolean logInUserWithEmail(String email, String password) {
+        return sessionM.logInUserWithEmail(email, password);
+    }
+
+    public void logOutUser() {
+        sessionM.logOutUser();
+            }
+
     public String getMessagesList() {
         String json = "";
         List<MessageData> messagesList= sessionM.getMessagesList();

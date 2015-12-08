@@ -46,6 +46,14 @@ public class SessionMPlugin{
         return sessionM.getUser().getUnclaimedAchievementCount();
     }
 
+    public static boolean logInUserWithEmail(String email, String password) {
+        return sessionM.logInUserWithEmail(email, password);
+    }
+
+    public static void logOutUser() {
+        sessionM.logOutUser();
+    }
+
     public static String getUnclaimedAchievementJSON() {
         String json = null;
         AchievementData achievement = sessionM.getUnclaimedAchievement();

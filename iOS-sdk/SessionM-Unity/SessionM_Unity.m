@@ -260,6 +260,25 @@ const char *SMGetUnclaimedAchievementJSON(void) {
     return c ? strdup(c) : NULL;
 }
 
+BOOL SMLogInUserWithEmail(const char *email, const char *password) {
+    NSString *emailString = [NSString stringWithCString:email encoding:NSUTF8StringEncoding];
+    NSString *passwordString = [NSString stringWithCString:password encoding:NSUTF8StringEncoding];
+    
+    SessionM *sessionM = [SessionM sharedInstance];
+    BOOL result = [sessionM logInUserWithEmail:emailString password:passwordString];
+    
+    sessionM.delegate = [SessionM_Unity sharedInstance];
+    
+    return result;
+}
+
+void SMLogOutUser() {
+    SessionM *sessionM = [SessionM sharedInstance];
+    [sessionM logOutUser];
+
+    sessionM.delegate = [SessionM_Unity sharedInstance];
+}
+
 // Returns a JSON representation of the user
 const char *SMGetUserJSON(void) {
     NSString *userString = nil;

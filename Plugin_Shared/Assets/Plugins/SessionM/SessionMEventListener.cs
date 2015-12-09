@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿// Plugin_Shared/Assets/Plugins/SessionM/SessionMEventListener.cs
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections;
 using MiniJSON;
 
-public class SessionMEventListener : MonoBehaviour 
+public class SessionMEventListener : MonoBehaviour
 {
-	// Notifies that session state has changed.  
+	// Notifies that session state has changed.
 	public static event Action<SessionState> NotifySessionStateChanged;
 	// Notifies that session start error has occured.
 	public static event Action<int, string> NotifySessionError;
@@ -16,12 +17,14 @@ public class SessionMEventListener : MonoBehaviour
 	// Notifies that interactable display has finished.
 	public static event Action<ActivityType> NotifyActivityDismissed;
 
-	// Notifies that user info (achievement details, etc) has changed. 
-	// This method is reserved for future use. Please, contact Session M for more information. 
+	// Notifies that user info (achievement details, etc) has changed.
+	// This method is reserved for future use. Please, contact Session M for more information.
 	public static event Action<IDictionary<string, object>>  NotifyUserInfoChanged;
 
-	// Notifies that current unclaimed achievement data has been updated. 
-	// This method is called when (1) new achievement has been earned with respective achievement data object, (2) last earned achievement has been claimed in which case achievement data object is null. 
+  public static event Action<string>NotifyFeedChanged;
+
+	// Notifies that current unclaimed achievement data has been updated.
+	// This method is called when (1) new achievement has been earned with respective achievement data object, (2) last earned achievement has been claimed in which case achievement data object is null.
 	public static event Action<IAchievementData> NotifyUnclaimedAchievementDataUpdated;
 
 	// Notifies that user performed action withing context of current 	activity
@@ -40,9 +43,9 @@ public class SessionMEventListener : MonoBehaviour
 		this.callback = callback;
 	}
 
-	// native callback handling 
+	// native callback handling
 
-	private void _sessionM_HandleStateTransitionMessage(string message) 
+	private void _sessionM_HandleStateTransitionMessage(string message)
 	{
 		SessionState state = (SessionState)int.Parse(message);
 
@@ -60,11 +63,10 @@ public class SessionMEventListener : MonoBehaviour
 	{
 
 		// scan message and extract error information
-		// expecting 2 components - error code and description	
+		// expecting 2 components - error code and description
 		List<string> components = GetStringComponents(message);
 		if(components == null || components.Count != 2) {
 			string reason = components == null ? "components is null" : "unexpected component count";
-			Debug.Log("_sessionM_HandleSessionFailedMessage: malformatted message: '" + message + "', reason: " + reason);
 			return;
 		}
 
@@ -82,7 +84,7 @@ public class SessionMEventListener : MonoBehaviour
 		}
 	}
 
-	private void _sessionM_HandlePresentedActivityMessage(string message) 
+	private void _sessionM_HandlePresentedActivityMessage(string message)
 	{
 
 		if(message == null) {
@@ -115,7 +117,7 @@ public class SessionMEventListener : MonoBehaviour
 		if(NotifyActivityDismissed != null) {
 			NotifyActivityDismissed(activityType);
 		}
-			
+
 		if(callback != null) {
 			callback.NotifyActivityDismissed(nativeParent, activityType);
 		}
@@ -135,7 +137,15 @@ public class SessionMEventListener : MonoBehaviour
 		}
 	}
 
-	private void _sessionM_HandleUserActionMessage(string message) 
+	private void _sessionM_HandleFeedChangedMessage(string latestMessage) {
+    NotifyFeedChanged((latestMessage != null) ? ":" + latestMessage + ":" : @"NULL");
+
+    if(callback != null) {
+      callback.NotifyFeedChanged(nativeParent, (latestMessage != null) ? ":" + latestMessage + ":" : @"NULL");
+    }
+	}
+
+	private void _sessionM_HandleUserActionMessage(string message)
 	{
 		Dictionary<string, object> userActioniDict = Json.Deserialize(message) as Dictionary<string,object>;
 		long userAction = (Int64)userActioniDict["userAction"];
@@ -146,7 +156,7 @@ public class SessionMEventListener : MonoBehaviour
 			NotifyUserAction((UserAction)userAction, data);
 		}
 
-		if(callback != null) {
+    if(callback != null) {
 			callback.NotifyUserAction(nativeParent, (UserAction)userAction, data);
 		}
 	}
@@ -165,7 +175,7 @@ public class SessionMEventListener : MonoBehaviour
 		}
 	}
 
-	// parse the string extracting components; 
+	// parse the string extracting components;
 	// input string has the following format: "<length1>:<string1><length2>:<string2><length3>:<string3>" where "<length>:<string>" is a token representing a string (input string consists of many such tokens)
 	private List<string> GetStringComponents(string inputString)
 	{
@@ -173,9 +183,9 @@ public class SessionMEventListener : MonoBehaviour
 
 		int tokenStartIndex = 0;
 		while(tokenStartIndex < inputString.Length) {
-			int separatorIndex = inputString.IndexOf(':', tokenStartIndex);	
+			int separatorIndex = inputString.IndexOf(':', tokenStartIndex);
 			if(separatorIndex < 0) {
-				// this should never happen in a well-formatted string	
+				// this should never happen in a well-formatted string
 				return null;
 			}
 
@@ -185,6 +195,6 @@ public class SessionMEventListener : MonoBehaviour
 			components.Add(stringValue);
 			tokenStartIndex = separatorIndex + stringLength + 1;
 		}
-		return components;	
+		return components;
 	}
 }

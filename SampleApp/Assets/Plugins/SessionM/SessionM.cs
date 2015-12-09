@@ -1,3 +1,4 @@
+// Plugin_Shared/Assets/Plugins/SessionM/SessionM.cs
 using UnityEngine;
 using System;
 using System.Collections;
@@ -7,20 +8,20 @@ using MiniJSON;
 
 /*
  * Session M service implementation. Implements and provides access (via SessionM.GetInstance()) to the SessionM service.
- */ 
+ */
 public class SessionM : MonoBehaviour
 {
 	private ISessionMCallback callback;
-	
+
 	public string iosAppId;
 	public string androidAppId;
 	public LogLevel logLevel;
-	
-	
+
+
 	//The SessionM Class is a monobehaviour Singleton.  Drop the Gameobject in your scene and set it up instead of trying to instantiate it via code.
 	//Put the SessionM object as early in your project as possible.  The object will survive loads, so there's never a reason to put it in more than one place in your scenes.
 	private static SessionM instance;
-	public static SessionM GetInstance() 
+	public static SessionM GetInstance()
 	{
 		if(instance == null) {
 			SessionM existingSessionM = GameObject.FindObjectOfType<SessionM>();
@@ -31,14 +32,14 @@ public class SessionM : MonoBehaviour
 			existingSessionM.SetSessionMNative();
 			instance = existingSessionM;
 		}
-		
+
 		return instance;
 	}
 
 	public static ServiceRegion serviceRegion = ServiceRegion.USA;
 	public static string serverURL = "https://api.sessionm.com";
 	public static bool shouldAutoUpdateAchievementsList = false;
-	public static bool shouldEnableMessages = false;
+	public static bool shouldEnableMessages = true;
 	public static bool shouldAutoStartSession = true;
 
 	//Call this method before starting the session to set the service region.
@@ -84,24 +85,24 @@ public class SessionM : MonoBehaviour
 	//All others: iSessionM_Dummy (The Dummy simply catches all calls coming into SessionM un unsupported platforms.)
 	//If you need to modify how SessionM is interacting with either iOS or Android natively, please look in the respective Interface Class.
 	private ISessionM sessionMNative;
-	public ISessionM SessionMNative 
+	public ISessionM SessionMNative
 	{
 		get { return sessionMNative; }
 	}
-	
+
 	//The following methods can be called at anytime via the SessionM Singleton.
 	//For instance, you can call GetSessionState from anywhere in Unity program by aclling SessionM.GetInstance().GetSessionState()
-	
+
 	//Returns SessionM's current SessionState
 	//Can be: Stopped, Started Online, Started Offline
-	//Use this method to determine if your user is in a valid region for SessionM.  If SessionM is in a Stopped State, you should 
+	//Use this method to determine if your user is in a valid region for SessionM.  If SessionM is in a Stopped State, you should
 	//suppress SessionM elements.
 	public SessionState GetSessionState()
 	{
 		return sessionMNative.GetSessionState();
 	}
 
-    //Use this method to manually start a session. 
+    //Use this method to manually start a session.
 	public void StartSession(string appKey)
 	{
 		sessionMNative.StartSession(appKey);
@@ -130,14 +131,21 @@ public class SessionM : MonoBehaviour
 
 		return userData;
 	}
- 
+
         // User LogIn/Out
-        public bool LogInUserWithEmail(string email, string password) {
-                return sessionMNative.LogInUserWithEmail(email, password);
-        }
-        public void LogOutUser() {
-                sessionMNative.LogOutUser();
-        }
+  public bool LogInUserWithEmail(string email, string password) {
+      return sessionMNative.LogInUserWithEmail(email, password);
+  }
+  public void LogOutUser() {
+      sessionMNative.LogOutUser();
+  }
+  public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
+      return sessionMNative.SignUpUser(email, password, birthYear, gender, zipCode);
+  }
+
+  public void FetchMessageFeed() {
+     sessionMNative.FetchMessageFeed();
+  }
 
 	//Use this method to set user opt-out status
 	public void SetUserOptOutStatus(bool status){
@@ -151,55 +159,55 @@ public class SessionM : MonoBehaviour
 	}
 
 	//This method is required for displaying Native Acheivements.  Fore more information, please see the Unity plugin documetnation.
-	public AchievementData GetUnclaimedAchievementData() 
+	public AchievementData GetUnclaimedAchievementData()
 	{
 		IAchievementData achievementData = null;
 		string achievementJSON = null;
-		
+
 		achievementJSON = sessionMNative.GetUnclaimedAchievementData();
-		
+
 		if(achievementJSON == null) {
 			return null;
 		}
-		
+
 		achievementData = GetAchievementData(achievementJSON);
 		return achievementData as AchievementData;
 	}
-	
+
 	//This method is vital to using SessionM, whenever your user completes an action that contributes towards a SessionM Acheivement
 	//report it to SessionM using this method.
-	public void LogAction(string action) 
+	public void LogAction(string action)
 	{
 		sessionMNative.LogAction(action);
 	}
-	
+
 	//You can use this method if multiple actions were achieved simultaneously.
-	public void LogAction(string action, int count) 
+	public void LogAction(string action, int count)
 	{
 		sessionMNative.LogAction(action, count);
 	}
-	
+
 	//Use this method to display an Acheivement if there is an unclaimed Achievement ready.  SessionM will automatically display an overlay
 	//Acheivement display for you.  You can see if there is an achievement ready by running the IsActivityAvailable method below.
 	public bool PresentActivity(ActivityType type)
 	{
 		return sessionMNative.PresentActivity(type);
 	}
-	
+
 	public bool IsActivityAvailable(ActivityType type)
 	{
 		return sessionMNative.IsActivityAvailable(type);
 	}
-	
+
 	//Use this to display the SessionM Portal.  You can use this after users have clicked on a Native Acheivement, or when they click on a SessionM
 	//button in your app.
 	public bool ShowPortal()
 	{
 		return PresentActivity(ActivityType.Portal);
 	}
-	
+
 	//The following methods are generally used for debugging and won't be utilized by most SessionM Developers.
-	
+
 	public string GetSDKVersion()
 	{
 		return sessionMNative.GetSDKVersion();
@@ -210,28 +218,59 @@ public class SessionM : MonoBehaviour
 		return UnpackJSONArray(sessionMNative.GetRewards());
 	}
 
-	public string GetMessagesList()
+	public List<MessageData> GetMessagesList()
 	{
-		return sessionMNative.GetMessagesList();
+    string messages = sessionMNative.GetMessagesList();
+    List<object> json = Json.Deserialize(messages) as List<object>;
+
+    List<MessageData>result = new List<MessageData>();
+    foreach (object d in json) {
+      Dictionary<string, object> message = (Dictionary<string, object>)d;
+
+      string id = value(message, "id");
+      string type = value(message, "type");
+      string header = value(message, "header");
+      string subheader = value(message, "subheader");
+      string description = value(message, "description");
+      string iconURL = value(message, "iconURL");
+      string imageURL = value(message, "imageURL");
+      string actionURL = value(message, "actionURL");
+      string payloads = value(message, "payloads");
+      string startTime = value(message, "startTime");
+      string endTime = value(message, "endTime");
+
+      MessageData messageData = new MessageData(id, type, header, subheader, description, iconURL, imageURL, actionURL,
+      payloads, startTime, endTime);
+      result.Add(messageData);
+    }
+    return result;
 	}
-	
+
+  public string value(Dictionary<string, object> message, string key) {
+    if ((message != null) && (key != null) && message.ContainsKey(key) && (message[key] != null)) {
+      return (string)message[key];
+    } else {
+      return null;
+    }
+  }
+
 	public LogLevel GetLogLevel()
 	{
 		return sessionMNative.GetLogLevel();
 	}
-	
+
 	public void SetLogLevel(LogLevel level)
 	{
 		//Note Log Level only works on iOS.  For Android, use logcat.
 		//LogLevel can also be set on the SessionM Object.
 		sessionMNative.SetLogLevel(level);
 	}
-	
+
 	public bool IsActivityPresented()
 	{
 		return sessionMNative.IsActivityPresented();
 	}
-	
+
 	public void SetMetaData(string data, string key)
 	{
 		sessionMNative.SetMetaData(data, key);
@@ -242,62 +281,52 @@ public class SessionM : MonoBehaviour
 	{
 		sessionMNative.SetAppKey(appKey);
 	}
-	
+
 	public void NotifyPresented()
 	{
 		sessionMNative.NotifyPresented();
 	}
-	
+
 	public void NotifyDismissed()
 	{
 		sessionMNative.NotifyDismissed();
 	}
-	
+
 	public void NotifyClaimed()
 	{
 		sessionMNative.NotifyClaimed();
 	}
-	
+
 	public void DismissActivity()
 	{
 		sessionMNative.DismissActivity();
 	}
 
-	public void PresentTierList()
-	{
-		sessionMNative.PresentTierList();
-	}
-
-	public string GetTiers()
-	{
-		return sessionMNative.GetTiers();
-	}
-	
 	public void SetCallback(ISessionMCallback callback)
 	{
 		sessionMNative.SetCallback(callback);
 	}
-	
-	public ISessionMCallback GetCallback() 
+
+	public ISessionMCallback GetCallback()
 	{
 		return sessionMNative.GetCallback();
 	}
-	
+
 	// Unity Lifecycle
-	
-	private void Awake() 
+
+	private void Awake()
 	{
 		SetSessionMNative();
 		GameObject.DontDestroyOnLoad(this.gameObject);
 		instance = this;
 		SetLogLevel (logLevel);
 	}
-	
+
 	private void SetSessionMNative()
 	{
 		if(sessionMNative != null)
 			return;
-		
+
 		//Assign the appropiate Native Class to handle method calls here.
 		#if UNITY_EDITOR
 		sessionMNative = new ISessionM_Dummy();
@@ -309,9 +338,9 @@ public class SessionM : MonoBehaviour
 		sessionMNative = new ISessionM_Dummy();
 		#endif
 	}
-	
+
 	//This is a useful method you can call whenever you need to parse a JSON string into a the IAchievementData custom class.
-	public static IAchievementData GetAchievementData(string jsonString) 
+	public static IAchievementData GetAchievementData(string jsonString)
 	{
 		Dictionary<string, object> achievementDict = Json.Deserialize(jsonString) as Dictionary<string,object>;
 
@@ -373,10 +402,7 @@ public class SessionM : MonoBehaviour
                 }
 		List<AchievementData> achievementsList = new List<AchievementData>(achievementsListArray);
 
-		string tierName = (string)userDict["getTierName"];
-		string tierPercentage = (string)userDict["getTierPercentage"];
-		string tierAnniversaryDate = (string)userDict["getTierAnniversaryDate"];
-		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList, tierName, tierPercentage, tierAnniversaryDate);
+		UserData userData = new UserData(isOptedOut, isRegistered, isLoggedIn, (int)userPointBalance, (int)unclaimedAchievementCount, (int)unclaimedAchievementValue, achievements, achievementsList);
 
 		return userData;
 	}

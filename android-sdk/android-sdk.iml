@@ -60,7 +60,20 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/jni" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target/SessionMUnity.jar" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/bundles" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/dependency-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/incremental" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/javaResources" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/lint" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/lint-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/mockable-android-21.jar" />
+      <excludeFolder url="file://$MODULE_DIR$/target/intermediates/rs" />
+      <excludeFolder url="file://$MODULE_DIR$/target/libs" />
       <excludeFolder url="file://$MODULE_DIR$/target/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/target/reports" />
+      <excludeFolder url="file://$MODULE_DIR$/target/test-results" />
       <excludeFolder url="file://$MODULE_DIR$/target/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />

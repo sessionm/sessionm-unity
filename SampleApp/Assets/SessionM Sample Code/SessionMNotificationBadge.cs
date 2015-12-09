@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// SampleApp/Assets/SessionM Sample Code/SessionMNotificationBadge.cs
+using UnityEngine;
 
 public class SessionMNotificationBadge : MonoBehaviour 
 {

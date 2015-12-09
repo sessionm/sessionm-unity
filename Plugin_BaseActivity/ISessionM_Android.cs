@@ -1,3 +1,4 @@
+// Plugin_BaseActivity/ISessionM_Android.cs
 using UnityEngine;
 using System;
 using System.Collections;
@@ -85,19 +86,33 @@ public class ISessionM_Android : ISessionM
 		return state;
 	}
 
-        public bool LogInUserWithEmail(string email, string password) {
-                bool success;
-                using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-                        success = activityObject.Call<bool>("logInUserWithEmail", email, password);
-                }
-                return success;
-        }
+  public bool LogInUserWithEmail(string email, string password) {
+      bool success;
+      using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+          success = activityObject.Call<bool>("logInUserWithEmail", email, password);
+      }
+      return success;
+  }
 
-        public void LogOutUser() {
-                using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-                        activityObject.Call("LogOutUser");
-                }
-        }
+  public void LogOutUser() {
+      using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+          activityObject.Call("logOutUser");
+      }
+  }
+
+  public void FetchMessageFeed() {
+    using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+        activityObject.Call("fetchMessageFeed");
+    }
+  }
+
+  public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
+    bool success;
+    using (AndroidJavaObject activityObject = GetCurrentActivity()) {
+      success = activityObject.Call<bool>("signUpUser", email, password, birthYear, gender, zipCode);
+    }
+    return success;
+  }
 
 	public string GetUser()
 	{
@@ -308,22 +323,6 @@ public class ISessionM_Android : ISessionM
 			}
 		}
 	}
-
-	public void PresentTierList
-	{
-		  using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-	     activityObject.Call ("presentTierList");
-      }
-  }
-
-	public string GetTiers()
-	{
-	    string tiers = null;
-	    using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-	        tiers = activityObject.Call<string> ("getTiers");
-	    }
-      return tiers;
-  }       
 
 	public void SetCallback(ISessionMCallback callback)
 	{

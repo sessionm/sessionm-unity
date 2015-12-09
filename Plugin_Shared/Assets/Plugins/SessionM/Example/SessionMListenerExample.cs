@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SessionMListenerExample : MonoBehaviour 
+public class SessionMListenerExample : MonoBehaviour
 {
 
 	//To react to events happening in the SessionM Service, you can listen for the following events:
@@ -13,6 +13,7 @@ public class SessionMListenerExample : MonoBehaviour
 		SessionMEventListener.NotifyActivityPresented += NotifyActivityPresented;
 		SessionMEventListener.NotifyActivityDismissed += NotifyActivityDismissed;
 		SessionMEventListener.NotifyUserInfoChanged += NotifyUserInfoChanged;
+    SessionMEventListener.NotifyFeedChanged += NotifyFeedChanged;
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserAction += NotifyUserAction;
 	}
@@ -24,6 +25,7 @@ public class SessionMListenerExample : MonoBehaviour
 		SessionMEventListener.NotifyActivityPresented -= NotifyActivityPresented;
 		SessionMEventListener.NotifyActivityDismissed -= NotifyActivityDismissed;
 		SessionMEventListener.NotifyUserInfoChanged -= NotifyUserInfoChanged;
+    SessionMEventListener.NotifyFeedChanged -= NotifyFeedChanged;
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated -= NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserAction -= NotifyUserAction;
 	}
@@ -83,4 +85,7 @@ public class SessionMListenerExample : MonoBehaviour
 		//This event can notify you if users
 	}
 
+	private void NotifyFeedChanged(string latest) {
+	    Debug.Log("Event: NotifyFeedChanged Fired");
+	}
 }

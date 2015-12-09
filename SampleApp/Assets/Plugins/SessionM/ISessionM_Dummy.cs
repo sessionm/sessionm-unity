@@ -1,3 +1,4 @@
+// Plugin_Shared/Assets/Plugins/SessionM/ISessionM_Dummy.cs
 using System;
 
 //SessionMDummy.cs
@@ -9,33 +10,40 @@ public class ISessionM_Dummy : ISessionM
 	public ISessionM_Dummy()
 	{
 	}
-	
+
 	public void StartSession(string appId)
 	{
 	}
-	
+
 	public SessionState GetSessionState()
 	{
 		return SessionState.Stopped;
 	}
-	
+
 	public bool GetUserOptOutStatus()
 	{
 		return false;
 	}
 
-	public string GetUser() 
+	public string GetUser()
 	{
 		return null;
 	}
 
-        public bool LogInUserWithEmail(string email, string password) {
-                return true;
-        }
+  public bool LogInUserWithEmail(string email, string password) {
+    return true;
+  }
 
-        public void LogOutUser() {
-        }
-	
+  public void LogOutUser() {
+  }
+
+  public void FetchMessageFeed() {
+  }
+
+  public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
+    return false;
+  }
+
 	public void SetUserOptOutStatus(bool status){
 	}
 
@@ -60,49 +68,49 @@ public class ISessionM_Dummy : ISessionM
 	{
 		return 0;
 	}
-	
-	public string GetUnclaimedAchievementData() 
+
+	public string GetUnclaimedAchievementData()
 	{
 		return null;
 	}
-	
-	
-	public void LogAction(string action) 
+
+
+	public void LogAction(string action)
 	{
 	}
-	
-	public void LogAction(string action, int count) 
-	{	
+
+	public void LogAction(string action, int count)
+	{
 	}
-	
+
 	public bool PresentActivity(ActivityType type)
 	{
 		return false;
 	}
-	
+
 	public void DismissActivity()
 	{
 	}
-	
+
 	public bool IsActivityPresented()
 	{
 		return false;
 	}
-	
+
 	public bool IsActivityAvailable(ActivityType type)
 	{
 		return false;
 	}
-	
+
 	public void SetLogLevel(LogLevel level)
 	{
 	}
-	
+
 	public LogLevel GetLogLevel()
-	{	
+	{
 		return LogLevel.Off;
 	}
-	
+
 	public void SetServiceRegion(ServiceRegion region)
 	{
 	}
@@ -132,40 +140,30 @@ public class ISessionM_Dummy : ISessionM
 
 	public void SetMessagesEnabled(bool enabled){
 	}
-	
+
 	public void SetMetaData(string data, string key)
 	{
 	}
-	
+
 	public void NotifyPresented()
 	{
 	}
-	
+
 	public void NotifyDismissed()
 	{
 	}
-	
+
 	public void NotifyClaimed()
 	{
 	}
 
-	public void PresentTierList()
+	public void SetCallback(ISessionMCallback callback)
 	{
 	}
 
-	public string GetTiers()
+	public ISessionMCallback GetCallback()
 	{
 		return null;
 	}
-	
-	public void SetCallback(ISessionMCallback callback) 
-	{
-	}
-	
-	public ISessionMCallback GetCallback() 
-	{
-		return null;
-	}
-	
+
 }
-

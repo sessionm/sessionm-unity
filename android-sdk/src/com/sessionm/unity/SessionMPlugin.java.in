@@ -13,12 +13,16 @@ import com.sessionm.api.User;
 import com.sessionm.api.mmc.data.MessageData;
 
 import org.json.JSONObject;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class SessionMPlugin{
 
     private final static String TAG = "SessionM.Unity";
-    
+
     private final static SessionM sessionM = SessionM.getInstance();
     private static android.app.Activity ac = com.unity3d.player.UnityPlayer.currentActivity;
     private final static String VERSION_NUM = "$(UNITY_SDK_VERSION)";
@@ -29,7 +33,7 @@ public class SessionMPlugin{
         }
         SessionMListener.getInstance().setCallbackGameObjectName(name);
     }
-    
+
     public static boolean isActivityAvailable(ActivityType type) {
         boolean available = false;
         if(sessionM.getSessionState() == SessionM.State.STARTED_ONLINE) {
@@ -41,7 +45,7 @@ public class SessionMPlugin{
         }
         return available;
     }
-    
+
     public static int getUnclaimedAchievementCount() {
         return sessionM.getUser().getUnclaimedAchievementCount();
     }
@@ -52,6 +56,39 @@ public class SessionMPlugin{
 
     public static void logOutUser() {
         sessionM.logOutUser();
+    }
+
+    public static void fetchMessageFeed() {
+        sessionM.fetchMessageFeed();
+    }
+
+    private static final String regex = "^\\d{5}(-\\d{4})?$";
+
+    public static boolean signUpUser(String email, String password, String birthYear, String gender, String zipCode) {
+
+        final Map<String, String> enrollWithEmailMetaData = new HashMap<>();
+
+        if (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            enrollWithEmailMetaData.put("email", email);
+        } else {
+            return false;
+        }
+        if ((password != null) && (password.length() > 0)) {
+            enrollWithEmailMetaData.put("password", password);
+        } else {
+            return false;
+        }
+        if (isBirthYearValid(birthYear)) {
+            enrollWithEmailMetaData.put("birth_year", birthYear);
+        }
+        if ((gender != null) && (gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f") ||
+                                 gender.equalsIgnoreCase("male") || gender.equalsIgnoreCase("female"))) {
+            enrollWithEmailMetaData.put("gender", gender);
+        }
+        if ((zipCode != null) && Pattern.matches(regex, zipCode)) {
+            enrollWithEmailMetaData.put("zip", zipCode);
+        }
+        return sessionM.signUpUserWithData(enrollWithEmailMetaData);
     }
 
     public static String getUnclaimedAchievementJSON() {
@@ -89,14 +126,6 @@ public class SessionMPlugin{
         return SessionMListener.getRewardsJSON();
     }
 
-    public static String getTiers(){
-        String json = "";
-        List<JSONObject> tiersList = sessionM.getTiers();
-        if (tiersList != null)
-            json = SessionMListener.getTiersJSON(tiersList);
-        return json;
-    }
-
     public static void setServiceRegion(int serviceRegion) {
         if (serviceRegion == 0)
             sessionM.setServerType(SessionM.SERVER_TYPE_PRODUCTION);
@@ -125,15 +154,15 @@ public class SessionMPlugin{
     public static boolean notifyCustomAchievementPresented() {
         AchievementData achievement = sessionM.getUnclaimedAchievement();
         if(achievement == null) {
-            // this cannot happen 
+            // this cannot happen
             Log.e(TAG, ac + ".notifyCustomAchievementPresented(): Null achievement");
             return false;
         }
-        
+
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + ".notifyCustomAchievementPresented(), achievement: " + achievement);
         }
-        
+
         AchievementActivity activity = new AchievementActivity(achievement);
         try {
             activity.notifyPresented();
@@ -143,7 +172,7 @@ public class SessionMPlugin{
             return false;
         }
     }
-    
+
     public static void notifyCustomAchievementCancelled() {
         Activity activity = sessionM.getCurrentActivity();
         if(Log.isLoggable(TAG, Log.DEBUG)) {
@@ -176,9 +205,6 @@ public class SessionMPlugin{
         }
     }
 
-    public static void presentTierList() {
-    }
-
     public static void setUserOptOutStatus(boolean status){
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + ".setUserOptOutStatus()");
@@ -199,8 +225,8 @@ public class SessionMPlugin{
         }
         sessionM.setShouldAutoUpdateAchievementsList(auto);
     }
-  
-    // Prime31 Shared Activity 
+
+    // Prime31 Shared Activity
     public static void onStart() {
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + "SessionM.onStart()");
@@ -216,7 +242,7 @@ public class SessionMPlugin{
     }
 
     public static void onResume() {
-        
+
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + "SessionM.onResume()");
         }
@@ -236,5 +262,23 @@ public class SessionMPlugin{
             Log.d(TAG, ac + "SessionM.onStop()");
         }
         sessionM.onActivityStop(ac);
+    }
+
+    public static boolean isBirthYearValid(String yob) {
+        if (yob == null)
+            return false;
+        if (!yob.isEmpty()) {
+            int age;
+            try {
+                age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(yob);
+                return age >= 14 && age <= 120;
+            } catch (NumberFormatException e) {
+                if (Log.isLoggable(TAG, Log.ERROR)) {
+                    Log.e(TAG, String.format("Exception parse int from yob string: %s", e));
+                }
+                return false;
+            }
+        }
+        return false;
     }
 }

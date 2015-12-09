@@ -164,6 +164,10 @@ public class SessionMListener implements ActivityListener, SessionListener {
     @Override
     public void onMessageUpdated(SessionM sessionM, MessageData messageData) {
 
+        if (callbackGameObjectName != null) {
+            String outJson = (messageData != null) ? messageData.toString() : null;
+            UnityPlayer.UnitySendMessage(callbackGameObjectName, "_sessionM_HandleFeedChangedMessage", outJson != null ? outJson : "");
+        }
     }
 
     @Override
@@ -285,9 +289,6 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("getUnclaimedAchievementValue", user.getUnclaimedAchievementValue());
             jsonObject.put("getAchievementsJSON", userAchievementsJSONString);
             jsonObject.put("getAchievementsListJSON", userAchievementsListJSONString);
-            jsonObject.put("getTierName", user.getTierName());
-            jsonObject.put("getTierPercentage", String.valueOf(user.getTierPercentage()));
-            jsonObject.put("getTierAnniversaryDate", user.getTierAnniversaryDate());
         } catch (JSONException e) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "JSONException when trying to get user json: " + e);
@@ -312,7 +313,7 @@ public class SessionMListener implements ActivityListener, SessionListener {
                 messageJSONObject.put("iconURL", messageData.getHeader());
                 messageJSONObject.put("imageURL", messageData.getHeader());
                 messageJSONObject.put("actionURL", messageData.getActionURL());
-                messageJSONObject.put("data", messageData.getData().toString());
+                messageJSONObject.put("data", ((messageData.getData() == null) ? null : messageData.getData().toString()));
                 messageJSONObject.put("payloads", messageData.getPayloads().toString());
                 messageJSONObject.put("startTime", messageData.getStartTime());
                 messageJSONObject.put("endTime", messageData.getEndTime());
@@ -325,15 +326,6 @@ public class SessionMListener implements ActivityListener, SessionListener {
             }
         }
         return messagesJSONArray.toString();
-    }
-
-    //Return feed message data as JSON for unity
-    public static String getTiersJSON(List<JSONObject> tiersList) {
-        JSONArray tiersArray = new JSONArray();
-        for (JSONObject tier : tiersList) {
-            tiersArray.put(tier);
-        }
-        return tiersArray.toString();
     }
 
     //Return rewards data as JSON for unity

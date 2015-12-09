@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿// SampleApp/Assets/SessionM Sample Code/AchievementToast.cs
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 

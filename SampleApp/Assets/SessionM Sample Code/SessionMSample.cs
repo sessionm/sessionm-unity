@@ -1,8 +1,9 @@
+// SampleApp/Assets/SessionM Sample Code/SessionMSample.cs
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SessionMSample : MonoBehaviour 
+public class SessionMSample : MonoBehaviour
 {
 	public SessionM sessionM;
 
@@ -16,6 +17,7 @@ public class SessionMSample : MonoBehaviour
 	public TextMesh unclaimedAchValueLable;
 	public TextMesh tierLable;
 
+  public string signUpUser = "pmattheis@sessionm.com";
 
 	public string action1;
 	public string action2;
@@ -27,7 +29,7 @@ public class SessionMSample : MonoBehaviour
 
 	public void OnAction1Clicked()
 	{
-		sessionM.StartSession("0bfeb00013f0f634420a04ed5806a66a58d49d8b");
+	//	sessionM.StartSession();
 	}
 
 	public void OnAction2Clicked()
@@ -42,15 +44,18 @@ public class SessionMSample : MonoBehaviour
 
 	public void OnTierClicked()
 	{
-            // Tier Information
-            sessionM.PresentTierList();
-        }
+  }
 
-        public void OnLoginClicked() {
-	    sessionM.LogInUserWithEmail ("unittestlogin@sessionm.com", "sessionm");
+  public void OnLoginClicked() {
+	  sessionM.LogInUserWithEmail (signUpUser, "1Badgers");
 	}
- 
-        public void OnLogoutClicked() {
+
+  public void OnSignupUser() {
+    signUpUser = "Testing-" + Random.Range(0.0f, 1.0f) + "@sessionm.com";
+    sessionM.SignUpUser(signUpUser, "1Badgers", "1960", "Male", "01752");
+  }
+
+  public void OnLogoutClicked() {
 	    sessionM.LogOutUser ();
 	}
 
@@ -59,7 +64,7 @@ public class SessionMSample : MonoBehaviour
 		sessionM.ShowPortal();
 	}
 
-	//Helper Methods 
+	//Helper Methods
 
 	private void NotifySessionError(int errorCode, string error)
 	{
@@ -72,9 +77,12 @@ public class SessionMSample : MonoBehaviour
 		sessionMStateLabel.text = "SessionM State: " + state.ToString();
 	}
 
+        private void NotifyFeedChanged(string latest) {
+           List<MessageData> messages = sessionM.GetMessagesList();
+        }
+
 	private void NotifyUnclaimedAchievementDataUpdated(IAchievementData achievementData)
 	{
-		Debug.Log("Recieved New Achievement: " + achievementData.GetName() + " - Worth: " + achievementData.GetMpointValue() + "\n With Message: " + achievementData.GetMessage());
 		toaster.ShowAchievementToast(achievementData.GetName(), achievementData.GetMpointValue(), achievementData.GetMessage());
 	}
 
@@ -91,7 +99,9 @@ public class SessionMSample : MonoBehaviour
 		pointBalanceLabel.text = "Point Balance: " + user.GetUserPointBalance();
 		unclaimedAchCountLabel.text = "Unclaimed Achievement Count: " + user.GetUnclaimedAchievementCount();
 		unclaimedAchValueLable.text = "Unclaimed Achievement Value: " + user.GetUnclaimedAchievementValue();
-		tierLable.text = "My Tier: " + user.GetTierName();
+		tierLable.text = "My Tier: " + "Not Functioning";
+
+    sessionM.FetchMessageFeed();
 
 	}
 
@@ -101,10 +111,10 @@ public class SessionMSample : MonoBehaviour
 	{
 		//Set service region before SessionM instance is activated
 		// SessionM.SetServiceRegion(ServiceRegion.USA);
-		SessionM.SetServerType("https://api.tour-sessionm.com");
+		// SessionM.SetServerType("https://api.tour-sessionm.com");
 		SessionM.SetShouldAutoUpdateAchievementsList(true);
 		SessionM.SetMessagesEnabled(true);
-		SessionM.SetSessionAutoStartEnabled(false);
+		SessionM.SetSessionAutoStartEnabled(true);
 		sessionM.gameObject.SetActive(true);
 	}
 
@@ -113,6 +123,7 @@ public class SessionMSample : MonoBehaviour
 		//Assign useful events to Helper Functions in the class.
 		SessionMEventListener.NotifySessionStateChanged += NotifySessionStateChanged;
 		SessionMEventListener.NotifySessionError += NotifySessionError;
+    SessionMEventListener.NotifyFeedChanged += NotifyFeedChanged;
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged += UserChanged;
 
@@ -124,6 +135,7 @@ public class SessionMSample : MonoBehaviour
 		//Clean Up the events in case this object is destroyed.
 		SessionMEventListener.NotifySessionStateChanged -= NotifySessionStateChanged;
 		SessionMEventListener.NotifySessionError -= NotifySessionError;
+    SessionMEventListener.NotifyFeedChanged -= NotifyFeedChanged;
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated -= NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserInfoChanged -= UserChanged;
 	}

@@ -17,7 +17,7 @@ public class SessionMSample : MonoBehaviour
 	public TextMesh unclaimedAchValueLable;
 	public TextMesh tierLable;
 
-  public string signUpUser = "pmattheis@sessionm.com";
+  public string signUpUser = "unittest@sessionm.com";
 
 	public string action1;
 	public string action2;
@@ -47,12 +47,12 @@ public class SessionMSample : MonoBehaviour
   }
 
   public void OnLoginClicked() {
-	  sessionM.LogInUserWithEmail (signUpUser, "1Badgers");
+	  sessionM.LogInUserWithEmail (signUpUser, "sessionm");
 	}
 
   public void OnSignupUser() {
     signUpUser = "Testing-" + Random.Range(0.0f, 1.0f) + "@sessionm.com";
-    sessionM.SignUpUser(signUpUser, "1Badgers", "1960", "Male", "01752");
+    sessionM.SignUpUser(signUpUser, "sessionm", "1960", "Male", "01752");
   }
 
   public void OnLogoutClicked() {

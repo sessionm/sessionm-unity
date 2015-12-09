@@ -107,7 +107,7 @@ public class SessionMSample : MonoBehaviour
 		unclaimedAchValueLable.text = "Unclaimed Achievement Value: " + user.GetUnclaimedAchievementValue();
 		tierLable.text = "My Tier: " + "Not Functioning";
 
-    sessionM.FetchMessageFeed();
+    // sessionM.FetchMessageFeed();
 
 	}
 

@@ -30,19 +30,19 @@ public class ISessionM_Dummy : ISessionM
 		return null;
 	}
 
-  public bool LogInUserWithEmail(string email, string password) {
-    return true;
-  }
+    public bool LogInUserWithEmail(string email, string password) {
+      return true;
+    }
 
-  public void LogOutUser() {
-  }
+    public void LogOutUser() {
+    }
 
-  public void FetchMessageFeed() {
-  }
+    public void FetchMessageFeed() {
+    }
 
-  public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
-    return false;
-  }
+    public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
+      return false;
+    }
 
 	public void SetUserOptOutStatus(bool status){
 	}

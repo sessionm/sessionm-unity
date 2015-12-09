@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e868eef4d1a40b1a3bd9c2584271e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iosAppId: 0bfeb00013f0f634420a04ed5806a66a58d49d8b
-  androidAppId: 0bfeb00013f0f634420a04ed5806a66a58d49d8b
+  iosAppId: aba6ba56b63680cad063e987df52a71e620dbc77
+  androidAppId: aba6ba56b63680cad063e987df52a71e620dbc77
   logLevel: 1
 --- !u!4 &43735841
 Transform:

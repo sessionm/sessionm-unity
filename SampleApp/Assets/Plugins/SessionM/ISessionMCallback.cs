@@ -1,4 +1,3 @@
-// Plugin_Shared/Assets/Plugins/SessionM/ISessionMCallback.cs
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,9 +23,6 @@ public interface ISessionMCallback
 	// This method is reserved for future use. Please, contact Session M for more information.
 	void NotifyUserInfoChanged(ISessionM sessionM, IDictionary<string, object> info);
 
-  // Notifies that Feed Messages have been changed/updated
-	void NotifyFeedChanged(ISessionM sessionM, string latestMessage);
-
 	// Notifies that current unclaimed achievement data has been updated.
 	// This method is called when (1) new achievement has been earned with respective achievement data object, (2) last earned achievement has been claimed in which case achievement data object is null.
 	void NotifyUnclaimedAchievementDataUpdated(ISessionM sessionM, IAchievementData achievementData);
@@ -34,6 +30,8 @@ public interface ISessionMCallback
 	// Notifies that user performed action withing context of current activity
 	void NotifyUserAction(ISessionM sessionM, UserAction userAction, IDictionary<string, object> data);
 
+  // Notifies the user that the Acitivity Feed Message(s) have been updated
+  void NotifyFeedChanged(ISessionM sessionM, string latest);
 
 	// This method is deprecated. Please, use return value from ISessionM.PresentActivity(ActivityType) to determine is UI activitiy will be presented.
 	//void NotifyActivityUnavailable(ISessionM sessionM, ActivityType type);

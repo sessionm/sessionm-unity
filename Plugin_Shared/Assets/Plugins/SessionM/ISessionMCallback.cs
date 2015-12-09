@@ -30,6 +30,8 @@ public interface ISessionMCallback
 	// Notifies that user performed action withing context of current activity
 	void NotifyUserAction(ISessionM sessionM, UserAction userAction, IDictionary<string, object> data);
 
+  // Notifies the user that the Acitivity Feed Message(s) have been updated
+  void NotifyFeedChanged(ISessionM sessionM, string latest);
 
 	// This method is deprecated. Please, use return value from ISessionM.PresentActivity(ActivityType) to determine is UI activitiy will be presented.
 	//void NotifyActivityUnavailable(ISessionM sessionM, ActivityType type);
@@ -37,4 +39,3 @@ public interface ISessionMCallback
 	// For achievement use NotifyUnclaimedAchievementDataUpdated(ISessionM, IAchievementData)
 	//void NotifyActivityAvailable(ISessionM sessionM, ActivityType type);
 }
-

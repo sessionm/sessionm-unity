@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SessionMListenerExample : MonoBehaviour 
+public class SessionMListenerExample : MonoBehaviour
 {
 
 	//To react to events happening in the SessionM Service, you can listen for the following events:
@@ -84,7 +84,8 @@ public class SessionMListenerExample : MonoBehaviour
 		Debug.Log("Event: NotifyUserInfoChanged Fired");
 		//This event can notify you if users
 	}
-  private void NotifyFeedChanged(string latest) {
-    Debug.Log("Event: NotifyFeedChanged Fired");
-  }
+
+	private void NotifyFeedChanged(string latest) {
+	    Debug.Log("Event: NotifyFeedChanged Fired");
+	}
 }

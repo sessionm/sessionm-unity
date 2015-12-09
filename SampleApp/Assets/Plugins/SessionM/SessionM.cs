@@ -1,4 +1,3 @@
-// Plugin_Shared/Assets/Plugins/SessionM/SessionM.cs
 using UnityEngine;
 using System;
 using System.Collections;
@@ -133,19 +132,21 @@ public class SessionM : MonoBehaviour
 	}
 
         // User LogIn/Out
-  public bool LogInUserWithEmail(string email, string password) {
-      return sessionMNative.LogInUserWithEmail(email, password);
-  }
-  public void LogOutUser() {
-      sessionMNative.LogOutUser();
-  }
-  public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
-      return sessionMNative.SignUpUser(email, password, birthYear, gender, zipCode);
-  }
+	public bool LogInUserWithEmail(string email, string password) {
+	  return sessionMNative.LogInUserWithEmail(email, password);
+	}
 
-  public void FetchMessageFeed() {
-     sessionMNative.FetchMessageFeed();
-  }
+	public void LogOutUser() {
+	   sessionMNative.LogOutUser();
+	}
+
+	public bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode) {
+	  return sessionMNative.SignUpUser(email, password, birthYear, gender, zipCode);
+	}
+
+	public void FetchMessageFeed() {
+	  sessionMNative.FetchMessageFeed();
+	}
 
 	//Use this method to set user opt-out status
 	public void SetUserOptOutStatus(bool status){

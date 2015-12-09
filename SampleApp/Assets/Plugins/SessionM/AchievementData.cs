@@ -1,5 +1,4 @@
-﻿// Plugin_Shared/Assets/Plugins/SessionM/AchievementData.cs
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections;
 using System.Runtime.InteropServices;

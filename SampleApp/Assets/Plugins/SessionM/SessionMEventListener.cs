@@ -67,6 +67,7 @@ public class SessionMEventListener : MonoBehaviour
 		List<string> components = GetStringComponents(message);
 		if(components == null || components.Count != 2) {
 			string reason = components == null ? "components is null" : "unexpected component count";
+			Debug.Log("_sessionM_HandleSessionFailedMessage: malformatted message: '" + message + "', reason: " + reason);
 			return;
 		}
 
@@ -138,11 +139,11 @@ public class SessionMEventListener : MonoBehaviour
 	}
 
 	private void _sessionM_HandleFeedChangedMessage(string latestMessage) {
-    NotifyFeedChanged((latestMessage != null) ? ":" + latestMessage + ":" : @"NULL");
+		NotifyFeedChanged((latestMessage != null) ? latestMessage : "");
 
-    if(callback != null) {
-      callback.NotifyFeedChanged(nativeParent, (latestMessage != null) ? ":" + latestMessage + ":" : @"NULL");
-    }
+		if(callback != null) {
+			callback.NotifyFeedChanged(nativeParent, (latestMessage != null) ? latestMessage : @"");
+		}
 	}
 
 	private void _sessionM_HandleUserActionMessage(string message)

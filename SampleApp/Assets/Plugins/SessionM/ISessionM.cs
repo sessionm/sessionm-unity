@@ -1,11 +1,10 @@
-// Plugin_Shared/Assets/Plugins/SessionM/ISessionM.cs
 using UnityEngine;
 using System.Collections;
 
 // UI Activity type
 public enum ActivityType
 {
-	// User achievement.
+	// User achievement.  
 	Achievement = 1,
 	// User portal.
 	Portal = 2
@@ -15,15 +14,15 @@ public enum ActivityType
 public enum LogLevel
 {
 	Off = 0,
-	Info = 1,
-	Debug = 3,
+	Info = 1, 
+	Debug = 3, 
 }
 
 // Session state
 public enum SessionState
 {
 	Stopped = 0,
-	StartedOnline = 1,
+	StartedOnline = 1, 
 	StartedOffline = 2
 }
 
@@ -36,9 +35,9 @@ public enum ServiceRegion
 	Custom = 3
 }
 
-/* User actions.
+/* User actions. 
  * User action within Session M UI activity. Identifies events such as user engaging with achievement prompt, etc.
- */
+ */ 
 public enum UserAction
 {
 	AchievementViewAction = 100,
@@ -108,11 +107,11 @@ public interface ISessionM
 	string GetUser();
 
         // User LogIn/Out
-  bool LogInUserWithEmail(string email, string password);
-  void LogOutUser();
-  bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode);
+	bool LogInUserWithEmail(string email, string password);
+	void LogOutUser();
+	bool SignUpUser(string email, string password, string birthYear, string gender, string zipCode);
 
-  void FetchMessageFeed();
+	void FetchMessageFeed();
 
 	//Sets Current user opt-out status locally
 	void SetUserOptOutStatus(bool status);
@@ -160,9 +159,9 @@ public interface ISessionM
 	// Sets app key
 	void SetAppKey(string appKey);
 
-	// Returns SDK version
+	// Returns SDK version 
 	string GetSDKVersion();
-
+	
 	// Returns a list of all rewards the user can redeem
 	string GetRewards();
 

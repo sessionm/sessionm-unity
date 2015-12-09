@@ -256,12 +256,10 @@ public class ISessionM_Android : ISessionM
 
 	public string GetMessagesList()
 	{
-    Debug.Log("Native.GetMessagesList");
 		string messagesJSON = null;
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 			messagesJSON = activityObject.Call<string>("getMessagesList");
 		}
-    Debug.Log("Native.GetMessagesList");
 		return messagesJSON;
 	}
 

@@ -1,4 +1,3 @@
-// Plugin_Shared/Assets/Plugins/SessionM/IAchievementData.cs
 using System;
 using UnityEngine;
 

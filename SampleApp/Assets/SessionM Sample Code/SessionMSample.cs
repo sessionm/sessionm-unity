@@ -47,16 +47,19 @@ public class SessionMSample : MonoBehaviour
   }
 
   public void OnLoginClicked() {
+    Debug.Log("LogIn: Email: " + signUpUser + ", Password: " + "sessionm");
 	  sessionM.LogInUserWithEmail (signUpUser, "sessionm");
 	}
 
   public void OnSignupUser() {
     signUpUser = "Testing-" + Random.Range(0.0f, 1.0f) + "@sessionm.com";
+    Debug.Log("Signup: Email: " + signUpUser + ", Password: " + "sessionm");
     sessionM.SignUpUser(signUpUser, "sessionm", "1960", "Male", "01752");
   }
 
   public void OnLogoutClicked() {
-	    sessionM.LogOutUser ();
+    Debug.Log("LogOut: Email: " + signUpUser);
+	  sessionM.LogOutUser ();
 	}
 
 	public void OnPortalClicked()
@@ -77,9 +80,12 @@ public class SessionMSample : MonoBehaviour
 		sessionMStateLabel.text = "SessionM State: " + state.ToString();
 	}
 
-        private void NotifyFeedChanged(string latest) {
-           List<MessageData> messages = sessionM.GetMessagesList();
-        }
+  private void NotifyFeedChanged(string latest) {
+    List<MessageData> messages = sessionM.GetMessagesList();
+    foreach (MessageData message in messages) {
+      Debug.Log("Message Id: " + message.GetID() + ", Description: " + message.GetDescription());
+    }
+  }
 
 	private void NotifyUnclaimedAchievementDataUpdated(IAchievementData achievementData)
 	{

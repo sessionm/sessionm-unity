@@ -80,8 +80,8 @@ public class SessionMSample : MonoBehaviour
 	}
 
   	private void NotifyFeedChanged(string latest) {
-	    List<MessageData> messages = sessionM.GetMessagesList();
-	    foreach (MessageData message in messages) {
+	    List<FeedMessageData> messages = sessionM.GetMessagesList();
+	    foreach (FeedMessageData message in messages) {
 	      Debug.Log("Message Id: " + message.GetID() + ", Description: " + message.GetDescription());
 	    }
 	}

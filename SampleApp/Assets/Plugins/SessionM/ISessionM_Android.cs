@@ -249,7 +249,6 @@ public class ISessionM_Android : ISessionM
 		string rewardsJSON = null;
 		using (AndroidJavaObject activityObject = GetCurrentActivity()) {
 			rewardsJSON = activityObject.Call<string>("getRewardsJSON");
-      Debug.Log("Native GetRewards: " + rewardsJSON);
 		}
 		return rewardsJSON;
 	}

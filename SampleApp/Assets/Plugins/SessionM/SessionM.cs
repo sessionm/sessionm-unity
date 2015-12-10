@@ -219,12 +219,12 @@ public class SessionM : MonoBehaviour
 		return UnpackJSONArray(sessionMNative.GetRewards());
 	}
 
-	public List<MessageData> GetMessagesList()
+	public List<FeedMessageData> GetMessagesList()
 	{
     string messages = sessionMNative.GetMessagesList();
     List<object> json = Json.Deserialize(messages) as List<object>;
 
-    List<MessageData>result = new List<MessageData>();
+    List<FeedMessageData>result = new List<FeedMessageData>();
     foreach (object d in json) {
       Dictionary<string, object> message = (Dictionary<string, object>)d;
 
@@ -240,7 +240,7 @@ public class SessionM : MonoBehaviour
       string startTime = value(message, "startTime");
       string endTime = value(message, "endTime");
 
-      MessageData messageData = new MessageData(id, type, header, subheader, description, iconURL, imageURL, actionURL,
+      FeedMessageData messageData = new FeedMessageData(id, type, header, subheader, description, iconURL, imageURL, actionURL,
       payloads, startTime, endTime);
       result.Add(messageData);
     }

@@ -49,13 +49,13 @@
      <Compile Include="Assets\Plugins\MiniJSON.cs" />
      <Compile Include="Assets\Plugins\SessionM\AchievementData.cs" />
      <Compile Include="Assets\Plugins\SessionM\Example\SessionMListenerExample.cs" />
+     <Compile Include="Assets\Plugins\SessionM\FeedMessageData.cs" />
      <Compile Include="Assets\Plugins\SessionM\IAchievementData.cs" />
      <Compile Include="Assets\Plugins\SessionM\ISessionM.cs" />
      <Compile Include="Assets\Plugins\SessionM\ISessionMCallback.cs" />
      <Compile Include="Assets\Plugins\SessionM\ISessionM_Android.cs" />
      <Compile Include="Assets\Plugins\SessionM\ISessionM_Dummy.cs" />
      <Compile Include="Assets\Plugins\SessionM\ISessionM_iOS.cs" />
-     <Compile Include="Assets\Plugins\SessionM\MessageData.cs" />
      <Compile Include="Assets\Plugins\SessionM\SessionM.cs" />
      <Compile Include="Assets\Plugins\SessionM\SessionMEventListener.cs" />
      <Compile Include="Assets\Plugins\SessionM\UserData.cs" />

@@ -87,26 +87,12 @@ public class BaseNativeActivity extends UnityPlayerActivity {
 
         final Map<String, String> enrollWithEmailMetaData = new HashMap<>();
 
-        if (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            enrollWithEmailMetaData.put("email", email);
-        } else {
-            return false;
-        }
-        if ((password != null) && (password.length() > 0)) {
-            enrollWithEmailMetaData.put("password", password);
-        } else {
-            return false;
-        }
-        if (isBirthYearValid(birthYear)) {
-            enrollWithEmailMetaData.put("yob", birthYear);
-        }
-        if ((gender != null) && (gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f") ||
-                                 gender.equalsIgnoreCase("male") || gender.equalsIgnoreCase("female"))) {
-            enrollWithEmailMetaData.put("gender", gender);
-        }
-        if ((zipCode != null) && Pattern.matches(regex, zipCode)) {
-            enrollWithEmailMetaData.put("zip", zipCode);
-        }
+        enrollWithEmailMetaData.put("email", email);
+        enrollWithEmailMetaData.put("password", password);
+        enrollWithEmailMetaData.put("yob", birthYear);
+        enrollWithEmailMetaData.put("gender", gender);
+        enrollWithEmailMetaData.put("zip", zipCode);
+
         return sessionM.signUpUserWithData(enrollWithEmailMetaData);
     }
 
@@ -120,7 +106,7 @@ public class BaseNativeActivity extends UnityPlayerActivity {
 
     public void logOutUser() {
         sessionM.logOutUser();
-            }
+    }
 
     public String getMessagesList() {
         String json = "";

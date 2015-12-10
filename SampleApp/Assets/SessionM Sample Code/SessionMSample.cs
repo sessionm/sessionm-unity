@@ -108,6 +108,11 @@ public class SessionMSample : MonoBehaviour
 		unclaimedAchValueLable.text = "Unclaimed Achievement Value: " + user.GetUnclaimedAchievementValue();
 		tierLable.text = "My Tier: " + "Not Functioning";
 
+		string[] rewards = sessionM.GetRewards();
+		Debug.Log("Rewards: " + rewards.Length);
+		for (int i = 0 ; i < rewards.Length ; i++) {
+	 	  Debug.Log("Reward: (" + i + ") :" + rewards[i]);
+		}
 	}
 
 	//Unity Lifecycle
@@ -116,7 +121,7 @@ public class SessionMSample : MonoBehaviour
 	{
 		//Set service region before SessionM instance is activated
 		// SessionM.SetServiceRegion(ServiceRegion.USA);
-		SessionM.SetServerType("https://api.tour-sessionm.com");
+		// SessionM.SetServerType("https://api.tour-sessionm.com");
 		SessionM.SetShouldAutoUpdateAchievementsList(true);
 		SessionM.SetMessagesEnabled(true);
 		SessionM.SetSessionAutoStartEnabled(false);

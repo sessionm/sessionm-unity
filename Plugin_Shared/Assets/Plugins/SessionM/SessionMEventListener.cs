@@ -1,5 +1,4 @@
-﻿// Plugin_Shared/Assets/Plugins/SessionM/SessionMEventListener.cs
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -21,7 +20,7 @@ public class SessionMEventListener : MonoBehaviour
 	// This method is reserved for future use. Please, contact Session M for more information.
 	public static event Action<IDictionary<string, object>>  NotifyUserInfoChanged;
 
-  public static event Action<string>NotifyFeedChanged;
+	public static event Action<string>NotifyFeedChanged;
 
 	// Notifies that current unclaimed achievement data has been updated.
 	// This method is called when (1) new achievement has been earned with respective achievement data object, (2) last earned achievement has been claimed in which case achievement data object is null.

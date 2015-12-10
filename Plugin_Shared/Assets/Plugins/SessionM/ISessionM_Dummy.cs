@@ -1,4 +1,3 @@
-// Plugin_Shared/Assets/Plugins/SessionM/ISessionM_Dummy.cs
 using System;
 
 //SessionMDummy.cs

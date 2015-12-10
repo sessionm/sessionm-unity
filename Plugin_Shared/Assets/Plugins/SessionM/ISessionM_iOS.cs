@@ -1,4 +1,3 @@
-// Plugin_Shared/Assets/Plugins/SessionM/ISessionM_iOS.cs
 using UnityEngine;
 using System;
 using System.Collections;
@@ -76,19 +75,19 @@ public class ISessionM_iOS : ISessionM
 		return SMGetUserJSON();
 	}
 
-        [DllImport ("__Internal")]
-        private static extern bool SMLogInUserWithEmail(string email, string password);
-        public bool LogInUserWithEmail(string email, string password)
-        {
-                return SMLogInUserWithEmail(email, password);
-        }
+	[DllImport ("__Internal")]
+	private static extern bool SMLogInUserWithEmail(string email, string password);
+	public bool LogInUserWithEmail(string email, string password)
+	{
+		return SMLogInUserWithEmail(email, password);
+	}
 
-        [DllImport ("__Internal")]
-        private static extern void SMLogOutUser();
-        public void LogOutUser()
-        {
-                SMLogOutUser();
-        }
+	[DllImport ("__Internal")]
+	private static extern void SMLogOutUser();
+	public void LogOutUser()
+	{
+		SMLogOutUser();
+	}
 
 	[DllImport ("__Internal")]
 	private static extern void SMPlayerDataSetUserOptOutStatus(bool status);

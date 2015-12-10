@@ -13,7 +13,7 @@ public class SessionMListenerExample : MonoBehaviour
 		SessionMEventListener.NotifyActivityPresented += NotifyActivityPresented;
 		SessionMEventListener.NotifyActivityDismissed += NotifyActivityDismissed;
 		SessionMEventListener.NotifyUserInfoChanged += NotifyUserInfoChanged;
-    SessionMEventListener.NotifyFeedChanged += NotifyFeedChanged;
+		SessionMEventListener.NotifyFeedChanged += NotifyFeedChanged;
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated += NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserAction += NotifyUserAction;
 	}
@@ -25,7 +25,7 @@ public class SessionMListenerExample : MonoBehaviour
 		SessionMEventListener.NotifyActivityPresented -= NotifyActivityPresented;
 		SessionMEventListener.NotifyActivityDismissed -= NotifyActivityDismissed;
 		SessionMEventListener.NotifyUserInfoChanged -= NotifyUserInfoChanged;
-    SessionMEventListener.NotifyFeedChanged -= NotifyFeedChanged;
+		SessionMEventListener.NotifyFeedChanged -= NotifyFeedChanged;
 		SessionMEventListener.NotifyUnclaimedAchievementDataUpdated -= NotifyUnclaimedAchievementDataUpdated;
 		SessionMEventListener.NotifyUserAction -= NotifyUserAction;
 	}

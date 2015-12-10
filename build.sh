@@ -1,5 +1,4 @@
 #!/bin/bash
-
 source Config
 source Config-SdkVersion
 DEST_PATH=${PWD}
@@ -41,7 +40,6 @@ echo "Building SessionM Unity BaseActivity Plugin..."
 echo
 $UNITY_PATH -batchmode -exportPackage Assets/Plugins Assets/Editor SessionM-BaseActivity.unityPackage -projectPath "$DEST_PATH/build/BaseActivity" -quit
 cp SessionM-BaseActivity.unityPackage ../
-cd ..
 
 cd ../Prime31
 echo "Building SessionM Unity Prime31 Plugin..."

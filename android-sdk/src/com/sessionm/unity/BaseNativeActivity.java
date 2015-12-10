@@ -100,8 +100,8 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return sessionM.logInUserWithEmail(email, password);
     }
 
-    public void fetchMessageFeed() {
-        sessionM.fetchMessageFeed();
+    public void refreshMessagesList() {
+        sessionM.refreshMessagesList();
     }
 
     public void logOutUser() {

@@ -58,8 +58,8 @@ public class SessionMPlugin{
         sessionM.logOutUser();
     }
 
-    public static void fetchMessageFeed() {
-        sessionM.fetchMessageFeed();
+    public static void refreshMessagesList() {
+        sessionM.refreshMessagesList();
     }
 
     private static final String regex = "^\\d{5}(-\\d{4})?$";

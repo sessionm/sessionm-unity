@@ -101,7 +101,7 @@ public class ISessionM_Android : ISessionM
 
 	public void FetchMessageFeed() {
 	  using (AndroidJavaObject activityObject = GetCurrentActivity()) {
-	    activityObject.Call("fetchMessageFeed");
+	    activityObject.Call("refreshMessagesList");
 	  }
 	}
 

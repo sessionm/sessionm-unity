@@ -5,13 +5,7 @@ Date: 06/17/2015
 Version: 2.1
 
 Changes:
-- Added Unity 5 support.
-- Added SetServiceRegion api method.
-- Added GetRewards api method.
-- Added UpdateAchievementsList api method.
-- Added SetShouldAutoUpdateAchievementsList api method.
-- Added various fields and methods to IAchievementData and UserData classes.
-
+- Updated to "Native SDK" version 1.10.8 to fix the WebViewClient SSL issue
 
 For more info, please see http://www.sessionm.com/documentation/unity-integration.php
 

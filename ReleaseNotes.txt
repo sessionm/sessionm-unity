@@ -1,8 +1,8 @@
 SessionM Unity SDK Release Notes
 ________________
-Copyright: 2015 SessionM. All rights reserved.
-Date: 06/17/2015
-Version: 2.1
+Copyright: 2016 SessionM. All rights reserved.
+Date: 01/04/2016
+Version: 2.1.1
 
 Changes:
 - Updated to "Native SDK" version 1.10.8 to fix the WebViewClient SSL issue

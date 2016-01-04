@@ -21,7 +21,8 @@ LIBRARY_FILE_PATH=${INSTALL_PATH}/${LIBRARY_FILE_NAME}
 
 echo "Building ${SCHEME}"
 xcodebuild -workspace ${WORKSPACE} -scheme ${SCHEME} -sdk iphoneos -configuration ${CONFIGURATION} -derivedDataPath ${INSTALL_PATH} > ${INSTALL_PATH}/device.log
-xcodebuild -workspace ${WORKSPACE} -scheme ${SCHEME} -sdk iphonesimulator -configuration ${CONFIGURATION} -derivedDataPath ${INSTALL_PATH} > ${INSTALL_PATH}/sim.log
-lipo -create -output ${LIBRARY_FILE_PATH} ${PRODUCTS_PATH}-iphoneos/${LIBRARY_FILE_NAME} ${PRODUCTS_PATH}-iphonesimulator/${LIBRARY_FILE_NAME} > ${INSTALL_PATH}/lipo.log
+#xcodebuild -workspace ${WORKSPACE} -scheme ${SCHEME} -sdk iphonesimulator -configuration ${CONFIGURATION} ARCHS="i386 x86_64" -derivedDataPath ${INSTALL_PATH} > ${INSTALL_PATH}/sim.log
+#lipo -create -output ${LIBRARY_FILE_PATH} ${PRODUCTS_PATH}-iphoneos/${LIBRARY_FILE_NAME} ${PRODUCTS_PATH}-iphonesimulator/${LIBRARY_FILE_NAME} > ${INSTALL_PATH}/lipo.log
+lipo -create -output ${LIBRARY_FILE_PATH} ${PRODUCTS_PATH}-iphoneos/${LIBRARY_FILE_NAME} > ${INSTALL_PATH}/lipo.log
 
 echo "Build is under: ${LIBRARY_FILE_PATH}"

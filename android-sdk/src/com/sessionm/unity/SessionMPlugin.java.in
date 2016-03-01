@@ -10,7 +10,7 @@ import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.User;
-import com.sessionm.api.mmc.data.MessageData;
+import com.sessionm.api.message.data.MessageData;
 
 import org.json.JSONObject;
 import java.util.Calendar;
@@ -50,6 +50,10 @@ public class SessionMPlugin{
         return sessionM.getUser().getUnclaimedAchievementCount();
     }
 
+    public static boolean authenticateWithProvider(String provider, String token) {
+        return sessionM.authenticateWithToken(provider, token);
+    }
+    
     public static boolean logInUserWithEmail(String email, String password) {
         return sessionM.logInUserWithEmail(email, password);
     }
@@ -59,7 +63,7 @@ public class SessionMPlugin{
     }
 
     public static void refreshMessagesList() {
-        sessionM.refreshMessagesList();
+        sessionM.getMessageManager().refreshMessagesList();
     }
 
     private static final String regex = "^\\d{5}(-\\d{4})?$";
@@ -97,7 +101,7 @@ public class SessionMPlugin{
 
     public static String getMessagesList() {
         String json = "";
-        List<MessageData> messagesList= sessionM.getMessagesList();
+        List<MessageData> messagesList= sessionM.getMessageManager().getMessagesList();
         if(messagesList != null) {
             json = SessionMListener.getMessageJSON(messagesList);
         }
@@ -110,6 +114,14 @@ public class SessionMPlugin{
 
     public static String getRewardsJSON(){
         return SessionMListener.getRewardsJSON();
+    }
+
+    public static String getTiers(){
+        String json = "";
+        List<JSONObject> tiersList = sessionM.getTiers();
+        if (tiersList != null)
+            json = SessionMListener.getTiersJSON(tiersList);
+        return json;
     }
 
     public static void setServiceRegion(int serviceRegion) {
@@ -191,6 +203,9 @@ public class SessionMPlugin{
         }
     }
 
+    public static void presentTierList() {
+    }
+
     public static void setUserOptOutStatus(boolean status){
         if(Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, ac + ".setUserOptOutStatus()");
@@ -248,23 +263,5 @@ public class SessionMPlugin{
             Log.d(TAG, ac + "SessionM.onStop()");
         }
         sessionM.onActivityStop(ac);
-    }
-
-    public static boolean isBirthYearValid(String yob) {
-        if (yob == null)
-            return false;
-        if (!yob.isEmpty()) {
-            int age;
-            try {
-                age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(yob);
-                return age >= 14 && age <= 120;
-            } catch (NumberFormatException e) {
-                if (Log.isLoggable(TAG, Log.ERROR)) {
-                    Log.e(TAG, String.format("Exception parse int from yob string: %s", e));
-                }
-                return false;
-            }
-        }
-        return false;
     }
 }

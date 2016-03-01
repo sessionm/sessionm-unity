@@ -11,7 +11,7 @@ import com.sessionm.api.Activity;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
-import com.sessionm.api.mmc.data.MessageData;
+import com.sessionm.api.message.data.MessageData;
 import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONObject;
@@ -20,7 +20,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class BaseNativeActivity extends UnityPlayerActivity {
 
@@ -80,9 +79,6 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return json;
     }
 
-
-    private static final String regex = "^\\d{5}(-\\d{4})?$";
-
     public boolean signUpUser(String email, String password, String birthYear, String gender, String zipCode) {
 
         final Map<String, String> enrollWithEmailMetaData = new HashMap<>();
@@ -96,12 +92,16 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         return sessionM.signUpUserWithData(enrollWithEmailMetaData);
     }
 
+    public boolean authenticateWithProvider(String provider, String token) {
+        return sessionM.authenticateWithToken(provider, token);
+    }
+
     public boolean logInUserWithEmail(String email, String password) {
         return sessionM.logInUserWithEmail(email, password);
     }
 
     public void refreshMessagesList() {
-        sessionM.refreshMessagesList();
+        sessionM.getMessageManager().refreshMessagesList();
     }
 
     public void logOutUser() {
@@ -110,7 +110,7 @@ public class BaseNativeActivity extends UnityPlayerActivity {
 
     public String getMessagesList() {
         String json = "";
-        List<MessageData> messagesList= sessionM.getMessagesList();
+        List<MessageData> messagesList= sessionM.getMessageManager().getMessagesList();
         if(messagesList != null) {
             json = SessionMListener.getMessageJSON(messagesList);
         }
@@ -130,6 +130,14 @@ public class BaseNativeActivity extends UnityPlayerActivity {
 
     public String getRewardsJSON(){
         return SessionMListener.getRewardsJSON();
+    }
+
+    public String getTiers(){
+        String json = "";
+        List<JSONObject> tiersList = sessionM.getTiers();
+        if (tiersList != null)
+            json = SessionMListener.getTiersJSON(tiersList);
+        return json;
     }
 
     public void updateAchievementsList(){
@@ -221,6 +229,9 @@ public class BaseNativeActivity extends UnityPlayerActivity {
         }
     }
 
+    public void presentTierList() {
+    }
+
     // Activity
     
     @Override
@@ -276,23 +287,5 @@ public class BaseNativeActivity extends UnityPlayerActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         sessionM.dismissActivity();
         return super.onPrepareOptionsMenu(menu);
-    }
-
-    public static boolean isBirthYearValid(String yob) {
-        if (yob == null)
-            return false;
-        if (!yob.isEmpty()) {
-            int age;
-            try {
-                age = Calendar.getInstance().get(Calendar.YEAR) - Integer.parseInt(yob);
-                return age >= 14 && age <= 120;
-            } catch (NumberFormatException e) {
-                if (Log.isLoggable(TAG, Log.ERROR)) {
-                    Log.e(TAG, String.format("Exception parse int from yob string: %s", e));
-                }
-                return false;
-            }
-        }
-        return false;
     }
 }

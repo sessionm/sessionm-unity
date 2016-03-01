@@ -9,8 +9,7 @@ import com.sessionm.api.SessionListener;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
-import com.sessionm.api.mmc.data.FeedMessageData;
-import com.sessionm.api.mmc.data.MessageData;
+import com.sessionm.api.message.data.MessageData;
 import com.unity3d.player.UnityPlayer;
 
 import org.json.JSONArray;
@@ -289,6 +288,9 @@ public class SessionMListener implements ActivityListener, SessionListener {
             jsonObject.put("getUnclaimedAchievementValue", user.getUnclaimedAchievementValue());
             jsonObject.put("getAchievementsJSON", userAchievementsJSONString);
             jsonObject.put("getAchievementsListJSON", userAchievementsListJSONString);
+            jsonObject.put("getTierName", user.getTierName());
+            jsonObject.put("getTierPercentage", String.valueOf(user.getTierPercentage()));
+            jsonObject.put("getTierAnniversaryDate", user.getTierAnniversaryDate());
         } catch (JSONException e) {
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "JSONException when trying to get user json: " + e);
@@ -326,6 +328,15 @@ public class SessionMListener implements ActivityListener, SessionListener {
             }
         }
         return messagesJSONArray.toString();
+    }
+
+    //Return feed message data as JSON for unity
+    public static String getTiersJSON(List<JSONObject> tiersList) {
+        JSONArray tiersArray = new JSONArray();
+        for (JSONObject tier : tiersList) {
+            tiersArray.put(tier);
+        }
+        return tiersArray.toString();
     }
 
     //Return rewards data as JSON for unity

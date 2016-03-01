@@ -197,7 +197,7 @@ const char *SMGetRewardsJSON(void) {
 }
 
 void SMSetMessagesEnabled(bool enabled) {
-    [SessionM sharedInstance].shouldUpdateMessagesListOnSessionStart = enabled;
+    [SessionM sharedInstance].shouldEnableMessages = enabled;
 }
 
 const char *SMGetMessagesList(void) {
@@ -313,12 +313,13 @@ void SMNotifyCustomAchievementClaimed(void) {
 }
 
 void SMPresentTierList(void) {
-    [[SessionM sharedInstance] presentTierViewController];
+    // [[SessionM sharedInstance] presentTierViewController];
 }
 
 const char *SMGetTiers(void) {
     NSString *tiersString = nil;
-    NSArray *tiersData = [SessionM sharedInstance].tiers;
+    // NSArray *tiersData = [SessionM sharedInstance].tiers;
+    NSArray *tiersData = nil;
     if (tiersData) {
         tiersString = SMTiersToJSONString(tiersData);
     }
@@ -349,7 +350,7 @@ static NSString *SMAchievementDataToJSONString(SMAchievementData *achievementDat
                                       @"name": achievementData.name ? achievementData.name : @"",
                                       @"message": achievementData.message ? achievementData.message : @"",
                                       @"limitText": achievementData.limitText ? achievementData.limitText : @"",
-                                      @"mpointValue": [[NSNumber alloc] initWithInteger:achievementData.mpointValue],
+                                      @"mpointValue": [[NSNumber alloc] initWithInteger:achievementData.pointValue],
                                       @"isCustom": [[NSNumber alloc] initWithBool:achievementData.isCustom],
                                       @"lastEarnedDate": [[NSNumber alloc] initWithLongLong:time],
                                       @"timesEarned": [[NSNumber alloc] initWithUnsignedInteger:achievementData.timesEarned],
@@ -390,9 +391,9 @@ static NSString *SMUserToJSONString(SMUser *user) {
                                @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
                                @"getAchievementsJSON": userAchievementsJSONString,
                                @"getAchievementsListJSON": userAchievementsListJSONString,
-                               @"getTierName": user.tierName ? user.tierName : @"",
-                               @"getTierPercentage": user.tierPercentage ? @(user.tierPercentage).stringValue : @"",
-                               @"getTierAnniversaryDate": user.tierAnniversaryDate ? user.tierAnniversaryDate : @""
+                               // @"getTierName": user.tierName ? user.tierName : @"",
+                               // @"getTierPercentage": user.tierPercentage ? @(user.tierPercentage).stringValue : @"",
+                               // @"getTierAnniversaryDate": user.tierAnniversaryDate ? user.tierAnniversaryDate : @""
                                };
 
     NSError *error = nil;
@@ -438,9 +439,10 @@ static NSString *SMMessagesListToJSONString(NSArray *messages) {
 
 static NSString *SMTiersToJSONString(NSArray *tiers) {
     NSError *error = nil;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[SessionM sharedInstance].tiers
+    NSData *jsonData = nil;
+    /*NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[SessionM sharedInstance].tiers
                                                        options:0
-                                                         error:&error];
+                                                         error:&error]; */
     NSString *jsonString = nil;
     if (!error) {
         jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

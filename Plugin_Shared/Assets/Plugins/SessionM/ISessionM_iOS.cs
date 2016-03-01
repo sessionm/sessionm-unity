@@ -236,6 +236,13 @@ public class ISessionM_iOS : ISessionM
 	}
 
 	[DllImport ("__Internal")]
+	private static extern bool SMAuthenticateWithToken(string provider, string token);
+	public bool AuthenticateWithToken(string provider, string token)
+	{
+		return SMAuthenticateWithToken(provider, token);
+	}
+
+	[DllImport ("__Internal")]
 	private static extern void SMNotifyCustomAchievementPresented();
 	public void NotifyPresented()
 	{

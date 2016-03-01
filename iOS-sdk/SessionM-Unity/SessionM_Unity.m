@@ -327,6 +327,12 @@ const char *SMGetTiers(void) {
     return c ? strdup(c) : NULL;
 }
 
+BOOL SMAuthenticateWithToken(const char *provider, const char *token) {
+    NSString *providerString = [NSString stringWithCString:provider encoding:NSUTF8StringEncoding];
+    NSString *tokenString = [NSString stringWithCString:token encoding:NSUTF8StringEncoding];
+    return [[SessionM sharedInstance] authenticateWithProvider:providerString token:tokenString];
+}
+
 
 #pragma mark - Utility
 

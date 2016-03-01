@@ -174,6 +174,9 @@ public interface ISessionM
 	// Set meta data properties
 	void SetMetaData(string data, string key);
 
+	// Attempts to authenticate user with the provided token. Returns false if either provider or token is missing.
+	bool AuthenticateWithToken(string provider, string token);
+
 	// Notifies the SessionM SDK that a custom achievement has been presented
 	void NotifyPresented();
 

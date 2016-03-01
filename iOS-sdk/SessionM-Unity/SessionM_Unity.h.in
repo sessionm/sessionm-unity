@@ -60,6 +60,7 @@ void SMNotifyCustomAchievementDismissed(void);
 void SMNotifyCustomAchievementClaimed(void);
 void SMPresentTierList(void);
 const char *SMGetTiers(void);
+BOOL SMAuthenticateWithToken(const char *provider, const char *token);
 
 @interface SessionM_Unity : NSObject
 

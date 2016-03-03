@@ -318,8 +318,7 @@ void SMPresentTierList(void) {
 
 const char *SMGetTiers(void) {
     NSString *tiersString = nil;
-    // NSArray *tiersData = [SessionM sharedInstance].tiers;
-    NSArray *tiersData = nil;
+    NSArray *tiersData = [SessionM sharedInstance].tiers;
     if (tiersData) {
         tiersString = SMTiersToJSONString(tiersData);
     }
@@ -397,9 +396,9 @@ static NSString *SMUserToJSONString(SMUser *user) {
                                @"getUnclaimedAchievementValue": [NSNumber numberWithUnsignedInteger:user.unclaimedAchievementValue],
                                @"getAchievementsJSON": userAchievementsJSONString,
                                @"getAchievementsListJSON": userAchievementsListJSONString,
-                               // @"getTierName": user.tierName ? user.tierName : @"",
-                               // @"getTierPercentage": user.tierPercentage ? @(user.tierPercentage).stringValue : @"",
-                               // @"getTierAnniversaryDate": user.tierAnniversaryDate ? user.tierAnniversaryDate : @""
+                               @"getTierName": user.tierName ? user.tierName : @"",
+                               @"getTierPercentage": user.tierPercentage ? @(user.tierPercentage).stringValue : @"",
+                               @"getTierAnniversaryDate": user.tierAnniversaryDate ? user.tierAnniversaryDate : @""
                                };
 
     NSError *error = nil;
@@ -445,10 +444,9 @@ static NSString *SMMessagesListToJSONString(NSArray *messages) {
 
 static NSString *SMTiersToJSONString(NSArray *tiers) {
     NSError *error = nil;
-    NSData *jsonData = nil;
-    /*NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[SessionM sharedInstance].tiers
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[SessionM sharedInstance].tiers
                                                        options:0
-                                                         error:&error]; */
+                                                         error:&error];
     NSString *jsonString = nil;
     if (!error) {
         jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

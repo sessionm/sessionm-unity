@@ -1,0 +1,14 @@
+SessionM Mobile Marketing Cloud iOS SDK Release Notes
+
+Copyright: 2016 SessionM. All rights reserved.
+Date: 02/19/2016
+Version: 1.15.5
+
+Changes:
+- Added API for native receipt capture support (please contact us at https://sessionm.zendesk.com to use this feature).
+- The SMUser achievementsList property will not be updated on session start or portal close unless the SessionM shouldAutoUpdateAchievementsList property is set to YES.
+- The SessionM updateAchievementsList method will now execute even if shouldAutoUpdateAchievementsList is set to YES.
+- Added notifySeen method and messageID property to SMMessageData.
+- Moved subheader, iconURL and imageURL properties from SMFeedMessageData to SMMessageData.
+- Deprecated SessionM shouldUpdateMessagesListOnSessionStart property and replaced with shouldEnableMessages.
+- Updated packaged assets.

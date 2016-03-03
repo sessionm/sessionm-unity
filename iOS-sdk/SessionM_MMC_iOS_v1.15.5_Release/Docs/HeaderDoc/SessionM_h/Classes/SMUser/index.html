@@ -1,0 +1,485 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>SMUser</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<link rel="stylesheet" type="text/css" href="http://devdoc.sessionm.com/ios/docs.css">
+<style type="text/css"><!--.char {background: #ffffff; color:#0000ff;}.comment {background:#ffffff; color:#236e25}.function {background:#ffffff; color:#000000;}.keyword {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.param {background:#ffffff; color:#000000;}.preprocessor {background:#ffffff; color:#236e25}.string {background: #ffffff; color:#891315;}.template {background:#ffffff; color:#761550;}.type {background:#ffffff; color:#761550;}.var {background:#ffffff; color:#000000;}--></style>
+<style><!--
+body {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+.toc_contents_text {
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+ul.tocSubEntryList li.tocSubEntry {
+    list-style: none;
+}
+
+#colorbox {
+		display: none;
+}
+.spec_sheet_line {
+		margin-bottom: 1px;
+}
+.collapsible {
+		display: none;
+}
+.toc_leadspace {
+		width: 10; min-width: 10;
+}
+.disclosure_triangle_td {
+		width: 14; min-width: 14;
+		font-size: 10px;
+		vertical-align: middle;
+}
+.specbox td {
+		font-size: 13px;
+}
+.specbox td a {
+		font-size: 13px;
+}
+.specbox td code {
+		font-size: 13px;
+}
+.specbox td tt {
+		font-size: 13px;
+}
+.specbox td pre {
+		font-size: 13px;
+}
+.specbox a {
+		font-size: 12px;
+}
+.disclosure_triangle_td a {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:link {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:active {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:visited:hover {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:hover {
+		text-decoration: none;
+}
+.hd_toc_box {
+		padding-top: 10px;
+		padding-right: 15px;
+}.tocSeparator {
+		margin-top: 15px;
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+}
+.tocSubEntryList {
+		margin-left: 0px;
+		padding-left: 40px;
+		padding-top: 0px;
+		margin-top: 2px;
+		padding-bottom: 0px;
+		margin-bottom: 8px;
+}
+.hd_toc_heading_table {
+		margin-top: 2px;
+		margin-bottom: 2px;
+}
+.hd_toc_entry_table {
+		margin-top: 2px;
+		margin-bottom: 2px;
+}
+.tocSubEntry {
+		margin-left: 0px;
+		padding-left: 0px;
+		margin-top: 0px;
+		margin-bottom: 1px;
+}
+.tocSubEntry a {
+		font-size: 10pt;
+}
+.tocSubheading {
+		padding-left: 14px;
+		margin-left: 0px;
+		margin-top: 5px;
+		padding-top: 0px;
+		font-size: 16px;
+		color: #808080;
+}
+
+#hd_outermost_table { margin-left: 0px; border-spacing: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }
+#hd_outermost_table > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }
+#hd_outermost_table > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; }
+#hd_outermost_table > tbody > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }
+#hd_outermost_table > tbody > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-top: 3px; }
+
+#tocMenu {
+		border-right: 1px solid #c0c0c0;
+		background-color: #f4f4ff;
+		top:0px;
+		left:0px;
+		width:230px;
+		height:100%;
+}
+#bodyContents {
+		width: auto;
+		padding-left: 15px;
+}
+--></style>
+<style id="disable_before_iOS_5"><!--
+#tocMenu {
+		position: fixed;
+		height: 100%;
+		overflow: auto;
+}
+#bodyContents {
+		width: auto;
+		left: 235px;
+		right: 0;
+		padding-left: 15px;
+		position: fixed;
+		height: 100%;
+		overflow-y: scroll;
+}
+--></style>
+<script language="JavaScript" type="text/javascript"><!--
+    if (navigator.platform && (navigator.platform.match(/iPad/) || navigator.platform.match(/iPhone/) || navigator.platform.match(/iPod/))) {
+        if (navigator.userAgent.match(/OS 1(_\d)+/) ||
+            navigator.userAgent.match(/OS 2(_\d)+/) ||
+            navigator.userAgent.match(/OS 3(_\d)+/) ||
+            navigator.userAgent.match(/OS 4(_\d)+/)) {
+                /* Earlier iOS versions require different scrolling gestures with position: fixed. */
+                var del_style_elt = document.getElementById("disable_before_iOS_5");
+                if (del_style_elt) del_style_elt.parentNode.removeChild(del_style_elt);
+        }
+    }
+// --></script><script language="JavaScript" type="text/javascript"><!--
+function getNewHTTPObject()
+{
+        var xmlhttp;
+
+        /** Special IE only code ... */
+        /*@cc_on
+          @if (@_jscript_version >= 5)
+              try
+              {
+                  xmlhttp = new ActiveXObject('Msxml2.XMLHTTP');
+              }
+              catch (e)
+              {
+                  try
+                  {
+                      xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+                  }
+                  catch (E)
+                  {
+                      xmlhttp = false;
+                  }
+             }
+          @else
+             xmlhttp = false;
+        @end @*/
+
+        /** Every other browser on the planet */
+        if (!xmlhttp && typeof XMLHttpRequest != 'undefined')
+        {
+            try
+            {
+                xmlhttp = new XMLHttpRequest();
+            }
+            catch (e)
+            {
+                xmlhttp = false;
+            }
+        }
+
+        return xmlhttp;
+}
+
+function hidetoc() {
+	var toc = document.getElementById('tocMenu');
+	var src = toc.getAttribute('src');
+	var xhr = getNewHTTPObject();
+	xhr.open('GET', src, true);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4) {
+			var toc = document.getElementById('tocMenu');
+			toc.innerHTML = xhr.responseText;
+		}
+	}
+	xhr.send(null);
+	var origURL = parent.document.URL;
+	var contentURL = origURL.substring(origURL.indexOf('?')+1, origURL.length);
+	if (contentURL.length == origURL.length) {
+		jumpPos = origURL.substring(origURL.indexOf('#')+1, origURL.length);
+	}
+	if (contentURL == "hidetoc") {
+		var body = document.getElementById('bodyContents');
+		if (toc && body) {
+			toc.style.display = 'none';
+			body.style.marginLeft = '0px';
+		}
+	}
+}
+
+function disclosure_triangle(elt) {
+   var linkelt = elt;
+   while (elt && elt.tagName != 'TABLE') { elt = elt.parentNode;}
+   if (!elt) { return; }
+   while (elt && elt.tagName != 'DIV') { elt = elt.nextSibling;}
+   if (!elt) { return; }
+   if (parseInt(linkelt.getAttribute('state'))) {
+      // It's open.  Close it
+      linkelt.innerHTML = '&#x25B7;';
+      linkelt.setAttribute('state', 0);
+      linkelt.setAttribute('class', 'closed_disclosure_triangle');
+      elt.style.display = 'none';
+   } else {
+      // It's closed.  Open it
+      linkelt.innerHTML = '&#x25BC;';
+      linkelt.setAttribute('state', 1);
+      linkelt.setAttribute('class', 'open_disclosure_triangle');
+      elt.style.display = 'block';
+   }
+}
+--></script><link rel="stylesheet" type="text/css" href="http://devdoc.sessionm.com/ios/docs.css">
+<style type="text/css"><!--.char {background: #ffffff; color:#0000ff;}.comment {background:#ffffff; color:#236e25}.function {background:#ffffff; color:#000000;}.keyword {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.param {background:#ffffff; color:#000000;}.preprocessor {background:#ffffff; color:#236e25}.string {background: #ffffff; color:#891315;}.template {background:#ffffff; color:#761550;}.type {background:#ffffff; color:#761550;}.var {background:#ffffff; color:#000000;}--></style>
+</head>
+<body bgcolor="#ffffff" onload="hidetoc();">
+<!-- headerDoc=cl; uid=//apple_ref/occ/cl/SMUser;  name=SMUser-->
+<a name="//apple_ref/occ/cl/SMUser"></a><table id="hd_outermost_table" height="100%" width="100%"><tr>
+<td valign="top" id="tocMenu" src="toc.html"></td>
+<!-- start of header -->
+<div class="Header">
+<a href="http://devdoc.sessionm.com/ios/MasterTOC.html" style="text-decoration: none;">
+<h1 class="Logo">iOS SDK Documentation</h1>
+</a>
+</div>
+<!-- end of header -->
+<td id="bodyContents" valign="top">
+<a name="top"></a>
+<hr class="afterHeader">
+<h1><a name="SMUser">SMUser</a></h1>
+<div class="spec_sheet_info_box"><table cellspacing="0" class="specbox">
+<tr>
+<td scope="row"><b>Superclass:</b></td>
+<td><div style="margin-bottom:1px"><div class="content_text">
+<!-- a logicalPath="//apple_ref/occ/cl/NSObject" machineGenerated="true" -->NSObject<!-- /a -->
+</div></div></td>
+</tr>
+<tr>
+<td scope="row"><b>Declared In:</b></td>
+<td><div style="margin-bottom:1px"><div class="content_text"><a logicalpath="//apple_ref/doc/header/SessionM.h" target="_top" machinegenerated="true" href="../../index.html#//apple_ref/doc/header/SessionM.h">SessionM.h</a></div></div></td>
+</tr>
+</table></div>
+<h2>Introduction</h2>
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/cl/SMUser;name=start --><!-- begin abstract --></p>
+<p>Provides information about user such as unclaimed achievement count, point balance, opt out status, etc.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/cl/SMUser;name=end --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/cl/SMUser;name=start --><p>When user data is changed as a result of user earning a new achievement or opting out of the program <a href="../../Protocols/SessionMDelegate/index.html#//apple_ref/occ/intf/SessionMDelegate" logicalPath="//apple_ref/occ/intf/SessionMDelegate" target="_top">SessionMDelegate</a> method <a href="../../Protocols/SessionMDelegate/index.html#//apple_ref/occ/intfm/SessionMDelegate/sessionM:didUpdateUser:" logicalPath="//apple_ref/occ/intfm/SessionMDelegate/sessionM:didUpdateUser:" target="_top">sessionM:didUpdateUser:</a> is called to notify the application about this event.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/cl/SMUser;name=end --><!-- end discussion -->
+</p>
+<hr class="afterClassOrHeaderInfo">
+<br><a name="HeaderDoc_props"></a>
+<h2 class="h2tight">Properties</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/achievements" target="_top">achievements</a></tt></dt>
+<dd><p>Returns an array of <a href="../../../SMAchievementData_h/Classes/SMAchievementData/index.html#//apple_ref/occ/cl/SMAchievementData" logicalPath="//apple_ref/occ/cl/SMAchievementData" target="_top">SMAchievementData</a> objects.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/achievementsList" target="_top">achievementsList</a></tt></dt>
+<dd><p>Returns an array of <a href="../../../SMAchievementData_h/Classes/SMAchievementData/index.html#//apple_ref/occ/cl/SMAchievementData" logicalPath="//apple_ref/occ/cl/SMAchievementData" target="_top">SMAchievementData</a> objects representing the user's achievement forecast.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/claimableAchievements" target="_top">claimableAchievements</a></tt></dt>
+<dd><p>Returns the subarray of <a href="index.html#//apple_ref/occ/instp/SMUser/achievementsList" logicalPath="//apple_ref/occ/instp/SMUser/achievementsList" target="_top">achievementsList</a> that contains all achievements that the user can currently claim.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/isLoggedIn" target="_top">isLoggedIn</a></tt></dt>
+<dd><p>Returns user's logged in status. This value is set to true for a registered user who has also verified their password for the current session through the portal - or when either <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/signUpUserWithData:" logicalPath="//apple_ref/occ/instm/SessionM/signUpUserWithData:" target="_top">signUpUserWithData:</a> or <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" logicalPath="//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" target="_top">logInUserWithEmail:password:</a> is called.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/isOptedOut" target="_top">isOptedOut</a></tt></dt>
+<dd><p>Returns or sets user opt out status.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/isRegistered" target="_top">isRegistered</a></tt></dt>
+<dd><p>Returns user's registered status. This value is set to true when the account corresponds to a registered user. The user can register for an account through the portal - or when either <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/enrollWithData:" logicalPath="//apple_ref/occ/instm/SessionM/enrollWithData:" target="_top">enrollWithData:</a>, <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/enrollWithEmail:YOB:" logicalPath="//apple_ref/occ/instm/SessionM/enrollWithEmail:YOB:" target="_top">enrollWithEmail:YOB:</a>, <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/signUpUserWithData:" logicalPath="//apple_ref/occ/instm/SessionM/signUpUserWithData:" target="_top">signUpUserWithData:</a> or <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" logicalPath="//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" target="_top">logInUserWithEmail:password:</a> is called.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/pointBalance" target="_top">pointBalance</a></tt></dt>
+<dd><p>Returns user's current points balance.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/tierAnniversaryDate" target="_top">tierAnniversaryDate</a></tt></dt>
+<dd><p>Date that the user achieved current tier.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/tierName" target="_top">tierName</a></tt></dt>
+<dd><p>User's current tier.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/tierPercentage" target="_top">tierPercentage</a></tt></dt>
+<dd><p>User's progress towards next tier.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/unclaimedAchievementCount" target="_top">unclaimedAchievementCount</a></tt></dt>
+<dd><p>Returns user's unclaimed achievement count.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/SMUser/unclaimedAchievementValue" target="_top">unclaimedAchievementValue</a></tt></dt>
+<dd><p>Returns user's unclaimed achievement value.
+</p></dd>
+</dl>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/achievements;   name=SMUser::achievements --><a name="//apple_ref/occ/instp/SMUser/achievements"></a>
+<h3><a name="achievements">achievements</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/achievements;name=start --><!-- begin abstract --></p>
+<p>Returns an array of <a href="../../../SMAchievementData_h/Classes/SMAchievementData/index.html#//apple_ref/occ/cl/SMAchievementData" logicalPath="//apple_ref/occ/cl/SMAchievementData" target="_top">SMAchievementData</a> objects.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/achievements;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/achievements;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">strong</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/intf/NSArray //apple_ref/doc/anysymbol/NSArray" machineGenerated="true" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/achievements //apple_ref/occ/data/SMUser/achievements //apple_ref/occ/data/achievements //apple_ref/occ/clconst/SMUser/achievements " machineGenerated="true" --><span class="var">achievements</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/achievements;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/achievementsList;   name=SMUser::achievementsList --><a name="//apple_ref/occ/instp/SMUser/achievementsList"></a>
+<h3><a name="achievementsList">achievementsList</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/achievementsList;name=start --><!-- begin abstract --></p>
+<p>Returns an array of <a href="../../../SMAchievementData_h/Classes/SMAchievementData/index.html#//apple_ref/occ/cl/SMAchievementData" logicalPath="//apple_ref/occ/cl/SMAchievementData" target="_top">SMAchievementData</a> objects representing the user's achievement forecast.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/achievementsList;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/achievementsList;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">strong</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/intf/NSArray //apple_ref/doc/anysymbol/NSArray" machineGenerated="true" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/achievementsList //apple_ref/occ/data/SMUser/achievementsList //apple_ref/occ/data/achievementsList //apple_ref/occ/clconst/SMUser/achievementsList " machineGenerated="true" --><span class="var">achievementsList</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/achievementsList;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/claimableAchievements;   name=SMUser::claimableAchievements --><a name="//apple_ref/occ/instp/SMUser/claimableAchievements"></a>
+<h3><a name="claimableAchievements">claimableAchievements</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/claimableAchievements;name=start --><!-- begin abstract --></p>
+<p>Returns the subarray of <a href="index.html#//apple_ref/occ/instp/SMUser/achievementsList" logicalPath="//apple_ref/occ/instp/SMUser/achievementsList" target="_top">achievementsList</a> that contains all achievements that the user can currently claim.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/claimableAchievements;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/claimableAchievements;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">strong</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/intf/NSArray //apple_ref/doc/anysymbol/NSArray" machineGenerated="true" --><span class="type">NSArray</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/claimableAchievements //apple_ref/occ/data/SMUser/claimableAchievements //apple_ref/occ/data/claimableAchievements //apple_ref/occ/clconst/SMUser/claimableAchievements " machineGenerated="true" --><span class="var">claimableAchievements</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/claimableAchievements;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/isLoggedIn;   name=SMUser::isLoggedIn --><a name="//apple_ref/occ/instp/SMUser/isLoggedIn"></a>
+<h3><a name="isLoggedIn">isLoggedIn</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/isLoggedIn;name=start --><!-- begin abstract --></p>
+<p>Returns user's logged in status. This value is set to true for a registered user who has also verified their password for the current session through the portal - or when either <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/signUpUserWithData:" logicalPath="//apple_ref/occ/instm/SessionM/signUpUserWithData:" target="_top">signUpUserWithData:</a> or <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" logicalPath="//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" target="_top">logInUserWithEmail:password:</a> is called.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/isLoggedIn;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/isLoggedIn;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/intf/BOOL //apple_ref/doc/anysymbol/BOOL" machineGenerated="true" --><span class="type">BOOL</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/isLoggedIn //apple_ref/occ/data/SMUser/isLoggedIn //apple_ref/occ/data/isLoggedIn //apple_ref/occ/clconst/SMUser/isLoggedIn " machineGenerated="true" --><span class="var">isLoggedIn</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/isLoggedIn;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/isOptedOut;   name=SMUser::isOptedOut --><a name="//apple_ref/occ/instp/SMUser/isOptedOut"></a>
+<h3><a name="isOptedOut">isOptedOut</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/isOptedOut;name=start --><!-- begin abstract --></p>
+<p>Returns or sets user opt out status.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/isOptedOut;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/isOptedOut;name=start -->@property(<span class="param">nonatomic</span>) <!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/intf/BOOL //apple_ref/doc/anysymbol/BOOL" machineGenerated="true" --><span class="type">BOOL</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/isOptedOut //apple_ref/occ/data/SMUser/isOptedOut //apple_ref/occ/data/isOptedOut //apple_ref/occ/clconst/SMUser/isOptedOut " machineGenerated="true" --><span class="var">isOptedOut</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/isOptedOut;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/SMUser/isOptedOut;name=start --><p>Use this property to programmatically opt-in or opt-out user or query for this status. When opted out tha application can still log actions
+but they would not trigger an achievement display. User portal can still be presented in opted out state and users can opt in into the propgram from it.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/SMUser/isOptedOut;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/isRegistered;   name=SMUser::isRegistered --><a name="//apple_ref/occ/instp/SMUser/isRegistered"></a>
+<h3><a name="isRegistered">isRegistered</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/isRegistered;name=start --><!-- begin abstract --></p>
+<p>Returns user's registered status. This value is set to true when the account corresponds to a registered user. The user can register for an account through the portal - or when either <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/enrollWithData:" logicalPath="//apple_ref/occ/instm/SessionM/enrollWithData:" target="_top">enrollWithData:</a>, <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/enrollWithEmail:YOB:" logicalPath="//apple_ref/occ/instm/SessionM/enrollWithEmail:YOB:" target="_top">enrollWithEmail:YOB:</a>, <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/signUpUserWithData:" logicalPath="//apple_ref/occ/instm/SessionM/signUpUserWithData:" target="_top">signUpUserWithData:</a> or <a href="../SessionM/index.html#//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" logicalPath="//apple_ref/occ/instm/SessionM/logInUserWithEmail:password:" target="_top">logInUserWithEmail:password:</a> is called.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/isRegistered;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/isRegistered;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/intf/BOOL //apple_ref/doc/anysymbol/BOOL" machineGenerated="true" --><span class="type">BOOL</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/isRegistered //apple_ref/occ/data/SMUser/isRegistered //apple_ref/occ/data/isRegistered //apple_ref/occ/clconst/SMUser/isRegistered " machineGenerated="true" --><span class="var">isRegistered</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/isRegistered;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/pointBalance;   name=SMUser::pointBalance --><a name="//apple_ref/occ/instp/SMUser/pointBalance"></a>
+<h3><a name="pointBalance">pointBalance</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/pointBalance;name=start --><!-- begin abstract --></p>
+<p>Returns user's current points balance.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/pointBalance;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/pointBalance;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/intf/NSUInteger //apple_ref/doc/anysymbol/NSUInteger" machineGenerated="true" --><span class="type">NSUInteger</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/pointBalance //apple_ref/occ/data/SMUser/pointBalance //apple_ref/occ/data/pointBalance //apple_ref/occ/clconst/SMUser/pointBalance " machineGenerated="true" --><span class="var">pointBalance</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/pointBalance;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/tierAnniversaryDate;   name=SMUser::tierAnniversaryDate --><a name="//apple_ref/occ/instp/SMUser/tierAnniversaryDate"></a>
+<h3><a name="tierAnniversaryDate">tierAnniversaryDate</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/tierAnniversaryDate;name=start --><!-- begin abstract --></p>
+<p>Date that the user achieved current tier.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/tierAnniversaryDate;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/tierAnniversaryDate;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">strong</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/tierAnniversaryDate //apple_ref/occ/data/SMUser/tierAnniversaryDate //apple_ref/occ/data/tierAnniversaryDate //apple_ref/occ/clconst/SMUser/tierAnniversaryDate " machineGenerated="true" --><span class="var">tierAnniversaryDate</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/tierAnniversaryDate;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/tierName;   name=SMUser::tierName --><a name="//apple_ref/occ/instp/SMUser/tierName"></a>
+<h3><a name="tierName">tierName</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/tierName;name=start --><!-- begin abstract --></p>
+<p>User's current tier.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/tierName;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/tierName;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">strong</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/tierName //apple_ref/occ/data/SMUser/tierName //apple_ref/occ/data/tierName //apple_ref/occ/clconst/SMUser/tierName " machineGenerated="true" --><span class="var">tierName</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/tierName;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/tierPercentage;   name=SMUser::tierPercentage --><a name="//apple_ref/occ/instp/SMUser/tierPercentage"></a>
+<h3><a name="tierPercentage">tierPercentage</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/tierPercentage;name=start --><!-- begin abstract --></p>
+<p>User's progress towards next tier.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/tierPercentage;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/tierPercentage;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/float //apple_ref/occ/tdef/float //apple_ref/occ/tag/float //apple_ref/occ/struct/float //apple_ref/occ/intf/float //apple_ref/doc/anysymbol/float" machineGenerated="true" --><span class="type">float</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/tierPercentage //apple_ref/occ/data/SMUser/tierPercentage //apple_ref/occ/data/tierPercentage //apple_ref/occ/clconst/SMUser/tierPercentage " machineGenerated="true" --><span class="var">tierPercentage</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/tierPercentage;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementCount;   name=SMUser::unclaimedAchievementCount --><a name="//apple_ref/occ/instp/SMUser/unclaimedAchievementCount"></a>
+<h3><a name="unclaimedAchievementCount">unclaimedAchievementCount</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementCount;name=start --><!-- begin abstract --></p>
+<p>Returns user's unclaimed achievement count.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementCount;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementCount;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/intf/NSUInteger //apple_ref/doc/anysymbol/NSUInteger" machineGenerated="true" --><span class="type">NSUInteger</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/unclaimedAchievementCount //apple_ref/occ/data/SMUser/unclaimedAchievementCount //apple_ref/occ/data/unclaimedAchievementCount //apple_ref/occ/clconst/SMUser/unclaimedAchievementCount " machineGenerated="true" --><span class="var">unclaimedAchievementCount</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementCount;name=end --></pre>
+</div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementValue;   name=SMUser::unclaimedAchievementValue --><a name="//apple_ref/occ/instp/SMUser/unclaimedAchievementValue"></a>
+<h3><a name="unclaimedAchievementValue">unclaimedAchievementValue</a></h3>
+<hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementValue;name=start --><!-- begin abstract --></p>
+<p>Returns user's unclaimed achievement value.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementValue;name=end --></p>
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementValue;name=start -->@property(<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/intf/NSUInteger //apple_ref/doc/anysymbol/NSUInteger" machineGenerated="true" --><span class="type">NSUInteger</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/unclaimedAchievementValue //apple_ref/occ/data/SMUser/unclaimedAchievementValue //apple_ref/occ/data/unclaimedAchievementValue //apple_ref/occ/clconst/SMUser/unclaimedAchievementValue " machineGenerated="true" --><span class="var">unclaimedAchievementValue</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/SMUser/unclaimedAchievementValue;name=end --></pre>
+</div>
+<p class="gapBeforeFooter">&nbsp;</p>
+<!-- start of footer -->
+
+<!-- end of footer -->
+<hr class="afterFooter">
+<div class="hd_copyright_and_timestamp">
+<p class="hd_copyright">&copy; 2013 SessionM, Inc. Patents pending.  </p>
+<p class="hd_timestamp">Last Updated: 03/02/2016
+</p>
+</div>
+</td>
+</tr></table>
+</body>
+</html>

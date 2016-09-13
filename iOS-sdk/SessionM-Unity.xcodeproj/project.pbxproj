@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27C19864E0C6AFA1504B2F1B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B07613783E8BBCBB65E40 /* libPods.a */; };
 		2F96C2AC19E31F200005EC2A /* SessionM_Unity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2F96C2AB19E31F200005EC2A /* SessionM_Unity.h */; };
 		2F96C2AE19E31F200005EC2A /* SessionM_Unity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F96C2AD19E31F200005EC2A /* SessionM_Unity.m */; };
 		2F96C2C319E322D20005EC2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F96C2C219E322D20005EC2A /* Foundation.framework */; };
+		9AF80E552AE19C65853F80BA /* libPods-SessionM-Unity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2EFCED583F23A018CC30829 /* libPods-SessionM-Unity.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,8 +34,11 @@
 		2F96C2B319E31F200005EC2A /* SessionM-UnityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SessionM-UnityTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F96C2B619E31F200005EC2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F96C2C219E322D20005EC2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		562DCDAC9259B604B5755CA5 /* Pods-SessionM-Unity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SessionM-Unity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SessionM-Unity/Pods-SessionM-Unity.debug.xcconfig"; sourceTree = "<group>"; };
+		735A2B4336D2FEEFF4541987 /* Pods-SessionM-Unity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SessionM-Unity.release.xcconfig"; path = "Pods/Target Support Files/Pods-SessionM-Unity/Pods-SessionM-Unity.release.xcconfig"; sourceTree = "<group>"; };
 		7E0FFF4278F8C7A97297784C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8E3B07613783E8BBCBB65E40 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2EFCED583F23A018CC30829 /* libPods-SessionM-Unity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SessionM-Unity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +47,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F96C2C319E322D20005EC2A /* Foundation.framework in Frameworks */,
-				27C19864E0C6AFA1504B2F1B /* libPods.a in Frameworks */,
+				9AF80E552AE19C65853F80BA /* libPods-SessionM-Unity.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +111,7 @@
 			children = (
 				2F96C2C219E322D20005EC2A /* Foundation.framework */,
 				8E3B07613783E8BBCBB65E40 /* libPods.a */,
+				C2EFCED583F23A018CC30829 /* libPods-SessionM-Unity.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +121,8 @@
 			children = (
 				07A5B3EE01741F229838D1F1 /* Pods.debug.xcconfig */,
 				7E0FFF4278F8C7A97297784C /* Pods.release.xcconfig */,
+				562DCDAC9259B604B5755CA5 /* Pods-SessionM-Unity.debug.xcconfig */,
+				735A2B4336D2FEEFF4541987 /* Pods-SessionM-Unity.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -128,11 +134,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F96C2B919E31F200005EC2A /* Build configuration list for PBXNativeTarget "SessionM-Unity" */;
 			buildPhases = (
-				492D053ED064D82D6054DFBB /* Check Pods Manifest.lock */,
+				492D053ED064D82D6054DFBB /* [CP] Check Pods Manifest.lock */,
 				2F96C2A419E31F200005EC2A /* Sources */,
 				2F96C2A519E31F200005EC2A /* Frameworks */,
 				2F96C2A619E31F200005EC2A /* CopyFiles */,
-				B31FA3443EA862E56EBADB30 /* Copy Pods Resources */,
+				B31FA3443EA862E56EBADB30 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,14 +212,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		492D053ED064D82D6054DFBB /* Check Pods Manifest.lock */ = {
+		492D053ED064D82D6054DFBB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,19 +227,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B31FA3443EA862E56EBADB30 /* Copy Pods Resources */ = {
+		B31FA3443EA862E56EBADB30 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SessionM-Unity/Pods-SessionM-Unity-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -333,7 +339,7 @@
 		};
 		2F96C2BA19E31F200005EC2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07A5B3EE01741F229838D1F1 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 562DCDAC9259B604B5755CA5 /* Pods-SessionM-Unity.debug.xcconfig */;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -349,7 +355,7 @@
 		};
 		2F96C2BB19E31F200005EC2A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E0FFF4278F8C7A97297784C /* Pods.release.xcconfig */;
+			baseConfigurationReference = 735A2B4336D2FEEFF4541987 /* Pods-SessionM-Unity.release.xcconfig */;
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

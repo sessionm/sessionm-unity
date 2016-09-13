@@ -9,6 +9,7 @@ import com.sessionm.api.SessionListener;
 import com.sessionm.api.SessionM;
 import com.sessionm.api.SessionM.ActivityType;
 import com.sessionm.api.User;
+import com.sessionm.api.message.data.MessageData;
 import com.unity3d.player.UnityPlayer;
 
 import org.json.JSONArray;
@@ -155,6 +156,31 @@ public class SessionMListener implements ActivityListener, SessionListener {
         if (callbackGameObjectName != null) {
             UnityPlayer.UnitySendMessage(callbackGameObjectName, "_sessionM_HandleUnclaimedAchievementMessage", achievementData.toString());
         }
+    }
+
+    @Override
+    public void onMessageUpdated(SessionM sessionM, MessageData messageData) {
+        
+    }
+
+    @Override
+    public void onUserActivitiesUpdated(SessionM sessionM) {
+
+    }
+
+    @Override
+    public void onNotificationMessage(SessionM sessionM, MessageData messageData) {
+
+    }
+
+    @Override
+    public void onReceiptUpdated(SessionM sessionM, String s) {
+
+    }
+
+    @Override
+    public void onOrderStatusUpdated(SessionM sessionM, String s) {
+
     }
 
     @Override

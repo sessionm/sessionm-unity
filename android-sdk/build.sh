@@ -8,5 +8,5 @@ sed -i '' 's/$(UNITY_SDK_VERSION)/'${UNITY_SDK_VERSION}'/g' src/com/sessionm/uni
 sed -e 's/$(UNITY_SDK_VERSION)/'${UNITY_SDK_VERSION}'/g' src/com/sessionm/unity/SessionMPlugin.java.in > src/com/sessionm/unity/SessionMPlugin.java
 
 export ANDROID_HOME=${ANDROID_SDK_PATH}
-./gradlew build
+./gradlew build -x lint
 cp target/libs/android-sdk.jar target/SessionMUnity.jar

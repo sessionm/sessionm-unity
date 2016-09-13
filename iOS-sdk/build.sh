@@ -1,10 +1,8 @@
 #!/bin/bash
 source ../Config-SdkVersion
 
-set -ex
-
 echo "Installing latest SessionM podspec"
-pod install
+pod update
 
 DEBUG_CONFIG="Pods/Target Support Files/Pods-SessionM-Unity/Pods-SessionM-Unity.debug.xcconfig"
 RELEASE_CONFIG="Pods/Target Support Files/Pods-SessionM-Unity/Pods-SessionM-Unity.release.xcconfig"

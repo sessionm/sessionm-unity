@@ -1,11 +1,11 @@
 SessionM Unity SDK Release Notes
 ________________
 Copyright: 2016 SessionM. All rights reserved.
-Date: 09/13/2016
-Version: 2.1.3
+Date: 12/12/2016
+Version: 2.1.4
 
 Changes:
-- Updated to native iOS SDK version 1.15.8 to fix issues with UIWebView in iOS 10.
+- Updated to native Android SDK version 1.11.10 to fix issues with Android System WebView 55.
 
 For more info, please see https://documentation.sessionm.com/sdk-integrations/unity-integration
 

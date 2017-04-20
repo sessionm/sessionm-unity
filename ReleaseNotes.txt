@@ -1,11 +1,11 @@
 SessionM Unity SDK Release Notes
 ________________
-Copyright: 2016 SessionM. All rights reserved.
-Date: 12/12/2016
-Version: 2.1.4
+Copyright: 2017 SessionM. All rights reserved.
+Date: 04/20/2017
+Version: 2.1.5
 
 Changes:
-- Updated to native Android SDK version 1.11.10 to fix issues with Android System WebView 55.
+- Fixed multiple SessionM objects bug in multiple scenes.
 
 For more info, please see https://documentation.sessionm.com/sdk-integrations/unity-integration
 

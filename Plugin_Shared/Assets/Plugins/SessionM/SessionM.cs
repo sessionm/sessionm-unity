@@ -223,10 +223,18 @@ public class SessionM : MonoBehaviour
 	
 	private void Awake() 
 	{
-		SetSessionMNative();
+	    if (instance != null)
+        {
+            GameObject.Destroy(this);
+            GameObject.Destroy(this.gameObject);
+            return;
+        }
+
+        SetSessionMNative();
 		GameObject.DontDestroyOnLoad(this.gameObject);
-		instance = this;
 		SetLogLevel (logLevel);
+
+        instance = this;
 	}
 	
 	private void SetSessionMNative()

@@ -16,7 +16,7 @@ import com.unity3d.player.UnityPlayerActivity;
 public class BaseNativeActivity extends UnityPlayerActivity {
 
     private final static String TAG = "SessionM.Unity";
-    private final static String VERSION_NUM = "2.1.4";
+    private final static String VERSION_NUM = "2.1.5";
     
     private final SessionM sessionM = SessionM.getInstance();
     
